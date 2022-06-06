@@ -2,10 +2,7 @@ package com.adrict99.bestfilms.di.component
 
 import android.app.Application
 import com.adrict99.bestfilms.BestFilmsApplication
-import com.adrict99.bestfilms.di.module.ActivityModule
-import com.adrict99.bestfilms.di.module.ApplicationModule
-import com.adrict99.bestfilms.di.module.NetworkModule
-import com.adrict99.bestfilms.di.module.RepositoryModule
+import com.adrict99.bestfilms.di.module.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -16,7 +13,8 @@ import javax.inject.Singleton
     ApplicationModule::class,
     NetworkModule::class,
     ActivityModule::class,
-    RepositoryModule::class])
+    RepositoryModule::class,
+    ViewModelModule::class])
 interface ApplicationComponent {
 
     @Component.Builder
