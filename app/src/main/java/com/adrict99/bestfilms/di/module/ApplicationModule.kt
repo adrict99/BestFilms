@@ -3,9 +3,11 @@ package com.adrict99.bestfilms.di.module
 import android.app.Application
 import android.content.Context
 import com.adrict99.bestfilms.utils.NetworkUtils
+import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
+@Module
 class ApplicationModule {
 
     @Provides

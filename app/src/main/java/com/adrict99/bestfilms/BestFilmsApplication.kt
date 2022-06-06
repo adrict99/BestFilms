@@ -1,6 +1,7 @@
 package com.adrict99.bestfilms
 
 import android.app.Application
+import com.adrict99.bestfilms.di.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector

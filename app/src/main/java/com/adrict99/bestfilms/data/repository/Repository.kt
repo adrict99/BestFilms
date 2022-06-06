@@ -1,5 +1,6 @@
 package com.adrict99.bestfilms.data.repository
 
+import com.adrict99.bestfilms.data.network.response.ErrorResponse
 import com.adrict99.bestfilms.utils.NetworkUtils
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
@@ -10,37 +11,28 @@ open class Repository(
     open val networkUtils: NetworkUtils
 ) {
 
-    fun <T : Any> callApi(call: suspend () -> T): Flow<T> = flow {
+    fun <T : Any> callApi(call: suspend () -> Response<T>): Flow<T> = flow {
 
-        if (!networkUtils.hasConnection())
-            throw Exception(0.toString(), "Error, no tiene conexión.")
-
+        if (!networkUtils.hasConnection()) throw Exception("Sin conexión")
 
         val response = call.invoke()
         if (response.isSuccessful) {
-            emit(response.b)
+            emit(response.body()!!)
         } else {
-            /*
-            controlar codigos de error
-                    if (myResp.code() == 403){
-                        CustomException(response.code(), "mensaje de error custom")
-                    }
-
-            */
             val gson = Gson()
-            response.errorBody()?.let {
+            response.errorBody()?.let { responseBody ->
                 val errorResponse: ErrorResponse
                 try {
-                    errorResponse = gson.fromJson(it.string(), ErrorResponse::class.java)
+                    errorResponse = gson.fromJson(responseBody.toString(), ErrorResponse::class.java)
                 } catch (e: Exception) {
-                    throw CustomException(response.code(), "Error ${response.code()}")
+                    throw Exception("${response.code()}")
                 }
-                errorResponse?.let {
-                    throw CustomException(errorResponse.status, errorResponse.error)
+                errorResponse?.let { error ->
+                    throw Exception("${error.status} ${error.error}")
                 }
 
             }
-            throw CustomException(response.code(), "Error ${response.code()}")
+            throw Exception("${response.code()}")
 
         }
 

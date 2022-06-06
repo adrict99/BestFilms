@@ -1,11 +1,8 @@
 package com.adrict99.bestfilms.di.module
 
-import androidx.databinding.library.BuildConfig
 import com.adrict99.bestfilms.BuildConfig.BASE_URL
 import com.adrict99.bestfilms.data.network.ApiInterface
 import com.adrict99.bestfilms.data.network.NetworkInterceptor
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -25,7 +22,7 @@ class NetworkModule {
         val okHttpClient = okHttpClientBuilder.build()
 
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

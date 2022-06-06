@@ -11,7 +11,7 @@ import javax.inject.Inject
 class MoviesRepositoryImpl @Inject constructor(
     private val apiInterface: ApiInterface,
     override val networkUtils: NetworkUtils
-): MoviesRepository, Repository(NetworkUtils) {
+): MoviesRepository, Repository(networkUtils) {
 
     override fun getPopularMovies(): Flow<PopularMoviesResponse> = flow {
         callApi { apiInterface.getPopularMovies() }
