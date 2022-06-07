@@ -4,8 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/adric/AndroidStudioProjects/BestFilms/app/src/main/res/layout/activity_home.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/adric/AndroidStudioProjects/BestFilms/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/adric/AndroidStudioProjects/BestFilms/app/src/main/res/layout/fragment_favorites.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/adric/AndroidStudioProjects/BestFilms/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/adric/AndroidStudioProjects/BestFilms/app/src/main/res/layout/fragment_media.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/adric/AndroidStudioProjects/BestFilms/app/src/main/res/layout/fragment_search.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/adric/AndroidStudioProjects/BestFilms/app/src/main/res/layout/loading_layout.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/adric/AndroidStudioProjects/BestFilms/app/src/main/res/menu/menu_bottom_navigation_bar.xml" value="0.253125" />
       </map>
     </option>
   </component>

@@ -3,12 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/media_fragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/media_fragment"
-        android:name="com.adrict99.bestfilms.ui.media.MediaFragment"
-        android:label="MediaFragment"
-        tools:layout="@layout/fragment_media"/>
+        android:id="@+id/homeFragment"
+        android:name="com.adrict99.bestfilms.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"/>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.adrict99.bestfilms.ui.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search"/>
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.adrict99.bestfilms.ui.favorites.FavoritesFragment"
+        android:label="FavoritesFragment"
+        tools:layout="@layout/fragment_favorites"/>
 
 </navigation>
