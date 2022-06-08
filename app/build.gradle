@@ -5,6 +5,9 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
 }
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     compileSdk 32
 
@@ -26,6 +29,8 @@ android {
         pro {
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org\"")
             buildConfigField("String", "IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/w500\"")
+            buildConfigField("String", "API_KEY", localProperties['apiKey'])
+            buildConfigField("String", "API_LANGUAGE", localProperties['apiLanguage'])
         }
     }
     buildTypes {
