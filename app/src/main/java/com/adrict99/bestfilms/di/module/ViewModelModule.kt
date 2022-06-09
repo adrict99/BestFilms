@@ -2,6 +2,7 @@ package com.adrict99.bestfilms.di.module
 
 import androidx.lifecycle.ViewModel
 import com.adrict99.bestfilms.ui.MainViewModel
+import com.adrict99.bestfilms.ui.home.HomeViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -14,7 +15,12 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(MainViewModel::class)
-    abstract fun bindHomeViewModel(mainViewModel: MainViewModel): ViewModel
+    abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeViewModel::class)
+    abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
 }
 
 @MustBeDocumented

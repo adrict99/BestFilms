@@ -12,6 +12,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase
 ): BaseViewModel() {
+
     val popularMoviesResponse: MutableLiveData<PopularMoviesResponse> by lazy {
         MutableLiveData<PopularMoviesResponse>()
     }
@@ -27,4 +28,5 @@ class MainViewModel @Inject constructor(
                 }
         }
     }
+
 }
