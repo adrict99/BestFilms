@@ -4,13 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 
-import com.adrict99.bestfilms.data.network.response.MovieItem
 import com.adrict99.bestfilms.databinding.MediaElementBinding
+import com.adrict99.bestfilms.domain.model.Movie
+import com.adrict99.bestfilms.domain.model.TrendingContent
+import com.adrict99.bestfilms.domain.model.TvShow
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
@@ -19,7 +20,10 @@ class HomeAdapter(
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
-    private var popularMovies = mutableListOf<MovieItem>()
+    private var popularAll = mutableListOf<TrendingContent>()
+    private var popularMovies = mutableListOf<Movie>()
+    private var popularTvShows = mutableListOf<TvShow>()
+
     private var selectedItem: Int? = null
     private var url = ""
 
@@ -40,13 +44,25 @@ class HomeAdapter(
 
     override fun getItemCount(): Int = popularMovies.size
 
-    fun addAllItems(movieList: List<MovieItem>) {
+    fun addAllMovies(movieList: List<Movie>) {
         popularMovies.clear()
         popularMovies.addAll(movieList)
         notifyDataSetChanged()
     }
 
-    fun addItem(item: MovieItem) {
+    fun addAllContent(contentList: List<TrendingContent>) {
+        popularAll.clear()
+        popularAll.addAll(contentList)
+        notifyDataSetChanged()
+    }
+
+    fun addAllTvShows(tvShowList: List<TvShow>) {
+        popularTvShows.clear()
+        popularTvShows.addAll(tvShowList)
+        notifyDataSetChanged()
+    }
+
+    fun addItem(item: Movie) {
         popularMovies.add(0, item)
         notifyItemInserted(0)
     }
@@ -56,7 +72,7 @@ class HomeAdapter(
     ) : RecyclerView.ViewHolder(binding.root),
         View.OnClickListener {
         fun bindItems(
-            item: MovieItem
+            item: Movie
         ) {
             binding.mediaTitleTextView.text = item.title
             binding.mediaRatingBar.rating = item.vote_average!!.toFloat()/2

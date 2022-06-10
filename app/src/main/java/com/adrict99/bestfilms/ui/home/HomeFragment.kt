@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adrict99.bestfilms.R
@@ -16,7 +15,6 @@ import com.adrict99.bestfilms.ui.MainActivity
 import com.adrict99.bestfilms.ui.MainViewModel
 import com.adrict99.bestfilms.ui.home.adapter.HomeAdapter
 import com.adrict99.bestfilms.ui.home.adapter.HomeAdapter.OnItemClickListener
-import com.adrict99.bestfilms.utils.ViewModelFactory
 import javax.inject.Inject
 
 class HomeFragment : Fragment(), OnItemClickListener {
@@ -41,7 +39,7 @@ class HomeFragment : Fragment(), OnItemClickListener {
 
         viewModel = (activity as MainActivity).mainViewModel
 
-        setupRecyclerView()
+        setupView()
 
         return binding.root
     }
@@ -49,14 +47,58 @@ class HomeFragment : Fragment(), OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.popularMoviesResponse.observe(viewLifecycleOwner) {
-            homeAdapter.addAllItems(it.results!!)
-        }
-        viewModel.getPopularMovies()
+        setupViewModelObservers()
+        getDataFromApi()
     }
 
-    private fun setupRecyclerView() {
-        binding.movieRecyclerView.apply {
+    private fun setupViewModelObservers() {
+
+        //Observes popular all content response
+        viewModel.popularAllContentResponse.observe(viewLifecycleOwner) {
+            homeAdapter.addAllContent(it.results!!)
+        }
+
+        //Observes popular movies response
+        viewModel.popularMoviesResponse.observe(viewLifecycleOwner) {
+            homeAdapter.addAllMovies(it.results!!)
+        }
+
+        //Observes popular tv shows response
+        viewModel.popularTvShowsResponse.observe(viewLifecycleOwner) {
+            homeAdapter.addAllTvShows(it.results!!)
+        }
+    }
+
+    private fun setupView() {
+        setupRecyclerViews()
+    }
+
+
+    private fun getDataFromApi() {
+        //API request for movies, series and tv shows
+        viewModel.getPopularAllContent()
+        viewModel.getPopularMovies()
+        viewModel.getPopularSeries()
+    }
+
+
+    private fun setupRecyclerViews() {
+        //Setting up all content recyclerView
+        binding.allContentRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
+            adapter = homeAdapter
+        }
+
+        //Setting up movies recyclerView
+        binding.moviesRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
+            adapter = homeAdapter
+        }
+
+        //Setting up series recyclerView
+        binding.tvShowsRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
             adapter = homeAdapter

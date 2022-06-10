@@ -1,15 +1,15 @@
 package com.adrict99.bestfilms.data.network.response
 
-import com.adrict99.bestfilms.domain.model.Movie
+import com.adrict99.bestfilms.domain.model.TrendingContent
 import com.google.gson.annotations.SerializedName
 
-data class PopularMoviesResponse(
+data class PopularAllContentResponse(
     @SerializedName("page")
     val page: Int?,
     @SerializedName("results")
-    val results: List<Movie>?,
+    val results: List<TrendingContent>?,
     @SerializedName("total_pages")
-    val total_pages: Int?,
+    val totalPages: Int?,
     @SerializedName("total_results")
-    val total_results: Int?
+    val totalResults: Int?
 )
