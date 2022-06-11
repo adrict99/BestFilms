@@ -52,6 +52,7 @@ class HomeFragment : Fragment(), OnMovieClickListener, OnContentClickListener, O
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupViewModelObservers()
         getDataFromApi()
     }
