@@ -8,36 +8,34 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 
-import com.adrict99.bestfilms.databinding.MediaElementBinding
+import com.adrict99.bestfilms.databinding.MovieElementBinding
 import com.adrict99.bestfilms.domain.model.Movie
-import com.adrict99.bestfilms.domain.model.TrendingContent
-import com.adrict99.bestfilms.domain.model.TvShow
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
-class HomeAdapter(
+class MovieAdapter(
     private val context: Context,
-    private val listener: OnItemClickListener
-) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+    private val listener: OnMovieClickListener
+) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-    private var popularAll = mutableListOf<TrendingContent>()
     private var popularMovies = mutableListOf<Movie>()
-    private var popularTvShows = mutableListOf<TvShow>()
 
     private var selectedItem: Int? = null
     private var url = ""
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int
-    ): HomeViewHolder {
-        val binding = MediaElementBinding.inflate(
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): MovieViewHolder {
+        val binding = MovieElementBinding.inflate(
             LayoutInflater.from(context),
             parent,
             false
         )
-        return HomeViewHolder(binding)
+        return MovieViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: HomeAdapter.HomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieAdapter.MovieViewHolder, position: Int) {
         val item = popularMovies[position]
         holder.bindItems(item)
     }
@@ -50,25 +48,13 @@ class HomeAdapter(
         notifyDataSetChanged()
     }
 
-    fun addAllContent(contentList: List<TrendingContent>) {
-        popularAll.clear()
-        popularAll.addAll(contentList)
-        notifyDataSetChanged()
-    }
-
-    fun addAllTvShows(tvShowList: List<TvShow>) {
-        popularTvShows.clear()
-        popularTvShows.addAll(tvShowList)
-        notifyDataSetChanged()
-    }
-
     fun addItem(item: Movie) {
         popularMovies.add(0, item)
         notifyItemInserted(0)
     }
 
-    inner class HomeViewHolder(
-        private val binding: MediaElementBinding
+    inner class MovieViewHolder(
+        private val binding: MovieElementBinding
     ) : RecyclerView.ViewHolder(binding.root),
         View.OnClickListener {
         fun bindItems(
@@ -91,11 +77,11 @@ class HomeAdapter(
         }
 
         override fun onClick(p0: View?) {
-            selectedItem?.let { listener.onItemClicked(it) }
+            selectedItem?.let { listener.onMovieClicked(it) }
         }
     }
 
-    interface OnItemClickListener {
-        fun onItemClicked(selectedItem: Int)
+    interface OnMovieClickListener {
+        fun onMovieClicked(selectedMovie: Int)
     }
 }

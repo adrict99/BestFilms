@@ -43,7 +43,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/media_element" />
+                    tools:listitem="@layout/movie_element" />
 
             </LinearLayout>
 
@@ -83,7 +83,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/media_element" />
+                    tools:listitem="@layout/movie_element" />
 
             </LinearLayout>
 
@@ -123,7 +123,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/media_element" />
+                    tools:listitem="@layout/movie_element" />
 
             </LinearLayout>
 

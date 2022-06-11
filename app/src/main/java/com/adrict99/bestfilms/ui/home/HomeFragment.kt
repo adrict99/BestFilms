@@ -13,11 +13,15 @@ import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.FragmentHomeBinding
 import com.adrict99.bestfilms.ui.MainActivity
 import com.adrict99.bestfilms.ui.MainViewModel
-import com.adrict99.bestfilms.ui.home.adapter.HomeAdapter
-import com.adrict99.bestfilms.ui.home.adapter.HomeAdapter.OnItemClickListener
+import com.adrict99.bestfilms.ui.home.adapter.ContentAdapter
+import com.adrict99.bestfilms.ui.home.adapter.ContentAdapter.OnContentClickListener
+import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter
+import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter.OnMovieClickListener
+import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter
+import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter.OnTvShowClickListener
 import javax.inject.Inject
 
-class HomeFragment : Fragment(), OnItemClickListener {
+class HomeFragment : Fragment(), OnMovieClickListener, OnContentClickListener, OnTvShowClickListener {
 
     private lateinit var binding: FragmentHomeBinding
 
@@ -29,7 +33,9 @@ class HomeFragment : Fragment(), OnItemClickListener {
 
     //val viewModel: HomeViewModel by viewModels()
 
-    private val homeAdapter: HomeAdapter by lazy { HomeAdapter(requireContext(), this) }
+    private val allContentAdapter: ContentAdapter by lazy { ContentAdapter(requireContext(), this) }
+    private val movieAdapter: MovieAdapter by lazy { MovieAdapter(requireContext(), this) }
+    private val tvShowsAdapter: TvShowsAdapter by lazy { TvShowsAdapter(requireContext(), this) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,27 +52,17 @@ class HomeFragment : Fragment(), OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupViewModelObservers()
         getDataFromApi()
     }
 
     private fun setupViewModelObservers() {
-
         //Observes popular all content response
-        viewModel.popularAllContentResponse.observe(viewLifecycleOwner) {
-            homeAdapter.addAllContent(it.results!!)
-        }
-
+        viewModel.popularAllContentResponse.observe(viewLifecycleOwner) { allContentAdapter.addAllContent(it.results!!) }
         //Observes popular movies response
-        viewModel.popularMoviesResponse.observe(viewLifecycleOwner) {
-            homeAdapter.addAllMovies(it.results!!)
-        }
-
+        viewModel.popularMoviesResponse.observe(viewLifecycleOwner) { movieAdapter.addAllMovies(it.results!!) }
         //Observes popular tv shows response
-        viewModel.popularTvShowsResponse.observe(viewLifecycleOwner) {
-            homeAdapter.addAllTvShows(it.results!!)
-        }
+        viewModel.popularTvShowsResponse.observe(viewLifecycleOwner) { tvShowsAdapter.addAllTvShows(it.results!!) }
     }
 
     private fun setupView() {
@@ -87,25 +83,23 @@ class HomeFragment : Fragment(), OnItemClickListener {
         binding.allContentRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
-            adapter = homeAdapter
+            adapter = allContentAdapter
         }
-
         //Setting up movies recyclerView
         binding.moviesRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
-            adapter = homeAdapter
+            adapter = movieAdapter
         }
-
         //Setting up series recyclerView
         binding.tvShowsRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
-            adapter = homeAdapter
+            adapter = tvShowsAdapter
         }
     }
 
-    override fun onItemClicked(selectedItem: Int) {
-        Toast.makeText(requireContext(), selectedItem, Toast.LENGTH_LONG).show()
-    }
+    override fun onMovieClicked(selectedMovie: Int) { Toast.makeText(requireContext(), selectedMovie, Toast.LENGTH_LONG).show() }
+    override fun onContentClicked(selectedContent: Int) { Toast.makeText(requireContext(), selectedContent, Toast.LENGTH_LONG).show() }
+    override fun onTvShowClicked(selectedTvShow: Int) { Toast.makeText(requireContext(), selectedTvShow, Toast.LENGTH_LONG).show() }
 }

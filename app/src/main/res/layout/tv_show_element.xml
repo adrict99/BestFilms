@@ -9,19 +9,19 @@
     android:layout_marginVertical="@dimen/margin_4">
 
     <ImageView
-        android:id="@+id/media_image_view"
+        android:id="@+id/tv_show_image_view"
         android:layout_width="0dp"
         android:layout_height="148dp"
         android:src="@drawable/ic_movie"
-        android:contentDescription="@string/movie_image_content_description"
+        android:contentDescription="@string/media_image_content_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/media_title_text_view"
+        app:layout_constraintBottom_toTopOf="@id/tv_show_title_text_view"
         app:shapeAppearanceOverlay="@style/rounded_image_view" />
 
     <TextView
-        android:id="@+id/media_title_text_view"
+        android:id="@+id/tv_show_title_text_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:textAlignment="center"
@@ -29,18 +29,18 @@
         tools:textColor="@color/black"
         android:textColor="@color/white"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/media_image_view"
-        app:layout_constraintStart_toStartOf="@+id/media_image_view"
-        app:layout_constraintTop_toBottomOf="@+id/media_image_view" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_show_image_view"
+        app:layout_constraintStart_toStartOf="@+id/tv_show_image_view"
+        app:layout_constraintTop_toBottomOf="@+id/tv_show_image_view" />
 
     <RatingBar
-        android:id="@+id/media_rating_bar"
+        android:id="@+id/tv_show_rating_bar"
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme="@style/movie_rating_bar"
-        app:layout_constraintTop_toTopOf="@+id/media_image_view"
-        app:layout_constraintEnd_toEndOf="@+id/media_image_view"
-        app:layout_constraintStart_toStartOf="@+id/media_image_view"/>
+        app:layout_constraintTop_toTopOf="@+id/tv_show_image_view"
+        app:layout_constraintEnd_toEndOf="@+id/tv_show_image_view"
+        app:layout_constraintStart_toStartOf="@+id/tv_show_image_view"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

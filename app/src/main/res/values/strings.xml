@@ -16,5 +16,5 @@
     <string name="dummy_title">Title</string>
 
     <!-- Content description -->
-    <string name="movie_image_content_description">Media item image</string>
+    <string name="media_image_content_description">Media item image</string>
 </resources>
