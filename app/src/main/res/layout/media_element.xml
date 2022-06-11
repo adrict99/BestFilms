@@ -39,9 +39,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme="@style/movie_rating_bar"
-        app:layout_constraintTop_toBottomOf="@+id/media_image_view"
+        app:layout_constraintTop_toTopOf="@+id/media_image_view"
         app:layout_constraintEnd_toEndOf="@+id/media_image_view"
-        app:layout_constraintStart_toStartOf="@+id/media_image_view"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="@+id/media_image_view"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
