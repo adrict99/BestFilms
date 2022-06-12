@@ -2,7 +2,9 @@ package com.adrict99.bestfilms.di.module
 
 import androidx.lifecycle.ViewModel
 import com.adrict99.bestfilms.ui.MainViewModel
+import com.adrict99.bestfilms.ui.favorites.FavoritesViewModel
 import com.adrict99.bestfilms.ui.home.HomeViewModel
+import com.adrict99.bestfilms.ui.search.SearchViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -21,6 +23,16 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(HomeViewModel::class)
     abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel::class)
+    abstract fun bindSearchViewModel(searchViewModel: SearchViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel::class)
+    abstract fun bindFavoritesViewModel(favoritesViewModel: FavoritesViewModel): ViewModel
 }
 
 @MustBeDocumented
