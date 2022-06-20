@@ -1,10 +1,12 @@
 package com.adrict99.bestfilms.di.module
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.adrict99.bestfilms.ui.MainViewModel
 import com.adrict99.bestfilms.ui.favorites.FavoritesViewModel
 import com.adrict99.bestfilms.ui.home.HomeViewModel
 import com.adrict99.bestfilms.ui.search.SearchViewModel
+import com.adrict99.bestfilms.utils.ViewModelFactory
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module

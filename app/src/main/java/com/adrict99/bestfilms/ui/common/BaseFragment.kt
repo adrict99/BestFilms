@@ -8,35 +8,27 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import com.adrict99.bestfilms.utils.dismissLoadingDialog
 import com.adrict99.bestfilms.utils.showLoadingDialog
 
-abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewModel>: Fragment() {
+abstract class BaseFragment<ViewBinding: ViewDataBinding>: Fragment() {
 
     protected lateinit var binding: ViewBinding
-    protected lateinit var viewModel: ViewModel
-
-    @get:LayoutRes
-    protected abstract val layoutId: Int
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-
-        /*binding.apply {
-            setVariable(BR.viewModel, viewModel)
-            binding.lifecycleOwner = viewLifecycleOwner
-            root.isClickable = true
-            executePendingBindings()
-        }*/
+        binding = inflateLayout(layoutInflater)
 
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    abstract fun inflateLayout(layoutInflater: LayoutInflater): ViewBinding
+
+    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
     }
@@ -51,6 +43,6 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
 
     protected open fun manageLoadingDialog(isLoading: Boolean) {
         if (isLoading) showLoadingDialog() else dismissLoadingDialog()
-    }
+    }*/
 
 }

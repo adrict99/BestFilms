@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.FragmentHomeBinding
 import com.adrict99.bestfilms.ui.MainActivity
 import com.adrict99.bestfilms.ui.MainViewModel
+import com.adrict99.bestfilms.ui.common.BaseFragment
 import com.adrict99.bestfilms.ui.home.adapter.ContentAdapter
 import com.adrict99.bestfilms.ui.home.adapter.ContentAdapter.OnContentClickListener
 import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter
@@ -21,17 +23,14 @@ import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter.OnTvShowClickListener
 import javax.inject.Inject
 
-class HomeFragment : Fragment(), OnMovieClickListener, OnContentClickListener, OnTvShowClickListener {
-
-    private lateinit var binding: FragmentHomeBinding
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMovieClickListener, OnContentClickListener, OnTvShowClickListener {
 
     //TODO: Refactor this viewModel to HomeViewModel (the one for this fragment)
-    @Inject
+    /*@Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
-    lateinit var viewModel: MainViewModel
-
-    //val viewModel: HomeViewModel by viewModels()
+    lateinit var viewModel: MainViewModel*/
+    val viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
     private val allContentAdapter: ContentAdapter by lazy { ContentAdapter(requireContext(), this) }
     private val movieAdapter: MovieAdapter by lazy { MovieAdapter(requireContext(), this) }
@@ -43,7 +42,7 @@ class HomeFragment : Fragment(), OnMovieClickListener, OnContentClickListener, O
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-        viewModel = (activity as MainActivity).mainViewModel
+        //viewModel = (activity as MainActivity).mainViewModel
 
         setupView()
 
@@ -103,4 +102,6 @@ class HomeFragment : Fragment(), OnMovieClickListener, OnContentClickListener, O
     override fun onMovieClicked(selectedMovie: Int) { Toast.makeText(requireContext(), selectedMovie, Toast.LENGTH_LONG).show() }
     override fun onContentClicked(selectedContent: Int) { Toast.makeText(requireContext(), selectedContent, Toast.LENGTH_LONG).show() }
     override fun onTvShowClicked(selectedTvShow: Int) { Toast.makeText(requireContext(), selectedTvShow, Toast.LENGTH_LONG).show() }
+
+    override fun inflateLayout(layoutInflater: LayoutInflater) = FragmentHomeBinding.inflate(layoutInflater)
 }

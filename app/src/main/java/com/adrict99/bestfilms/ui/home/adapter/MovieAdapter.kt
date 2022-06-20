@@ -10,6 +10,7 @@ import com.adrict99.bestfilms.R
 
 import com.adrict99.bestfilms.databinding.MovieElementBinding
 import com.adrict99.bestfilms.domain.model.Movie
+import com.adrict99.bestfilms.ui.common.adapter.BaseAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
