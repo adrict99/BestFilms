@@ -26,11 +26,10 @@ import javax.inject.Inject
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMovieClickListener, OnContentClickListener, OnTvShowClickListener {
 
     //TODO: Refactor this viewModel to HomeViewModel (the one for this fragment)
-    /*@Inject
+    @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
-    lateinit var viewModel: MainViewModel*/
-    val viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+    lateinit var viewModel: MainViewModel
 
     private val allContentAdapter: ContentAdapter by lazy { ContentAdapter(requireContext(), this) }
     private val movieAdapter: MovieAdapter by lazy { MovieAdapter(requireContext(), this) }
@@ -42,7 +41,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMovieClickListener, 
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-        //viewModel = (activity as MainActivity).mainViewModel
+        viewModel = (activity as MainActivity).mainViewModel
 
         setupView()
 
@@ -57,11 +56,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMovieClickListener, 
     }
 
     private fun setupViewModelObservers() {
-        //Observes popular all content response
+        //Observes popular all content, movies and tv shows response
         viewModel.popularAllContentResponse.observe(viewLifecycleOwner) { allContentAdapter.addAllContent(it.results!!) }
-        //Observes popular movies response
         viewModel.popularMoviesResponse.observe(viewLifecycleOwner) { movieAdapter.addAllMovies(it.results!!) }
-        //Observes popular tv shows response
         viewModel.popularTvShowsResponse.observe(viewLifecycleOwner) { tvShowsAdapter.addAllTvShows(it.results!!) }
     }
 
