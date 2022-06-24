@@ -7,8 +7,7 @@
     <string name="favorites_fragment_name">Favorites</string>
 
     <!-- Home Fragment sections -->
-    <string name="home_all_popular">Most watched</string>
-    <string name="home_series_popular">Series</string>
+    <string name="home_all_popular">Trending</string>
     <string name="home_movies_popular">Movies</string>
     <string name="home_tv_series">TV Series</string>
     <string name="home_actors">Actors</string>
@@ -17,5 +16,5 @@
     <string name="dummy_title">Title</string>
 
     <!-- Content description -->
-    <string name="movie_image_content_description">Media item image</string>
+    <string name="media_image_content_description">Media item image</string>
 </resources>
