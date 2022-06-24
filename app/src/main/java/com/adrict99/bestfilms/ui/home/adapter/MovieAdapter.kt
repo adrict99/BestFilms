@@ -20,9 +20,6 @@ class MovieAdapter(
 
     private var popularMovies = mutableListOf<Movie>()
 
-    private var selectedItem: Int? = null
-    private var url = ""
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -36,8 +33,7 @@ class MovieAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieAdapter.MovieViewHolder, position: Int) {
-        val item = popularMovies[position]
-        holder.bindItems(item)
+        holder.bindItems(popularMovies[position])
     }
 
     override fun getItemCount(): Int = popularMovies.size
@@ -46,11 +42,6 @@ class MovieAdapter(
         popularMovies.clear()
         popularMovies.addAll(movieList)
         notifyDataSetChanged()
-    }
-
-    fun addItem(item: Movie) {
-        popularMovies.add(0, item)
-        notifyItemInserted(0)
     }
 
     inner class MovieViewHolder(
@@ -63,8 +54,6 @@ class MovieAdapter(
             binding.mediaTitleTextView.text = item.title
             binding.mediaRatingBar.rating = item.vote_average!!.toFloat()/2
 
-            url = item.poster_path.toString()
-
             val uri = BuildConfig.IMAGE_BASE_URL + item.poster_path.toString()
             Glide.with(itemView.context)
                 .load(uri)
@@ -73,15 +62,15 @@ class MovieAdapter(
                 .transform(RoundedCorners(30))
                 .into(binding.mediaImageView)
 
-            selectedItem = item.id
+            itemView.setOnClickListener(this)
         }
 
         override fun onClick(p0: View?) {
-            selectedItem?.let { listener.onMovieClicked(it) }
+            listener.onMovieClicked(popularMovies[this.layoutPosition].id)
         }
     }
 
     interface OnMovieClickListener {
-        fun onMovieClicked(selectedMovie: Int)
+        fun onMovieClicked(selectedMovie: Int?)
     }
 }

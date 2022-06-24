@@ -1,20 +1,11 @@
 package com.adrict99.bestfilms.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.adrict99.bestfilms.BestFilmsApplication
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.FragmentHomeBinding
-import com.adrict99.bestfilms.ui.MainActivity
-import com.adrict99.bestfilms.ui.MainViewModel
 import com.adrict99.bestfilms.ui.common.BaseFragment
 import com.adrict99.bestfilms.ui.home.adapter.ContentAdapter
 import com.adrict99.bestfilms.ui.home.adapter.ContentAdapter.OnContentClickListener
@@ -88,7 +79,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         }
     }
 
-    override fun onMovieClicked(selectedMovie: Int) { Toast.makeText(requireContext(), selectedMovie, Toast.LENGTH_LONG).show() }
-    override fun onContentClicked(selectedContent: Int) { Toast.makeText(requireContext(), selectedContent, Toast.LENGTH_LONG).show() }
-    override fun onTvShowClicked(selectedTvShow: Int) { Toast.makeText(requireContext(), selectedTvShow, Toast.LENGTH_LONG).show() }
+    override fun onMovieClicked(selectedMovie: Int?) { Toast.makeText(requireContext(), selectedMovie.toString(), Toast.LENGTH_LONG).show() }
+    override fun onContentClicked(selectedContent: Int?) { Toast.makeText(requireContext(), selectedContent.toString(), Toast.LENGTH_LONG).show() }
+    override fun onTvShowClicked(selectedTvShow: Int?) { Toast.makeText(requireContext(), selectedTvShow.toString(), Toast.LENGTH_LONG).show() }
 }

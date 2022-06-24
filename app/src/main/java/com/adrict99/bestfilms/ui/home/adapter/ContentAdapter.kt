@@ -19,9 +19,6 @@ class ContentAdapter(
 
     private var popularAll = mutableListOf<TrendingContent>()
 
-    private var selectedItem: Int? = null
-    private var url = ""
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -35,8 +32,7 @@ class ContentAdapter(
     }
 
     override fun onBindViewHolder(holder: ContentAdapter.ContentViewHolder, position: Int) {
-        val item = popularAll[position]
-        holder.bindItems(item)
+        holder.bindItems(popularAll[position])
     }
 
     override fun getItemCount(): Int = popularAll.size
@@ -45,11 +41,6 @@ class ContentAdapter(
         popularAll.clear()
         popularAll.addAll(contentList)
         notifyDataSetChanged()
-    }
-
-    fun addItem(item: TrendingContent) {
-        popularAll.add(0, item)
-        notifyItemInserted(0)
     }
 
     inner class ContentViewHolder(
@@ -62,8 +53,6 @@ class ContentAdapter(
             binding.allContentTitleTextView.text = item.title
             binding.allContentRatingBar.rating = item.voteAverage!!.toFloat()/2
 
-            url = item.posterPath.toString()
-
             val uri = BuildConfig.IMAGE_BASE_URL + item.posterPath.toString()
             Glide.with(itemView.context)
                 .load(uri)
@@ -72,15 +61,15 @@ class ContentAdapter(
                 .transform(RoundedCorners(30))
                 .into(binding.allContentImageView)
 
-            selectedItem = item.id
+            itemView.setOnClickListener(this)
         }
 
         override fun onClick(p0: View?) {
-            selectedItem?.let { listener.onContentClicked(it) }
+            listener.onContentClicked(popularAll[this.layoutPosition].id)
         }
     }
 
     interface OnContentClickListener {
-        fun onContentClicked(selectedContent: Int)
+        fun onContentClicked(selectedContent: Int?)
     }
 }
