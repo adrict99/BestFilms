@@ -1,48 +1,56 @@
 package com.adrict99.bestfilms.ui.common
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.annotation.LayoutRes
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import com.adrict99.bestfilms.utils.dismissLoadingDialog
-import com.adrict99.bestfilms.utils.showLoadingDialog
+import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
+import com.adrict99.bestfilms.data.preferences.SharedPrefs
+import com.adrict99.bestfilms.utils.Navigator
+import com.adrict99.bestfilms.utils.ViewModelFactory
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
-abstract class BaseFragment<ViewBinding: ViewDataBinding>: Fragment() {
+abstract class BaseFragment<V: ViewBinding>(contentLayoutId: Int) : Fragment(contentLayoutId) {
 
-    protected lateinit var binding: ViewBinding
+    @Inject
+    lateinit var navigator: Navigator
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = inflateLayout(layoutInflater)
+    @Inject
+    lateinit var sharedPrefs: SharedPrefs
 
-        return binding.root
+    //private val progressDialog: Dialog by lazy { DialogUtil().getLoadingDialog(requireActivity()) }
+
+    lateinit var binding: V
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
     }
 
-    abstract fun inflateLayout(layoutInflater: LayoutInflater): ViewBinding
-
-    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupObservers()
+    override fun onStop() {
+        super.onStop()
+        //if (progressDialog.isShowing) progressDialog.dismiss()
     }
 
-    private fun setupObservers() {
-        viewModel.apply {
-            loading.observe(viewLifecycleOwner) { loadingStatus ->
-                manageLoadingDialog(loadingStatus)
-            }
+    fun manageLoadingDialog(mustShow: Boolean) {
+        /*if (mustShow)
+            progressDialog.show()
+        else
+            progressDialog.dismiss()*/
+    }
+
+    fun logout() {
+
+    }
+
+    fun handleError(it: Map<Int, String>) {
+        //requireActivity().showCustomMessage(it.values.first(), Snackbar.LENGTH_LONG)
+        when (it.keys.first()) {
+            401 -> logout()
         }
     }
 
-    protected open fun manageLoadingDialog(isLoading: Boolean) {
-        if (isLoading) showLoadingDialog() else dismissLoadingDialog()
-    }*/
-
+    inline fun <reified T : ViewModel> ViewModelFactory<T>.get(): T =
+        ViewModelProvider(this@BaseFragment, this).get(T::class.java)
 }

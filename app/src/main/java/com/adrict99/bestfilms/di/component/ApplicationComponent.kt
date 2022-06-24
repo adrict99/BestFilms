@@ -14,7 +14,7 @@ import javax.inject.Singleton
     NetworkModule::class,
     ActivityModule::class,
     RepositoryModule::class,
-    ViewModelModule::class])
+    FragmentModule::class])
 interface ApplicationComponent {
 
     @Component.Builder

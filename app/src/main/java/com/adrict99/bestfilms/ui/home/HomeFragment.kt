@@ -10,6 +10,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.adrict99.bestfilms.BestFilmsApplication
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.FragmentHomeBinding
 import com.adrict99.bestfilms.ui.MainActivity
@@ -21,45 +22,33 @@ import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter
 import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter.OnMovieClickListener
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter.OnTvShowClickListener
+import com.adrict99.bestfilms.utils.ViewModelFactory
 import javax.inject.Inject
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMovieClickListener, OnContentClickListener, OnTvShowClickListener {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
+    OnMovieClickListener, OnContentClickListener, OnTvShowClickListener {
 
-    //TODO: Refactor this viewModel to HomeViewModel (the one for this fragment)
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject
-    lateinit var viewModel: MainViewModel
+    lateinit var viewModelFactory: ViewModelFactory<HomeViewModel>
+    private val homeViewModel: HomeViewModel by lazy { viewModelFactory.get() }
 
     private val allContentAdapter: ContentAdapter by lazy { ContentAdapter(requireContext(), this) }
     private val movieAdapter: MovieAdapter by lazy { MovieAdapter(requireContext(), this) }
     private val tvShowsAdapter: TvShowsAdapter by lazy { TvShowsAdapter(requireContext(), this) }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-
-        viewModel = (activity as MainActivity).mainViewModel
-
-        setupView()
-
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding = FragmentHomeBinding.bind(view)
+        setupView()
         setupViewModelObservers()
         getDataFromApi()
     }
 
     private fun setupViewModelObservers() {
         //Observes popular all content, movies and tv shows response
-        viewModel.popularAllContentResponse.observe(viewLifecycleOwner) { allContentAdapter.addAllContent(it.results!!) }
-        viewModel.popularMoviesResponse.observe(viewLifecycleOwner) { movieAdapter.addAllMovies(it.results!!) }
-        viewModel.popularTvShowsResponse.observe(viewLifecycleOwner) { tvShowsAdapter.addAllTvShows(it.results!!) }
+        homeViewModel.popularAllContentResponse.observe(viewLifecycleOwner) { allContentAdapter.addAllContent(it.results!!) }
+        homeViewModel.popularMoviesResponse.observe(viewLifecycleOwner) { movieAdapter.addAllMovies(it.results!!) }
+        homeViewModel.popularTvShowsResponse.observe(viewLifecycleOwner) { tvShowsAdapter.addAllTvShows(it.results!!) }
     }
 
     private fun setupView() {
@@ -69,9 +58,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMovieClickListener, 
 
     private fun getDataFromApi() {
         //API request for movies, series and tv shows
-        viewModel.getPopularAllContent()
-        viewModel.getPopularMovies()
-        viewModel.getPopularSeries()
+        homeViewModel.getPopularAllContent()
+        homeViewModel.getPopularMovies()
+        homeViewModel.getPopularSeries()
     }
 
 
@@ -99,6 +88,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMovieClickListener, 
     override fun onMovieClicked(selectedMovie: Int) { Toast.makeText(requireContext(), selectedMovie, Toast.LENGTH_LONG).show() }
     override fun onContentClicked(selectedContent: Int) { Toast.makeText(requireContext(), selectedContent, Toast.LENGTH_LONG).show() }
     override fun onTvShowClicked(selectedTvShow: Int) { Toast.makeText(requireContext(), selectedTvShow, Toast.LENGTH_LONG).show() }
-
-    override fun inflateLayout(layoutInflater: LayoutInflater) = FragmentHomeBinding.inflate(layoutInflater)
 }

@@ -1,52 +1,65 @@
 package com.adrict99.bestfilms.ui.common
 
+import android.app.Dialog
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.adrict99.bestfilms.data.preferences.SharedPrefs
+import com.adrict99.bestfilms.utils.Navigator
 import com.adrict99.bestfilms.utils.ViewModelFactory
 import com.adrict99.bestfilms.utils.dismissLoadingDialog
 import com.adrict99.bestfilms.utils.showLoadingDialog
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.AndroidInjection
+import javax.inject.Inject
 
-abstract class BaseActivity<V: ViewBinding/*, ViewModel: BaseViewModel*/>: AppCompatActivity() {
+abstract class BaseActivity<V: ViewBinding>: AppCompatActivity() {
 
-//    @Inject
-//    lateinit var sharedPrefs: SharedPrefs
+    @Inject
+    lateinit var navigator: Navigator
+
+    @Inject
+    lateinit var sharedPrefs: SharedPrefs
+
+    //open val progressDialog: Dialog by lazy { DialogUtil().getLoadingDialog(this) }
 
     lateinit var binding: V
-    //lateinit var viewModel: ViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         binding = getViewBinding()
         setContentView(binding.root)
-        //setupObservers()
     }
 
     abstract fun getViewBinding(): V
 
     inline fun <reified T : ViewModel> ViewModelFactory<T>.get(): T =
-        ViewModelProvider(this@BaseActivity, this)[T::class.java]
+        ViewModelProvider(this@BaseActivity, this).get(T::class.java)
 
     override fun onStop() {
         super.onStop()
-        manageLoadingDialog(false)
+        //if (progressDialog.isShowing) progressDialog.dismiss()
     }
 
-    //private fun setupObservers() {}
-
-    protected open fun manageLoadingDialog(isLoading: Boolean) {
-        if (isLoading) showLoadingDialog() else dismissLoadingDialog()
+    fun manageLoadingDialog(mustShow: Boolean) {
+        /*if (mustShow)
+            progressDialog.show()
+        else
+            progressDialog.dismiss()*/
     }
 
-    fun showErrorMessage(it: Map<Int, String>) {
-        Toast.makeText(applicationContext, it.values.first(), Toast.LENGTH_LONG).show()
-//        when (it.keys.first()) {
-//            401 -> logout()
-//        }
+    fun handleError(it: Map<Int, String>) {
+        //showCustomMessage(it.values.first(), Snackbar.LENGTH_LONG)
+        when (it.keys.first()) {
+            401 -> logout()
+        }
+    }
+
+    fun logout() {
+
     }
 }

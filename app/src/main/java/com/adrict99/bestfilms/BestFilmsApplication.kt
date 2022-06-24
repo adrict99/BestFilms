@@ -1,13 +1,14 @@
 package com.adrict99.bestfilms
 
 import android.app.Application
+import com.adrict99.bestfilms.di.component.ApplicationComponent
 import com.adrict99.bestfilms.di.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-class BestFilmsApplication: Application(), HasAndroidInjector {
+open class BestFilmsApplication: Application(), HasAndroidInjector {
 
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
