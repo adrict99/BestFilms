@@ -46,9 +46,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
 
     private fun setupViewModelObservers() {
         //Observes popular all content, movies and tv shows response
-        homeViewModel.popularAllContentResponse.observe(viewLifecycleOwner) { allContentAdapter.addAllContent(it.results!!) }
-        homeViewModel.popularMoviesResponse.observe(viewLifecycleOwner) { movieAdapter.addAllMovies(it.results!!) }
-        homeViewModel.popularTvShowsResponse.observe(viewLifecycleOwner) { tvShowsAdapter.addAllTvShows(it.results!!) }
+        homeViewModel.popularAllContentResponse.observe(viewLifecycleOwner) {
+            allContentAdapter.addAllContent(it.results!!) }
+        homeViewModel.popularMoviesResponse.observe(viewLifecycleOwner) {
+            movieAdapter.addAllMovies(it.results!!) }
+        homeViewModel.popularTvShowsResponse.observe(viewLifecycleOwner) {
+            tvShowsAdapter.addAllTvShows(it.results!!) }
     }
 
     private fun setupView() {

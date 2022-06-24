@@ -8,10 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.adrict99.bestfilms.data.preferences.SharedPrefs
-import com.adrict99.bestfilms.utils.Navigator
-import com.adrict99.bestfilms.utils.ViewModelFactory
-import com.adrict99.bestfilms.utils.dismissLoadingDialog
-import com.adrict99.bestfilms.utils.showLoadingDialog
+import com.adrict99.bestfilms.utils.*
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.AndroidInjection
 import javax.inject.Inject
@@ -24,7 +21,7 @@ abstract class BaseActivity<V: ViewBinding>: AppCompatActivity() {
     @Inject
     lateinit var sharedPrefs: SharedPrefs
 
-    //open val progressDialog: Dialog by lazy { DialogUtil().getLoadingDialog(this) }
+    open val progressDialog: Dialog by lazy { DialogUtil().getLoadingDialog(this) }
 
     lateinit var binding: V
 
@@ -42,18 +39,18 @@ abstract class BaseActivity<V: ViewBinding>: AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        //if (progressDialog.isShowing) progressDialog.dismiss()
+        if (progressDialog.isShowing) progressDialog.dismiss()
     }
 
     fun manageLoadingDialog(mustShow: Boolean) {
-        /*if (mustShow)
+        if (mustShow)
             progressDialog.show()
         else
-            progressDialog.dismiss()*/
+            progressDialog.dismiss()
     }
 
     fun handleError(it: Map<Int, String>) {
-        //showCustomMessage(it.values.first(), Snackbar.LENGTH_LONG)
+        showCustomMessage(it.values.first(), Snackbar.LENGTH_LONG)
         when (it.keys.first()) {
             401 -> logout()
         }
