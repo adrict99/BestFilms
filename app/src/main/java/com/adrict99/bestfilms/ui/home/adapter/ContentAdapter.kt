@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.AllContentElementBinding
-import com.adrict99.bestfilms.domain.model.TrendingContent
+import com.adrict99.bestfilms.domain.model.media.TrendingContent
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 

@@ -1,6 +1,6 @@
 package com.adrict99.bestfilms.domain.useCase
 
-import com.adrict99.bestfilms.data.network.response.PopularAllContentResponse
+import com.adrict99.bestfilms.data.network.response.media.PopularAllContentResponse
 import com.adrict99.bestfilms.domain.repository.PopularAllContentRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

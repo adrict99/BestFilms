@@ -59,19 +59,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
 
 
     private fun setupRecyclerViews() {
-        //Setting up all content recyclerView
+        //Setting up all content, movies and series recyclerView
         binding.allContentRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
             adapter = allContentAdapter
         }
-        //Setting up movies recyclerView
         binding.moviesRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
             adapter = movieAdapter
         }
-        //Setting up series recyclerView
         binding.tvShowsRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)

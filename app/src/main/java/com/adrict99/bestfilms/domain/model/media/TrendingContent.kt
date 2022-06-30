@@ -1,4 +1,4 @@
-package com.adrict99.bestfilms.domain.model
+package com.adrict99.bestfilms.domain.model.media
 
 import com.google.gson.annotations.SerializedName
 

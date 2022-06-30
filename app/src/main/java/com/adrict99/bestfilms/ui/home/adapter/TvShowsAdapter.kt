@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.TvShowElementBinding
-import com.adrict99.bestfilms.domain.model.TvShow
+import com.adrict99.bestfilms.domain.model.media.TvShow
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
