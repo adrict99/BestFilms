@@ -48,8 +48,16 @@ class TvShowsAdapter(
         fun bindItems(
             item: TvShow
         ) {
-            binding.tvShowTitleTextView.text = item.name
-            binding.tvShowRatingBar.rating = item.voteAverage!!.toFloat()/2
+            if (item.voteAverage!! >= 9) {
+                binding.tvShowRatingText.setTextColor(context.getColor(R.color.golden))
+            } else if (item.voteAverage >= 7.5) {
+                binding.tvShowRatingText.setTextColor(context.getColor(R.color.silver))
+            } else if (item.voteAverage >= 5) {
+                binding.tvShowRatingText.setTextColor(context.getColor(R.color.copper))
+            } else {
+                binding.tvShowRatingText.setTextColor(context.getColor(R.color.red))
+            }
+            binding.tvShowRatingText.text = item.voteAverage.toString()
 
             val uri = BuildConfig.IMAGE_BASE_URL + item.posterPath.toString()
             Glide.with(itemView.context)

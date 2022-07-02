@@ -2,7 +2,8 @@ package com.adrict99.bestfilms.ui.home
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.FragmentHomeBinding
@@ -13,6 +14,7 @@ import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter
 import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter.OnMovieClickListener
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter.OnTvShowClickListener
+import com.adrict99.bestfilms.utils.MediaType
 import com.adrict99.bestfilms.utils.ViewModelFactory
 import javax.inject.Inject
 
@@ -26,6 +28,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
     private val allContentAdapter: ContentAdapter by lazy { ContentAdapter(requireContext(), this) }
     private val movieAdapter: MovieAdapter by lazy { MovieAdapter(requireContext(), this) }
     private val tvShowsAdapter: TvShowsAdapter by lazy { TvShowsAdapter(requireContext(), this) }
+
+    private var actionNavigateToDetailedMedia: NavDirections? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,14 +53,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         setupRecyclerViews()
     }
 
-
     private fun getDataFromApi() {
         //API request for movies, series and tv shows
         homeViewModel.getPopularAllContent()
         homeViewModel.getPopularMovies()
         homeViewModel.getPopularSeries()
     }
-
 
     private fun setupRecyclerViews() {
         //Setting up all content, movies and series recyclerView
@@ -77,7 +79,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         }
     }
 
-    override fun onMovieClicked(selectedMovie: Int?) { Toast.makeText(requireContext(), selectedMovie.toString(), Toast.LENGTH_LONG).show() }
-    override fun onContentClicked(selectedContent: Int?) { Toast.makeText(requireContext(), selectedContent.toString(), Toast.LENGTH_LONG).show() }
-    override fun onTvShowClicked(selectedTvShow: Int?) { Toast.makeText(requireContext(), selectedTvShow.toString(), Toast.LENGTH_LONG).show() }
+    private fun navigateToDetailedMedia(mediaId: Int, type: MediaType) {
+        actionNavigateToDetailedMedia = HomeFragmentDirections.actionHomeFragmentToDetailedMediaFragment(
+            mediaId = mediaId,
+            mediaType = type
+        )
+        findNavController().navigate(actionNavigateToDetailedMedia!!)
+    }
+
+    override fun onMovieClicked(selectedMovie: Int?) {
+        selectedMovie?.let { navigateToDetailedMedia(it, MediaType.TYPE_MOVIE) }
+    }
+    override fun onContentClicked(selectedContent: Int?) {
+        selectedContent?.let { navigateToDetailedMedia(it, MediaType.TYPE_MOVIE) }
+    }
+    override fun onTvShowClicked(selectedTvShow: Int?) {
+        selectedTvShow?.let { navigateToDetailedMedia(it, MediaType.TYPE_TV_SHOW) }
+    }
 }
