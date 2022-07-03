@@ -50,16 +50,14 @@ class ContentAdapter(
         fun bindItems(
             item: TrendingContent
         ) {
-            if (item.voteAverage!! >= 9) {
-                binding.allContentRatingText.setTextColor(context.getColor(R.color.golden))
-            } else if (item.voteAverage >= 7.5) {
-                binding.allContentRatingText.setTextColor(context.getColor(R.color.silver))
-            } else if (item.voteAverage >= 5) {
-                binding.allContentRatingText.setTextColor(context.getColor(R.color.copper))
-            } else {
-                binding.allContentRatingText.setTextColor(context.getColor(R.color.red))
-            }
-            binding.allContentRatingText.text = item.voteAverage.toString()
+            binding.allContentRatingText.setTextColor(
+                if (item.voteAverage!! >= 9.0) context.getColor(R.color.golden)
+                else if (item.voteAverage >= 7.5) context.getColor(R.color.silver)
+                else if (item.voteAverage >= 5.0) context.getColor(R.color.copper)
+                else context.getColor(R.color.red)
+            )
+
+            binding.allContentRatingText.text = if (item.voteAverage.equals(0.0)) "?" else item.voteAverage.toString()
 
             val uri = BuildConfig.IMAGE_BASE_URL + item.posterPath.toString()
             Glide.with(itemView.context)

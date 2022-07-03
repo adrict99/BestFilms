@@ -47,7 +47,7 @@ class DetailedMediaFragment : BaseFragment<FragmentDetailedMediaBinding>(R.layou
         //Observes movie or tv detailed data from API response
         if (args.mediaType == MediaType.TYPE_MOVIE) {
             detailedMediaViewModel.movieDetailData.observe(viewLifecycleOwner) {
-                Toast.makeText(context, "${it.id} ${it.video} ${it.originalTitle}", Toast.LENGTH_LONG).show()
+
             }
         } else {
             detailedMediaViewModel.tvDetailData.observe(viewLifecycleOwner) {

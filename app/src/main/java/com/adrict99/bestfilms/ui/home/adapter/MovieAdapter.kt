@@ -51,16 +51,14 @@ class MovieAdapter(
         fun bindItems(
             item: Movie
         ) {
-            if (item.voteAverage!! >= 9) {
-                binding.mediaRatingText.setTextColor(context.getColor(R.color.golden))
-            } else if (item.voteAverage >= 7.5) {
-                binding.mediaRatingText.setTextColor(context.getColor(R.color.silver))
-            } else if (item.voteAverage >= 5) {
-                binding.mediaRatingText.setTextColor(context.getColor(R.color.copper))
-            } else {
-                binding.mediaRatingText.setTextColor(context.getColor(R.color.red))
-            }
-            binding.mediaRatingText.text = item.voteAverage.toString()
+            binding.mediaRatingText.setTextColor(
+                if (item.voteAverage!! >= 9.0) context.getColor(R.color.golden)
+                else if (item.voteAverage >= 7.5) context.getColor(R.color.silver)
+                else if (item.voteAverage >= 5.0) context.getColor(R.color.copper)
+                else context.getColor(R.color.red)
+            )
+
+            binding.mediaRatingText.text = if (item.voteAverage.equals(0.0)) "?" else item.voteAverage.toString()
 
             val uri = BuildConfig.IMAGE_BASE_URL + item.poster_path.toString()
             Glide.with(itemView.context)
