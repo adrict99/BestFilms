@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.adrict99.bestfilms.R
+import com.adrict99.bestfilms.R.drawable
 import com.adrict99.bestfilms.databinding.FragmentDetailedMediaBinding
 import com.adrict99.bestfilms.ui.common.BaseFragment
 import com.adrict99.bestfilms.utils.MediaType
 import com.adrict99.bestfilms.utils.ViewModelFactory
+import com.bumptech.glide.Glide
 import javax.inject.Inject
 
 class DetailedMediaFragment : BaseFragment<FragmentDetailedMediaBinding>(R.layout.fragment_detailed_media) {
@@ -47,7 +49,12 @@ class DetailedMediaFragment : BaseFragment<FragmentDetailedMediaBinding>(R.layou
         //Observes movie or tv detailed data from API response
         if (args.mediaType == MediaType.TYPE_MOVIE) {
             detailedMediaViewModel.movieDetailData.observe(viewLifecycleOwner) {
-
+                Glide.with(this)
+                    .load(it.posterPath)
+                    .placeholder(drawable.ic_movie)
+                    .error(drawable.ic_movie)
+                    .centerCrop()
+                    .into(binding.fragmentDetailedMediaBannerTop)
             }
         } else {
             detailedMediaViewModel.tvDetailData.observe(viewLifecycleOwner) {
