@@ -15,7 +15,7 @@ class DetailedMediaViewModel @Inject constructor(
     private val getMovieDetailUseCase: GetMovieDetailUseCase,
     private val getTvDetailUseCase: GetTvDetailUseCase
 ): BaseViewModel() {
-    //Observing API data
+    //We store API data in this variables to be able to use it later
     val movieDetailData: MutableLiveData<MovieDetailResponse> by lazy { MutableLiveData<MovieDetailResponse>() }
     val tvDetailData: MutableLiveData<TvDetailResponse> by lazy { MutableLiveData<TvDetailResponse>() }
 
