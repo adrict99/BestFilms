@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="MediaRatingBar">
+        <item name="colorControlNormal">@color/gray</item>
+        <item name="colorControlActivated">@color/golden</item>
+    </style>
+</resources>

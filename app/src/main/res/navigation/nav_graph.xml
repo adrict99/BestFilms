@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.adrict99.bestfilms.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailedMediaFragment"
+            app:destination="@id/detailedMediaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.adrict99.bestfilms.ui.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search"/>
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.adrict99.bestfilms.ui.favorites.FavoritesFragment"
+        android:label="FavoritesFragment"
+        tools:layout="@layout/fragment_favorites"/>
+
+    <fragment
+        android:id="@+id/detailedMediaFragment"
+        android:name="com.adrict99.bestfilms.ui.detailedMedia.DetailedMediaFragment"
+        android:label="fragment_detailed_media"
+        tools:layout="@layout/fragment_detailed_media" >
+        <argument
+            android:name="mediaId"
+            app:argType="integer" />
+        <argument
+            android:name="mediaType"
+            app:argType="com.adrict99.bestfilms.utils.MediaType" />
+    </fragment>
+
+</navigation>

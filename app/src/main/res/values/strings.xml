@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">BestFilms</string>
+
+    <!-- Fragments -->
+    <string name="home_fragment_name">Home</string>
+    <string name="search_fragment_name">Search</string>
+    <string name="favorites_fragment_name">Favorites</string>
+
+    <!-- Home Fragment sections -->
+    <string name="home_all_popular">Trending</string>
+    <string name="home_movies_popular">Movies</string>
+    <string name="home_tv_series">TV Series</string>
+    <string name="home_actors">Actors</string>
+
+    <!-- Dummy data -->
+    <string name="dummy_title">Title</string>
+
+    <!-- Content description -->
+    <string name="media_image_content_description">Media item image</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

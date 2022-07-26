@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/margin_4">
+
+    <ImageView
+        android:id="@+id/media_image_view"
+        android:layout_width="100dp"
+        android:layout_height="148dp"
+        android:src="@drawable/ic_movie"
+        android:contentDescription="@string/media_image_content_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:shapeAppearanceOverlay="@style/ImageViewRounded" />
+
+    <TextView
+        android:id="@+id/media_rating_text"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/fragment_home_media_rating_background"
+        android:layout_margin="@dimen/margin_4"
+        android:padding="@dimen/margin_2"
+        tools:text="10"
+        tools:textColor="@color/white"
+        android:textSize="@dimen/font_size_14"
+        android:textAlignment="center"
+        tools:ignore="ContentDescription" />
+
+</FrameLayout>
