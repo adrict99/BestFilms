@@ -1,7 +1,8 @@
 package com.adrict99.bestfilms.data.repository
 
 import com.adrict99.bestfilms.data.network.ApiInterface
-import com.adrict99.bestfilms.data.network.response.PopularAllContentResponse
+import com.adrict99.bestfilms.data.network.response.media.PopularAllContentResponse
+import com.adrict99.bestfilms.data.repository.Repository
 import com.adrict99.bestfilms.domain.repository.PopularAllContentRepository
 import com.adrict99.bestfilms.utils.NetworkUtils
 import kotlinx.coroutines.flow.Flow

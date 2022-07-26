@@ -9,7 +9,7 @@ import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 
 import com.adrict99.bestfilms.databinding.MovieElementBinding
-import com.adrict99.bestfilms.domain.model.Movie
+import com.adrict99.bestfilms.domain.model.media.Movie
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
@@ -19,9 +19,6 @@ class MovieAdapter(
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     private var popularMovies = mutableListOf<Movie>()
-
-    private var selectedItem: Int? = null
-    private var url = ""
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -36,8 +33,7 @@ class MovieAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieAdapter.MovieViewHolder, position: Int) {
-        val item = popularMovies[position]
-        holder.bindItems(item)
+        holder.bindItems(popularMovies[position])
     }
 
     override fun getItemCount(): Int = popularMovies.size
@@ -48,11 +44,6 @@ class MovieAdapter(
         notifyDataSetChanged()
     }
 
-    fun addItem(item: Movie) {
-        popularMovies.add(0, item)
-        notifyItemInserted(0)
-    }
-
     inner class MovieViewHolder(
         private val binding: MovieElementBinding
     ) : RecyclerView.ViewHolder(binding.root),
@@ -60,10 +51,14 @@ class MovieAdapter(
         fun bindItems(
             item: Movie
         ) {
-            binding.mediaTitleTextView.text = item.title
-            binding.mediaRatingBar.rating = item.vote_average!!.toFloat()/2
+            binding.mediaRatingText.setTextColor(
+                if (item.voteAverage!! >= 9.0) context.getColor(R.color.golden)
+                else if (item.voteAverage >= 7.5) context.getColor(R.color.silver)
+                else if (item.voteAverage >= 5.0) context.getColor(R.color.copper)
+                else context.getColor(R.color.red)
+            )
 
-            url = item.poster_path.toString()
+            binding.mediaRatingText.text = if (item.voteAverage.equals(0.0)) "?" else item.voteAverage.toString()
 
             val uri = BuildConfig.IMAGE_BASE_URL + item.poster_path.toString()
             Glide.with(itemView.context)
@@ -73,15 +68,15 @@ class MovieAdapter(
                 .transform(RoundedCorners(30))
                 .into(binding.mediaImageView)
 
-            selectedItem = item.id
+            itemView.setOnClickListener(this)
         }
 
         override fun onClick(p0: View?) {
-            selectedItem?.let { listener.onMovieClicked(it) }
+            listener.onMovieClicked(popularMovies[this.layoutPosition].id)
         }
     }
 
     interface OnMovieClickListener {
-        fun onMovieClicked(selectedMovie: Int)
+        fun onMovieClicked(selectedMovie: Int?)
     }
 }

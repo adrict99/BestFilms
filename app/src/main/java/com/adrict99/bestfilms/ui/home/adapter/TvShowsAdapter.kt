@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.TvShowElementBinding
-import com.adrict99.bestfilms.domain.model.TvShow
+import com.adrict99.bestfilms.domain.model.media.TvShow
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
@@ -18,9 +18,6 @@ class TvShowsAdapter(
 ) : RecyclerView.Adapter<TvShowsAdapter.TvShowsViewHolder>() {
 
     private var popularTvShows = mutableListOf<TvShow>()
-
-    private var selectedItem: Int? = null
-    private var url = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int
     ): TvShowsViewHolder {
@@ -33,8 +30,7 @@ class TvShowsAdapter(
     }
 
     override fun onBindViewHolder(holder: TvShowsViewHolder, position: Int) {
-        val item = popularTvShows[position]
-        holder.bindItems(item)
+        holder.bindItems(popularTvShows[position])
     }
 
     override fun getItemCount(): Int = popularTvShows.size
@@ -52,10 +48,14 @@ class TvShowsAdapter(
         fun bindItems(
             item: TvShow
         ) {
-            binding.tvShowTitleTextView.text = item.name
-            binding.tvShowRatingBar.rating = item.voteAverage!!.toFloat()/2
+            binding.tvShowRatingText.setTextColor(
+                if (item.voteAverage!! >= 9.0) context.getColor(R.color.golden)
+                else if (item.voteAverage >= 7.5) context.getColor(R.color.silver)
+                else if (item.voteAverage >= 5.0) context.getColor(R.color.copper)
+                else context.getColor(R.color.red)
+            )
 
-            url = item.posterPath.toString()
+            binding.tvShowRatingText.text = if (item.voteAverage.equals(0.0)) "?" else item.voteAverage.toString()
 
             val uri = BuildConfig.IMAGE_BASE_URL + item.posterPath.toString()
             Glide.with(itemView.context)
@@ -65,15 +65,15 @@ class TvShowsAdapter(
                 .transform(RoundedCorners(30))
                 .into(binding.tvShowImageView)
 
-            selectedItem = item.id
+            itemView.setOnClickListener(this)
         }
 
         override fun onClick(p0: View?) {
-            selectedItem?.let { listener.onTvShowClicked(it) }
+            listener.onTvShowClicked(popularTvShows[this.layoutPosition].id)
         }
     }
 
     interface OnTvShowClickListener {
-        fun onTvShowClicked(selectedTvShow: Int)
+        fun onTvShowClicked(selectedTvShow: Int?)
     }
 }
