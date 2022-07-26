@@ -1,4 +1,4 @@
-package com.adrict99.bestfilms.domain.model
+package com.adrict99.bestfilms.domain.model.media
 
 import com.google.gson.annotations.SerializedName
 
@@ -28,7 +28,7 @@ data class Movie(
     @SerializedName("video")
     val video: Boolean?,
     @SerializedName("vote_average")
-    val vote_average: Double?,
+    val voteAverage: Double?,
     @SerializedName("vote_count")
     val vote_count: Int?
 )

@@ -2,9 +2,9 @@ package com.adrict99.bestfilms.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.adrict99.bestfilms.data.network.response.PopularAllContentResponse
-import com.adrict99.bestfilms.data.network.response.PopularMoviesResponse
-import com.adrict99.bestfilms.data.network.response.PopularTvShowsResponse
+import com.adrict99.bestfilms.data.network.response.media.PopularAllContentResponse
+import com.adrict99.bestfilms.data.network.response.media.PopularMoviesResponse
+import com.adrict99.bestfilms.data.network.response.media.PopularTvShowsResponse
 import com.adrict99.bestfilms.domain.useCase.GetPopularAllContentUseCase
 import com.adrict99.bestfilms.domain.useCase.GetPopularMoviesUseCase
 import com.adrict99.bestfilms.domain.useCase.GetPopularTvShowsUseCase

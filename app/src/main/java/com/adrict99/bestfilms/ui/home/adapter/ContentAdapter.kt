@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.AllContentElementBinding
-import com.adrict99.bestfilms.domain.model.TrendingContent
+import com.adrict99.bestfilms.domain.model.media.TrendingContent
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
@@ -18,9 +18,6 @@ class ContentAdapter(
 ) : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() {
 
     private var popularAll = mutableListOf<TrendingContent>()
-
-    private var selectedItem: Int? = null
-    private var url = ""
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -35,8 +32,7 @@ class ContentAdapter(
     }
 
     override fun onBindViewHolder(holder: ContentAdapter.ContentViewHolder, position: Int) {
-        val item = popularAll[position]
-        holder.bindItems(item)
+        holder.bindItems(popularAll[position])
     }
 
     override fun getItemCount(): Int = popularAll.size
@@ -47,11 +43,6 @@ class ContentAdapter(
         notifyDataSetChanged()
     }
 
-    fun addItem(item: TrendingContent) {
-        popularAll.add(0, item)
-        notifyItemInserted(0)
-    }
-
     inner class ContentViewHolder(
         private val binding: AllContentElementBinding
     ) : RecyclerView.ViewHolder(binding.root),
@@ -59,10 +50,14 @@ class ContentAdapter(
         fun bindItems(
             item: TrendingContent
         ) {
-            binding.allContentTitleTextView.text = item.title
-            binding.allContentRatingBar.rating = item.voteAverage!!.toFloat()/2
+            binding.allContentRatingText.setTextColor(
+                if (item.voteAverage!! >= 9.0) context.getColor(R.color.golden)
+                else if (item.voteAverage >= 7.5) context.getColor(R.color.silver)
+                else if (item.voteAverage >= 5.0) context.getColor(R.color.copper)
+                else context.getColor(R.color.red)
+            )
 
-            url = item.posterPath.toString()
+            binding.allContentRatingText.text = if (item.voteAverage.equals(0.0)) "?" else item.voteAverage.toString()
 
             val uri = BuildConfig.IMAGE_BASE_URL + item.posterPath.toString()
             Glide.with(itemView.context)
@@ -72,15 +67,15 @@ class ContentAdapter(
                 .transform(RoundedCorners(30))
                 .into(binding.allContentImageView)
 
-            selectedItem = item.id
+            itemView.setOnClickListener(this)
         }
 
         override fun onClick(p0: View?) {
-            selectedItem?.let { listener.onContentClicked(it) }
+            listener.onContentClicked(popularAll[this.layoutPosition].id)
         }
     }
 
     interface OnContentClickListener {
-        fun onContentClicked(selectedContent: Int)
+        fun onContentClicked(selectedContent: Int?)
     }
 }

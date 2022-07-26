@@ -1,12 +1,12 @@
 package com.adrict99.bestfilms.domain.useCase
 
-import com.adrict99.bestfilms.data.network.response.media.PopularMoviesResponse
+import com.adrict99.bestfilms.data.network.response.detail.MovieDetailResponse
 import com.adrict99.bestfilms.domain.repository.MoviesRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetPopularMoviesUseCase @Inject constructor(
+class GetMovieDetailUseCase @Inject constructor(
     private val repository: MoviesRepository
 ) {
-    fun execute(): Flow<PopularMoviesResponse> = repository.getPopularMovies()
+    fun execute(id: Int): Flow<MovieDetailResponse> = repository.getMovieDetail(id)
 }
