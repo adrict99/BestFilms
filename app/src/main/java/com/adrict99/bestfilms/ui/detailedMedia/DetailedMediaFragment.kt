@@ -54,7 +54,7 @@ class DetailedMediaFragment : BaseFragment<FragmentDetailedMediaBinding>(R.layou
                     .placeholder(drawable.ic_movie)
                     .error(drawable.ic_movie)
                     .centerCrop()
-                    .into(binding.fragmentDetailedMediaBannerTop)
+                    .into(binding.fragmentDetailedMediaPicture)
             }
         } else {
             detailedMediaViewModel.tvDetailData.observe(viewLifecycleOwner) {
