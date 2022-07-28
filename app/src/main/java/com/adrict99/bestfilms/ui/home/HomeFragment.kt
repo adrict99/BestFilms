@@ -55,13 +55,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
 
     private fun getDataFromApi() {
         //API request for movies, series and tv shows
+        //TODO: Refactor with Retrofit async API requests instead
         homeViewModel.getPopularAllContent()
         homeViewModel.getPopularMovies()
         homeViewModel.getPopularSeries()
     }
 
     private fun setupRecyclerViews() {
-        //Setting up all content, movies and series recyclerView
+        //Setting up all content, movies and series recyclerViews
         binding.allContentRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
