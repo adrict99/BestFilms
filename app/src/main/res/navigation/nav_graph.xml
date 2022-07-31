@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/detailedMediaFragment"
-        android:name="com.adrict99.bestfilms.ui.detailedMedia.DetailedMediaFragment"
+        android:name="com.adrict99.bestfilms.ui.detail.DetailedMediaFragment"
         android:label="fragment_detailed_media"
         tools:layout="@layout/fragment_detailed_media" >
         <argument

@@ -17,6 +17,10 @@ fun Activity?.showCustomMessage(text: String, timeExpose: Int) {
 
 fun ImageView.fromUrl(url: String) {
     if (url.isNotEmpty()) {
-        Glide.with(this).load("${BuildConfig.IMAGE_BASE_URL}$url").centerCrop().placeholder(R.drawable.ic_movie)
+        Glide.with(this)
+            .load("${BuildConfig.IMAGE_BASE_URL}$url")
+            .centerCrop()
+            .placeholder(R.drawable.ic_movie)
+            .into(this)
     }
 }

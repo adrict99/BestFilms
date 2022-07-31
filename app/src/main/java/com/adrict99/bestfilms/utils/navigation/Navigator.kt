@@ -1,4 +1,4 @@
-package com.adrict99.bestfilms.utils
+package com.adrict99.bestfilms.utils.navigation
 
 import android.content.Context
 import android.content.Intent

@@ -1,6 +1,6 @@
 package com.adrict99.bestfilms.di.module
 
-import com.adrict99.bestfilms.ui.detailedMedia.DetailedMediaFragment
+import com.adrict99.bestfilms.ui.detail.DetailedMediaFragment
 import com.adrict99.bestfilms.ui.favorites.FavoritesFragment
 import com.adrict99.bestfilms.ui.home.HomeFragment
 import com.adrict99.bestfilms.ui.search.SearchFragment

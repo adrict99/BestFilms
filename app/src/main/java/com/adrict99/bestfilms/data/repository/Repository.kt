@@ -10,10 +10,9 @@ import retrofit2.Response
 open class Repository(
     open val networkUtils: NetworkUtils
 ) {
-
     fun <T : Any> callApi(call: suspend () -> Response<T>): Flow<T> = flow {
 
-        if (!networkUtils.hasConnection()) throw Exception("Sin conexión")
+        if (!networkUtils.hasConnection()) throw Exception("No internet connection")
 
         val response = call.invoke()
         if (response.isSuccessful) {
@@ -30,12 +29,8 @@ open class Repository(
                 errorResponse?.let { error ->
                     throw Exception("${error.status} ${error.error}")
                 }
-
             }
             throw Exception("${response.code()}")
-
         }
-
     }
-
 }

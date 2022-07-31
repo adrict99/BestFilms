@@ -1,4 +1,4 @@
-package com.adrict99.bestfilms.ui.detailedMedia
+package com.adrict99.bestfilms.ui.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope

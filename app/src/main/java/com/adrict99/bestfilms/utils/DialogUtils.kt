@@ -17,7 +17,7 @@ import com.adrict99.bestfilms.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
-class DialogUtil {
+class DialogUtils {
 
     fun getLoadingDialog(
         activity: Activity

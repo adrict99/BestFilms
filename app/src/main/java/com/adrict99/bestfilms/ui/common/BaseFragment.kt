@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.adrict99.bestfilms.data.preferences.SharedPrefs
-import com.adrict99.bestfilms.utils.DialogUtil
-import com.adrict99.bestfilms.utils.Navigator
+import com.adrict99.bestfilms.utils.DialogUtils
+import com.adrict99.bestfilms.utils.navigation.Navigator
 import com.adrict99.bestfilms.utils.ViewModelFactory
 import com.adrict99.bestfilms.utils.showCustomMessage
 import com.google.android.material.snackbar.Snackbar
@@ -23,7 +23,7 @@ abstract class BaseFragment<V: ViewBinding>(contentLayoutId: Int) : Fragment(con
     @Inject
     lateinit var sharedPrefs: SharedPrefs
 
-    private val progressDialog: Dialog by lazy { DialogUtil().getLoadingDialog(requireActivity()) }
+    private val progressDialog: Dialog by lazy { DialogUtils().getLoadingDialog(requireActivity()) }
 
     lateinit var binding: V
 

@@ -5,7 +5,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 
 class NetworkUtils (private val context: Context) {
-
     fun hasConnection(): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
 
@@ -14,8 +13,6 @@ class NetworkUtils (private val context: Context) {
                     hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
                     hasTransport(NetworkCapabilities.TRANSPORT_VPN))
         }
-
         return false
     }
-
 }

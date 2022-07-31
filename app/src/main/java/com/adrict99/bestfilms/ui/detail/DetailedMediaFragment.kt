@@ -1,4 +1,4 @@
-package com.adrict99.bestfilms.ui.detailedMedia
+package com.adrict99.bestfilms.ui.detail
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,9 @@ import androidx.navigation.fragment.navArgs
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.FragmentDetailedMediaBinding
 import com.adrict99.bestfilms.ui.common.BaseFragment
-import com.adrict99.bestfilms.utils.MediaType
+import com.adrict99.bestfilms.ui.detail.adapter.actors.DetailActorsAdapter
+import com.adrict99.bestfilms.ui.detail.adapter.images.DetailImagesAdapter
+import com.adrict99.bestfilms.utils.types.MediaType
 import com.adrict99.bestfilms.utils.ViewModelFactory
 import com.adrict99.bestfilms.utils.fromUrl
 import javax.inject.Inject
@@ -19,7 +21,19 @@ class DetailedMediaFragment : BaseFragment<FragmentDetailedMediaBinding>(R.layou
     lateinit var viewModelFactory: ViewModelFactory<DetailedMediaViewModel>
     private val detailedMediaViewModel: DetailedMediaViewModel by lazy { viewModelFactory.get() }
 
-    //Adapters
+    //TODO: Need to navigate to a future ImagesDetailFragment
+    private val imagesAdapter: DetailImagesAdapter by lazy {
+        DetailImagesAdapter(this) { image ->
+            navigator.goToImagesDetail(this, image.id)
+        }
+    }
+
+    //TODO: Need to navigate to a future ActorsDetailFragment
+    private val actorsAdapter: DetailActorsAdapter by lazy {
+        DetailActorsAdapter(this) { actor, image ->
+            navigator.goToActorsDetail(this, actor.id, image)
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

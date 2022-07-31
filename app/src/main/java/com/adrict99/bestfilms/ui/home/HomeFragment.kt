@@ -14,7 +14,7 @@ import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter
 import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter.OnMovieClickListener
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter.OnTvShowClickListener
-import com.adrict99.bestfilms.utils.MediaType
+import com.adrict99.bestfilms.utils.types.MediaType
 import com.adrict99.bestfilms.utils.ViewModelFactory
 import javax.inject.Inject
 
@@ -35,11 +35,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
         setupView()
-        setupViewModelObservers()
+        setupObservers()
+        setupOnClickListeners()
+        setupRecyclerViews()
         getDataFromApi()
     }
 
-    private fun setupViewModelObservers() {
+    private fun setupObservers() {
+        //Observes errors and loading status
+        homeViewModel.errorMessage.observe(viewLifecycleOwner) {
+            handleError(it)
+        }
+        homeViewModel.loading.observe(viewLifecycleOwner) {
+            manageLoadingDialog(it)
+        }
+
         //Observes popular all content, movies and tv shows response
         homeViewModel.popularAllContentResponse.observe(viewLifecycleOwner) {
             allContentAdapter.addAllContent(it.results!!) }
@@ -49,8 +59,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
             tvShowsAdapter.addAllTvShows(it.results!!) }
     }
 
+    private fun setupOnClickListeners() {
+
+    }
+
     private fun setupView() {
-        setupRecyclerViews()
+
     }
 
     private fun getDataFromApi() {
