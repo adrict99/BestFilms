@@ -16,6 +16,7 @@ import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter.OnTvShowClickListener
 import com.adrict99.bestfilms.utils.types.MediaType
 import com.adrict99.bestfilms.utils.ViewModelFactory
+import com.adrict99.bestfilms.utils.navigation.Navigator
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
@@ -29,15 +30,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
     private val movieAdapter: MovieAdapter by lazy { MovieAdapter(requireContext(), this) }
     private val tvShowsAdapter: TvShowsAdapter by lazy { TvShowsAdapter(requireContext(), this) }
 
-    private var actionNavigateToDetailedMedia: NavDirections? = null
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
-        setupView()
-        setupObservers()
-        setupOnClickListeners()
         setupRecyclerViews()
+        setupObservers()
         getDataFromApi()
     }
 
@@ -57,14 +54,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
             movieAdapter.addAllMovies(it.results!!) }
         homeViewModel.popularTvShowsResponse.observe(viewLifecycleOwner) {
             tvShowsAdapter.addAllTvShows(it.results!!) }
-    }
-
-    private fun setupOnClickListeners() {
-
-    }
-
-    private fun setupView() {
-
     }
 
     private fun getDataFromApi() {
@@ -94,21 +83,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         }
     }
 
-    private fun navigateToDetailedMedia(mediaId: Int, type: MediaType) {
-        actionNavigateToDetailedMedia = HomeFragmentDirections.actionHomeFragmentToDetailedMediaFragment(
-            mediaId = mediaId,
-            mediaType = type
-        )
-        findNavController().navigate(actionNavigateToDetailedMedia!!)
-    }
-
     override fun onMovieClicked(selectedMovie: Int?) {
-        selectedMovie?.let { navigateToDetailedMedia(it, MediaType.TYPE_MOVIE) }
+        selectedMovie?.let { navigator.goToDetailedMedia(it, MediaType.TYPE_MOVIE, this) }
     }
     override fun onContentClicked(selectedContent: Int?) {
-        selectedContent?.let { navigateToDetailedMedia(it, MediaType.TYPE_MOVIE) }
+        selectedContent?.let { navigator.goToDetailedMedia(it, MediaType.TYPE_MOVIE, this) }
     }
     override fun onTvShowClicked(selectedTvShow: Int?) {
-        selectedTvShow?.let { navigateToDetailedMedia(it, MediaType.TYPE_TV_SHOW) }
+        selectedTvShow?.let { navigator.goToDetailedMedia(it, MediaType.TYPE_TV_SHOW, this) }
     }
 }

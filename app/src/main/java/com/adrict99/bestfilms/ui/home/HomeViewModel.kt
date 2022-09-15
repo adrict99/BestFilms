@@ -25,6 +25,7 @@ class HomeViewModel @Inject constructor(
     val popularAllContentResponse: MutableLiveData<PopularAllContentResponse> by lazy { MutableLiveData<PopularAllContentResponse>() }
 
     fun getPopularMovies() {
+        loading.value = SHOW
         viewModelScope.launch {
             getPopularMoviesUseCase.execute()
                 .catch {
@@ -57,6 +58,7 @@ class HomeViewModel @Inject constructor(
                 .collect { list ->
                     popularAllContentResponse.value = list
                 }
+            loading.value = DISMISS
         }
     }
 

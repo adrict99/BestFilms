@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.adrict99.bestfilms.R
+import com.adrict99.bestfilms.data.network.response.detail.MovieDetailResponse
 import com.adrict99.bestfilms.databinding.FragmentDetailedMediaBinding
 import com.adrict99.bestfilms.ui.common.BaseFragment
-import com.adrict99.bestfilms.ui.detail.adapter.actors.DetailActorsAdapter
-import com.adrict99.bestfilms.ui.detail.adapter.images.DetailImagesAdapter
 import com.adrict99.bestfilms.utils.types.MediaType
 import com.adrict99.bestfilms.utils.ViewModelFactory
-import com.adrict99.bestfilms.utils.fromUrl
 import javax.inject.Inject
 
 class DetailedMediaFragment : BaseFragment<FragmentDetailedMediaBinding>(R.layout.fragment_detailed_media) {
@@ -22,18 +20,18 @@ class DetailedMediaFragment : BaseFragment<FragmentDetailedMediaBinding>(R.layou
     private val detailedMediaViewModel: DetailedMediaViewModel by lazy { viewModelFactory.get() }
 
     //TODO: Need to navigate to a future ImagesDetailFragment
-    private val imagesAdapter: DetailImagesAdapter by lazy {
-        DetailImagesAdapter(this) { image ->
+    /*private val imagesAdapter: DetailImagesAdapter by lazy {
+        DetailImagesAdapter(requireContext()) { image ->
             navigator.goToImagesDetail(this, image.id)
         }
-    }
+    }*/
 
     //TODO: Need to navigate to a future ActorsDetailFragment
-    private val actorsAdapter: DetailActorsAdapter by lazy {
-        DetailActorsAdapter(this) { actor, image ->
+    /*private val actorsAdapter: DetailActorsAdapter by lazy {
+        DetailActorsAdapter(requireContext()) { actor, image ->
             navigator.goToActorsDetail(this, actor.id, image)
         }
-    }
+    }*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,16 +49,20 @@ class DetailedMediaFragment : BaseFragment<FragmentDetailedMediaBinding>(R.layou
     }
 
     private fun setupViewModelObservers() {
+        detailedMediaViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
+            handleError(error)
+        }
+        detailedMediaViewModel.loading.observe(viewLifecycleOwner) { showLoad ->
+            manageLoadingDialog(showLoad)
+        }
         //Observes movie or tv detailed data from API response
         if (args.mediaType == MediaType.TYPE_MOVIE) {
-            detailedMediaViewModel.movieDetailData.observe(viewLifecycleOwner) {
-                detailedMediaViewModel.movieDetailData.value?.backdropPath?.let { url ->
-                    binding.fragmentDetailedMediaBackpathImage.fromUrl(url)
-                }
+            detailedMediaViewModel.movieDetailData.observe(viewLifecycleOwner) { movieDetail ->
+                setupDetailMediaInfo(movieDetail)
             }
         } else {
-            detailedMediaViewModel.tvDetailData.observe(viewLifecycleOwner) {
-
+            detailedMediaViewModel.tvDetailData.observe(viewLifecycleOwner) { tvDetail ->
+                setupDetailMediaInfo(tvDetail)
             }
         }
     }
@@ -71,6 +73,10 @@ class DetailedMediaFragment : BaseFragment<FragmentDetailedMediaBinding>(R.layou
 
     private fun setupRecyclerViews() {
         //Setting up images and actors recyclerViews
+    }
+
+    private fun setupDetailMediaInfo(mediaInfo: Any) {
+
     }
 
 }

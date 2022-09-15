@@ -9,27 +9,26 @@ import com.adrict99.bestfilms.databinding.ActorItemBinding
 
 class DetailActorsAdapter(
     private val context: Context,
-    private val onItemClick: (Actor, ImageView) -> Unit
-) : RecyclerView.Adapter<DetailActorsViewHolder>() {
+    //private val onItemClick: (Actor, ImageView) -> Unit
+) /*: RecyclerView.Adapter<DetailActorsViewHolder>()*/ {
 
-    val actorsList: MutableList<Actor> = mutableListOf()
+    //val actorsList: MutableList<Actor> = mutableListOf()
 
-    override fun getItemCount(): Int = actorsList.size
+    //override fun getItemCount(): Int = actorsList.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailActorsViewHolder {
+    /*override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailActorsViewHolder {
         val binding = ActorItemBinding.inflate(LayoutInflater.from(context), parent, false)
         return DetailActorsViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: DetailActorsViewHolder, position: Int) {
-        val item = actorsList[position]
-        holder.bind(item, onItemClick)
-    }
+        //val item = actorsList[position]
+        //holder.bind(item, onItemClick)
+    }*/
 
-    fun addAll(list: List<Actor>) {
+    /*fun addAll(list: List<Actor>) {
         actorsList.clear()
         actorsList.addAll(list)
         notifyDataSetChanged()
-    }
-
+    }*/
 }

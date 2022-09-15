@@ -20,6 +20,7 @@ class DetailedMediaViewModel @Inject constructor(
     val tvDetailData: MutableLiveData<TvDetailResponse> by lazy { MutableLiveData<TvDetailResponse>() }
 
     fun getMovieDetail(id: Int) {
+        loading.value = SHOW
         viewModelScope.launch {
             getMovieDetailUseCase.execute(id)
                 .catch {
@@ -28,10 +29,12 @@ class DetailedMediaViewModel @Inject constructor(
                 .collect { data ->
                     movieDetailData.value = data
                 }
+            loading.value = DISMISS
         }
     }
 
     fun getTvDetail(id: Int) {
+        loading.value = SHOW
         viewModelScope.launch {
             getTvDetailUseCase.execute(id)
                 .catch {
@@ -40,6 +43,7 @@ class DetailedMediaViewModel @Inject constructor(
                 .collect { data ->
                     tvDetailData.value = data
                 }
+            loading.value = DISMISS
         }
     }
 }

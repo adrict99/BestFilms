@@ -37,7 +37,7 @@
             app:argType="integer" />
         <argument
             android:name="mediaType"
-            app:argType="com.adrict99.bestfilms.utils.MediaType" />
+            app:argType="com.adrict99.bestfilms.utils.types.MediaType" />
     </fragment>
 
 </navigation>

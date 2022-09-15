@@ -17,7 +17,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/fragment_detailed_media_backpath_image"
+                android:id="@+id/fragment_detailed_media_poster_image"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/fragment_detailed_media_top_header_background"

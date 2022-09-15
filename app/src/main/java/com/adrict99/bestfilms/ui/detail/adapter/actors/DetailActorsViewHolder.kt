@@ -5,10 +5,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.databinding.ActorItemBinding
 
 class DetailActorsViewHolder(private val binding: ActorItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(
+    /*fun bind(
         item: Actor,
         onItemClick: (Actor, ImageView) -> Unit
     ) {
         //TODO: Setup name, picture and onClickListener
-    }
+    }*/
 }
