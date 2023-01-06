@@ -1,33 +1,42 @@
 package com.adrict99.bestfilms.ui
 
 import android.os.Bundle
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.navigation.ui.NavigationUiSaveStateControl
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.ActivityMainBinding
 import com.adrict99.bestfilms.ui.common.BaseActivity
-import com.adrict99.bestfilms.utils.ViewModelFactory
 import dagger.android.AndroidInjection
-import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    @Inject
+    /*@Inject
     lateinit var viewModelFactory: ViewModelFactory<MainViewModel>
-    val mainViewModel: MainViewModel by lazy { viewModelFactory.get() }
+    val mainViewModel: MainViewModel by lazy { viewModelFactory.get() }*/
 
-    @OptIn(NavigationUiSaveStateControl::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.findNavController()
+        setSupportActionBar(binding.appToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
-        setupWithNavController(binding.bottomNavigationView, navController, false)
+        val navView = binding.bottomNavigationView
+        val navController = findNavController(R.id.main_nav_host_fragment)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home,
+                R.id.navigation_search,
+                R.id.navigation_favorites
+            )
+        )
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 
     override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)

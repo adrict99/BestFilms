@@ -9,8 +9,8 @@ import com.adrict99.bestfilms.domain.useCase.GetPopularAllContentUseCase
 import com.adrict99.bestfilms.domain.useCase.GetPopularMoviesUseCase
 import com.adrict99.bestfilms.domain.useCase.GetPopularTvShowsUseCase
 import com.adrict99.bestfilms.ui.common.BaseViewModel
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
@@ -34,6 +34,7 @@ class HomeViewModel @Inject constructor(
                 .collect { list ->
                     popularMoviesResponse.value = list
                 }
+            loading.value = DISMISS
         }
     }
 
@@ -58,7 +59,6 @@ class HomeViewModel @Inject constructor(
                 .collect { list ->
                     popularAllContentResponse.value = list
                 }
-            loading.value = DISMISS
         }
     }
 

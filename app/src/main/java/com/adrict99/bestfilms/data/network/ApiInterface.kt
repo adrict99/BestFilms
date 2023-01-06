@@ -7,6 +7,7 @@ import com.adrict99.bestfilms.data.network.response.media.PopularMoviesResponse
 import com.adrict99.bestfilms.data.network.response.media.PopularTvShowsResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiInterface {
     @GET("/3/movie/popular")
@@ -19,8 +20,8 @@ interface ApiInterface {
     suspend fun getPopularTvShows(): Response<PopularTvShowsResponse>
 
     @GET("/3/movie/{id}")
-    suspend fun getMovieDetail(id: Int): Response<MovieDetailResponse>
+    suspend fun getMovieDetail(@Path("id") id: Int): Response<MovieDetailResponse>
 
     @GET("/3/tv/{tv_id}")
-    suspend fun getTvDetail(id: Int): Response<TvDetailResponse>
+    suspend fun getTvDetail(@Path("tv_id") id: Int): Response<TvDetailResponse>
 }
