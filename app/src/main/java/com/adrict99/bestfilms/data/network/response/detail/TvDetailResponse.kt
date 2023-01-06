@@ -2,7 +2,6 @@ package com.adrict99.bestfilms.data.network.response.detail
 import com.adrict99.bestfilms.domain.model.detail.*
 import com.google.gson.annotations.SerializedName
 
-
 data class TvDetailResponse(
     @SerializedName("backdrop_path")
     val backdropPath: String,

@@ -14,8 +14,9 @@ import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter
 import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter.OnMovieClickListener
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter.OnTvShowClickListener
-import com.adrict99.bestfilms.utils.MediaType
+import com.adrict99.bestfilms.utils.types.MediaType
 import com.adrict99.bestfilms.utils.ViewModelFactory
+import com.adrict99.bestfilms.utils.navigation.Navigator
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
@@ -29,17 +30,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
     private val movieAdapter: MovieAdapter by lazy { MovieAdapter(requireContext(), this) }
     private val tvShowsAdapter: TvShowsAdapter by lazy { TvShowsAdapter(requireContext(), this) }
 
-    private var actionNavigateToDetailedMedia: NavDirections? = null
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
-        setupView()
-        setupViewModelObservers()
+        setupRecyclerViews()
+        setupObservers()
         getDataFromApi()
     }
 
-    private fun setupViewModelObservers() {
+    private fun setupObservers() {
+        //Observes errors and loading status
+        homeViewModel.errorMessage.observe(viewLifecycleOwner) {
+            handleError(it)
+        }
+        homeViewModel.loading.observe(viewLifecycleOwner) {
+            manageLoadingDialog(it)
+        }
+
         //Observes popular all content, movies and tv shows response
         homeViewModel.popularAllContentResponse.observe(viewLifecycleOwner) {
             allContentAdapter.addAllContent(it.results!!) }
@@ -49,19 +56,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
             tvShowsAdapter.addAllTvShows(it.results!!) }
     }
 
-    private fun setupView() {
-        setupRecyclerViews()
-    }
-
     private fun getDataFromApi() {
         //API request for movies, series and tv shows
+        //TODO: Refactor with Retrofit async API requests instead
         homeViewModel.getPopularAllContent()
         homeViewModel.getPopularMovies()
         homeViewModel.getPopularSeries()
     }
 
     private fun setupRecyclerViews() {
-        //Setting up all content, movies and series recyclerView
+        //Setting up all content, movies and series recyclerViews
         binding.allContentRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
@@ -79,21 +83,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         }
     }
 
-    private fun navigateToDetailedMedia(mediaId: Int, type: MediaType) {
-        actionNavigateToDetailedMedia = HomeFragmentDirections.actionHomeFragmentToDetailedMediaFragment(
-            mediaId = mediaId,
-            mediaType = type
-        )
-        findNavController().navigate(actionNavigateToDetailedMedia!!)
-    }
-
     override fun onMovieClicked(selectedMovie: Int?) {
-        selectedMovie?.let { navigateToDetailedMedia(it, MediaType.TYPE_MOVIE) }
+        selectedMovie?.let { navigator.goToDetailedMedia(it, MediaType.TYPE_MOVIE, this) }
     }
     override fun onContentClicked(selectedContent: Int?) {
-        selectedContent?.let { navigateToDetailedMedia(it, MediaType.TYPE_MOVIE) }
+        selectedContent?.let { navigator.goToDetailedMedia(it, MediaType.TYPE_MOVIE, this) }
     }
     override fun onTvShowClicked(selectedTvShow: Int?) {
-        selectedTvShow?.let { navigateToDetailedMedia(it, MediaType.TYPE_TV_SHOW) }
+        selectedTvShow?.let { navigator.goToDetailedMedia(it, MediaType.TYPE_TV_SHOW, this) }
     }
 }

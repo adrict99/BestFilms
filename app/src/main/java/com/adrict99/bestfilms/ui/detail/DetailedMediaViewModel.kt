@@ -1,4 +1,4 @@
-package com.adrict99.bestfilms.ui.detailedMedia
+package com.adrict99.bestfilms.ui.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -15,11 +15,12 @@ class DetailedMediaViewModel @Inject constructor(
     private val getMovieDetailUseCase: GetMovieDetailUseCase,
     private val getTvDetailUseCase: GetTvDetailUseCase
 ): BaseViewModel() {
-    //We store API data in this variables to be able to use it later
+    //Stores API data to be able to observe and use it
     val movieDetailData: MutableLiveData<MovieDetailResponse> by lazy { MutableLiveData<MovieDetailResponse>() }
     val tvDetailData: MutableLiveData<TvDetailResponse> by lazy { MutableLiveData<TvDetailResponse>() }
 
     fun getMovieDetail(id: Int) {
+        loading.value = SHOW
         viewModelScope.launch {
             getMovieDetailUseCase.execute(id)
                 .catch {
@@ -28,10 +29,12 @@ class DetailedMediaViewModel @Inject constructor(
                 .collect { data ->
                     movieDetailData.value = data
                 }
+            loading.value = DISMISS
         }
     }
 
     fun getTvDetail(id: Int) {
+        loading.value = SHOW
         viewModelScope.launch {
             getTvDetailUseCase.execute(id)
                 .catch {
@@ -40,6 +43,7 @@ class DetailedMediaViewModel @Inject constructor(
                 .collect { data ->
                     tvDetailData.value = data
                 }
+            loading.value = DISMISS
         }
     }
 }

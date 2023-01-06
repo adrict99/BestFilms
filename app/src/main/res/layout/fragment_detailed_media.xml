@@ -1,49 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.detailedMedia.DetailedMediaFragment"
+        tools:context=".ui.detail.DetailedMediaFragment"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/fragment_detailed_media_backpath_image"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/dark_blue"
-            android:layout_marginBottom="16dp"
-            android:layout_weight="2"/>
-
         <LinearLayout
-            android:id="@+id/fragment_detailed_media_info_linear"
+            android:id="@+id/fragment_detailed_media_header_linear"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="16dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="@color/black">
+            android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/fragment_detailed_media_picture"
-                android:layout_width="100dp"
-                android:layout_height="150dp"/>
+                android:id="@+id/fragment_detailed_media_poster_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/fragment_detailed_media_top_header_background"
+                tools:ignore="ContentDescription"/>
 
         </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_detailed_media_top_linear"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="16dp">
+
+                <ImageView
+                    android:id="@+id/fragment_detailed_media_picture"
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_vertical"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_home"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingVertical="16dp"
+                    android:paddingStart="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:id="@+id/fragment_detailed_media_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        tools:text="Title"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fragment_detailed_media_rating"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="8.0"/>
+
+                        <TextView
+                            android:id="@+id/fragment_detailed_media_duration"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="120 mins"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fragment_detailed_media_rating_subtitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            tools:text="Rating"/>
+
+                        <TextView
+                            android:id="@+id/fragment_detailed_media_duration_subtitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            tools:text="Duration"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fragment_detailed_media_genre"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="Comedy"/>
+
+                        <TextView
+                            android:id="@+id/fragment_detailed_media_original_language"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="English"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fragment_detailed_media_genre_subtitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            tools:text="Genre"/>
+
+                        <TextView
+                            android:id="@+id/fragment_detailed_media_original_language_subtitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            tools:text="Original language"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         <LinearLayout
             android:id="@+id/fragment_detailed_media_story_linear"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/darkest_blue"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:text="Synopsis"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:maxLength="300"
+                tools:text="aushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiah"/>
 
         </LinearLayout>
 
@@ -52,13 +187,22 @@
             android:id="@+id/fragment_detailed_media_photos_linear"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/black"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Images"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"/>
 
         </LinearLayout>
 
@@ -66,13 +210,22 @@
             android:id="@+id/fragment_detailed_media_actors_linear"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/dark_gray"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Actors"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"/>
 
         </LinearLayout>
 
