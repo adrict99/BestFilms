@@ -28,14 +28,22 @@ class Navigator {
         navigate(context, intent)
     }
 
-    fun goToDetailedMedia(
+    fun goToMovieDetail(
         id: Int,
-        type: MediaType,
-        originFragment: Fragment,
+        originFragment: Fragment
     ) {
         val actionFromHomeToDetail = HomeFragmentDirections.actionHomeFragmentToDetailedMediaFragment(
-            mediaId = id,
-            mediaType = type,
+            movieId = id
+        )
+        originFragment.findNavController().navigate(actionFromHomeToDetail)
+    }
+
+    fun goToTvShowDetail(
+        id: Int,
+        originFragment: Fragment,
+    ) {
+        val actionFromHomeToDetail = HomeFragmentDirections.actionNavigationHomeToTvShowDetailFragment(
+            tvShowId = id
         )
         originFragment.findNavController().navigate(actionFromHomeToDetail)
     }

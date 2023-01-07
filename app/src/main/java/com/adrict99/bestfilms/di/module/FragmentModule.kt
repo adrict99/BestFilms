@@ -1,6 +1,7 @@
 package com.adrict99.bestfilms.di.module
 
-import com.adrict99.bestfilms.ui.detail.DetailedMediaFragment
+import com.adrict99.bestfilms.ui.detail.movie.MovieDetailFragment
+import com.adrict99.bestfilms.ui.detail.tvShow.TvShowDetailFragment
 import com.adrict99.bestfilms.ui.favorites.FavoritesFragment
 import com.adrict99.bestfilms.ui.home.HomeFragment
 import com.adrict99.bestfilms.ui.search.SearchFragment
@@ -20,5 +21,8 @@ abstract class FragmentModule {
     abstract fun bindsFavoritesFragment(): FavoritesFragment
 
     @ContributesAndroidInjector
-    abstract fun bindsDetailedMediaFragment(): DetailedMediaFragment
+    abstract fun bindsMovieDetailFragment(): MovieDetailFragment
+
+    @ContributesAndroidInjector
+    abstract fun bindsTvShowDetailFragment(): TvShowDetailFragment
 }

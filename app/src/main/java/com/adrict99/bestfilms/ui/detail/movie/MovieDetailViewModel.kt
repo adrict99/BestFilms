@@ -1,23 +1,20 @@
-package com.adrict99.bestfilms.ui.detail
+package com.adrict99.bestfilms.ui.detail.movie
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.adrict99.bestfilms.data.network.response.detail.MovieDetailResponse
-import com.adrict99.bestfilms.data.network.response.detail.TvDetailResponse
 import com.adrict99.bestfilms.domain.useCase.GetMovieDetailUseCase
-import com.adrict99.bestfilms.domain.useCase.GetTvDetailUseCase
 import com.adrict99.bestfilms.ui.common.BaseViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DetailedMediaViewModel @Inject constructor(
-    private val getMovieDetailUseCase: GetMovieDetailUseCase,
-    private val getTvDetailUseCase: GetTvDetailUseCase
+class MovieDetailViewModel @Inject constructor(
+    private val getMovieDetailUseCase: GetMovieDetailUseCase
 ): BaseViewModel() {
-    //Stores API data to be able to observe and use it
+
+    //Stores movie detail API data to be able to observe and use it
     val movieDetailData: MutableLiveData<MovieDetailResponse> by lazy { MutableLiveData<MovieDetailResponse>() }
-    val tvDetailData: MutableLiveData<TvDetailResponse> by lazy { MutableLiveData<TvDetailResponse>() }
 
     fun getMovieDetail(id: Int) {
         loading.value = SHOW
@@ -33,17 +30,4 @@ class DetailedMediaViewModel @Inject constructor(
         }
     }
 
-    fun getTvDetail(id: Int) {
-        loading.value = SHOW
-        viewModelScope.launch {
-            getTvDetailUseCase.execute(id)
-                .catch {
-                    errorMessage.value = mapOf(0 to (it.message ?: ""))
-                }
-                .collect { data ->
-                    tvDetailData.value = data
-                }
-            loading.value = DISMISS
-        }
-    }
 }

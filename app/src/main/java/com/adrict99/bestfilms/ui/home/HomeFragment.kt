@@ -2,8 +2,6 @@ package com.adrict99.bestfilms.ui.home
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.FragmentHomeBinding
@@ -16,7 +14,6 @@ import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter.OnTvShowClickListener
 import com.adrict99.bestfilms.utils.types.MediaType
 import com.adrict99.bestfilms.utils.ViewModelFactory
-import com.adrict99.bestfilms.utils.navigation.Navigator
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
@@ -84,12 +81,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
     }
 
     override fun onMovieClicked(selectedMovie: Int?) {
-        selectedMovie?.let { navigator.goToDetailedMedia(it, MediaType.TYPE_MOVIE, this) }
+        selectedMovie?.let { navigator.goToMovieDetail(it,this) }
     }
     override fun onContentClicked(selectedContent: Int?) {
-        selectedContent?.let { navigator.goToDetailedMedia(it, MediaType.TYPE_MOVIE, this) }
+        selectedContent?.let { navigator.goToMovieDetail(it,this) }
     }
     override fun onTvShowClicked(selectedTvShow: Int?) {
-        selectedTvShow?.let { navigator.goToDetailedMedia(it, MediaType.TYPE_TV_SHOW, this) }
+        selectedTvShow?.let { navigator.goToTvShowDetail(it, this) }
     }
 }

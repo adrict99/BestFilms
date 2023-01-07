@@ -6,18 +6,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.detail.DetailedMediaFragment"
+        tools:context=".ui.detail.movie.MovieDetailFragment"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/fragment_detailed_media_header_linear"
+            android:id="@+id/fragment_movie_detail_header_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/fragment_detailed_media_poster_image"
+                android:id="@+id/fragment_movie_detail_poster_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/fragment_detailed_media_top_header_background"
@@ -26,14 +26,14 @@
         </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/fragment_detailed_media_top_linear"
+                android:id="@+id/fragment_movie_detail_mid_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="175dp"
                 android:orientation="horizontal"
                 android:layout_marginHorizontal="16dp">
 
                 <ImageView
-                    android:id="@+id/fragment_detailed_media_picture"
+                    android:id="@+id/fragment_movie_detail_main_image_view"
                     android:layout_width="100dp"
                     android:layout_height="150dp"
                     android:layout_gravity="center_vertical"
@@ -44,12 +44,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingVertical="16dp"
-                    android:paddingStart="16dp"
+                    android:paddingHorizontal="16dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent">
 
                     <TextView
-                        android:id="@+id/fragment_detailed_media_title"
+                        android:id="@+id/fragment_movie_detail_title_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
@@ -63,7 +63,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/fragment_detailed_media_rating"
+                            android:id="@+id/fragment_movie_detail_rating_text_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -72,7 +72,7 @@
                             tools:text="8.0"/>
 
                         <TextView
-                            android:id="@+id/fragment_detailed_media_duration"
+                            android:id="@+id/fragment_movie_detail_duration_text_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -88,7 +88,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/fragment_detailed_media_rating_subtitle"
+                            android:id="@+id/fragment_movie_detail_rating_subtitle_text_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -96,7 +96,7 @@
                             tools:text="Rating"/>
 
                         <TextView
-                            android:id="@+id/fragment_detailed_media_duration_subtitle"
+                            android:id="@+id/fragment_movie_detail_duration_subtitle_text_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -112,7 +112,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/fragment_detailed_media_genre"
+                            android:id="@+id/fragment_movie_detail_genre_text_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -121,7 +121,7 @@
                             tools:text="Comedy"/>
 
                         <TextView
-                            android:id="@+id/fragment_detailed_media_original_language"
+                            android:id="@+id/fragment_movie_detail_original_language_text_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -137,7 +137,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/fragment_detailed_media_genre_subtitle"
+                            android:id="@+id/fragment_movie_detail_genre_subtitle_text_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -145,7 +145,7 @@
                             tools:text="Genre"/>
 
                         <TextView
-                            android:id="@+id/fragment_detailed_media_original_language_subtitle"
+                            android:id="@+id/fragment_movie_detail_original_language_subtitle_text_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -159,7 +159,7 @@
             </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/fragment_detailed_media_story_linear"
+            android:id="@+id/fragment_movie_detail_story_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -167,6 +167,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/fragment_movie_detail_story_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -174,6 +175,7 @@
                 tools:text="Synopsis"/>
 
             <TextView
+                android:id="@+id/fragment_movie_detail_story_content_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -184,7 +186,7 @@
 
 
         <LinearLayout
-            android:id="@+id/fragment_detailed_media_photos_linear"
+            android:id="@+id/fragment_movie_detail_images_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -193,6 +195,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/fragment_movie_detail_images_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Images"
@@ -200,6 +203,7 @@
                 android:textSize="16sp"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fragment_movie_detail_images_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"/>
@@ -207,7 +211,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/fragment_detailed_media_actors_linear"
+            android:id="@+id/fragment_movie_detail_actors_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -216,6 +220,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/fragment_movie_detail_actors_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Actors"
@@ -223,6 +228,7 @@
                 android:textSize="16sp"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fragment_movie_detail_actors_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"/>
