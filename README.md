@@ -6,7 +6,7 @@ Movie app where you can find the latest trends in TV Series and movies.
 ## Technical Info
 **Language version**: Kotlin 1.6.21.
 
-**DI**: Dagger2 (TODO: Migration to Dagger-Hilt).
+**DI**: Dagger2 (Soon -> Dagger-Hilt).
 
 **Networking**: Retrofit2 + OkHttp.
 
