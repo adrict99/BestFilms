@@ -4,7 +4,7 @@
 Movie app where you can find the latest trends in TV Series and movies.
 
 ## Technical Info
-**Language**: Kotlin 1.6.21.
+**Language version**: Kotlin 1.6.21.
 
 **DI**: Dagger2 (TODO: Migration to Dagger-Hilt).
 
@@ -20,6 +20,7 @@ Movie app where you can find the latest trends in TV Series and movies.
 - Implement search screen.
 - Implement favorites screen.
 - Implement splash screen.
+- Migrate DI to Dagger-Hilt.
 - Refactor detail layouts to ConstraintLayout for performance.
 - Implement trailer video on detail screen.
 - Implement offline mode (ROOM DB caching + DataSources).
