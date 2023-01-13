@@ -8,9 +8,9 @@ Movie app where you can find the latest trends in TV Series and movies.
 
 **DI**: Dagger2 (Soon -> Dagger-Hilt).
 
-**Networking**: Retrofit2 + OkHttp.
+**Networking**: Retrofit2 + OkHttp network interceptor.
 
-**Image loading**: Glide.
+**Image loading**: Glide + XML BindingAdapter into databinding.
 
 **Architecture**: Semi-single activity pattern with MVVM + Clean Architecture.
 
