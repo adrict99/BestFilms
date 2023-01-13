@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="movieDetailViewModel"
+            name="viewModel"
             type="com.adrict99.bestfilms.ui.detail.movie.MovieDetailViewModel" />
     </data>
 
@@ -15,22 +16,15 @@
         android:orientation="vertical"
         tools:context=".ui.detail.movie.MovieDetailFragment">
 
-        <LinearLayout
-            android:id="@+id/fragment_movie_detail_header_linear_layout"
+        <ImageView
+            android:id="@+id/fragment_movie_detail_poster_image_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_marginBottom="16dp"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/fragment_movie_detail_poster_image_view"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/fragment_detailed_media_top_header_background"
-                tools:ignore="ContentDescription"
-                app:imageUrl="@{movieDetailViewModel.movieDetailData.backdropPath}"/>
-
-        </LinearLayout>
+            android:scaleType="centerCrop"
+            android:background="@drawable/fragment_detailed_media_top_header_background"
+            app:loadFromUrl="@{viewModel.movieDetailData.backdropPath}"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:id="@+id/fragment_movie_detail_mid_linear_layout"
@@ -44,6 +38,9 @@
                 android:layout_width="100dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_vertical"
+                app:loadFromUrl="@{viewModel.movieDetailData.posterPath}"
+                app:roundedCorners="@{true}"
+                app:placeholder="@{@drawable/ic_movie}"
                 tools:ignore="ContentDescription"
                 tools:src="@drawable/ic_home" />
 
@@ -51,8 +48,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="@dimen/margin_16"
+                android:paddingVertical="@dimen/margin_8"
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
@@ -60,7 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="@{movieDetailViewModel.movieDetailData.title}"
+                    android:text="@{viewModel.movieDetailData.title}"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     tools:text="Title" />
@@ -75,9 +72,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:text="@{String.valueOf(viewModel.movieDetailData.voteAverage)}"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        android:text="@{String.valueOf(movieDetailViewModel.movieDetailData.voteAverage)}"
                         tools:text="8.0" />
 
                     <TextView
@@ -101,16 +98,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="12sp"
-                        android:text="Rating" />
+                        android:text="@string/rating"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/fragment_movie_detail_duration_subtitle_text_view"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="12sp"
-                        android:text="Duration" />
+                        android:text="@string/duration"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -134,9 +131,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:text="@{viewModel.movieDetailData.originalLanguage}"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        android:text="@{movieDetailViewModel.movieDetailData.originalLanguage}"
                         tools:text="English" />
 
                 </LinearLayout>
@@ -151,16 +148,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="12sp"
-                        android:text="Genre" />
+                        android:text="@string/genre"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/fragment_movie_detail_original_language_subtitle_text_view"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="12sp"
-                        android:text="Original language" />
+                        android:text="@string/original_language"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -180,9 +177,9 @@
                 android:id="@+id/fragment_movie_detail_story_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/synopsis"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:text="Synopsis" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/fragment_movie_detail_story_content_text_view"
@@ -190,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:maxLength="300"
-                android:text="@{movieDetailViewModel.movieDetailData.overview}"
+                android:text="@{viewModel.movieDetailData.overview}"
                 tools:text="aushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiah" />
 
         </LinearLayout>
@@ -209,9 +206,9 @@
                 android:id="@+id/fragment_movie_detail_images_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/images"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:text="Images" />
+                android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fragment_movie_detail_images_recycler_view"
@@ -234,9 +231,9 @@
                 android:id="@+id/fragment_movie_detail_actors_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/actors"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:text="Actors" />
+                android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fragment_movie_detail_actors_recycler_view"

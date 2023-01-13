@@ -30,7 +30,7 @@ data class MovieDetailResponse(
     @SerializedName("popularity")
     val popularity: Double,
     @SerializedName("poster_path")
-    val posterPath: Any,
+    val posterPath: String,
     @SerializedName("production_companies")
     val productionCompanies: List<ProductionCountry>,
     @SerializedName("production_countries")

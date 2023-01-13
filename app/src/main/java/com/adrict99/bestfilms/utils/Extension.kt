@@ -3,8 +3,6 @@ package com.adrict99.bestfilms.utils
 import android.app.Activity
 import android.view.View
 import android.widget.ImageView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 import com.bumptech.glide.Glide

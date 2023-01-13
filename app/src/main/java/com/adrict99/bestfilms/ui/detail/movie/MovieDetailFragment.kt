@@ -21,21 +21,29 @@ class MovieDetailFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentMovieDetailBinding.bind(view)
+        configureBinding(view)
         setupView()
         setupViewModelObservers()
         getMovieDetailData()
     }
 
-    private fun getMovieDetailData() = movieDetailViewModel.getMovieDetail(args.movieId)
+    private fun configureBinding(view: View) {
+        binding = FragmentMovieDetailBinding.bind(view)
+        binding.viewModel = movieDetailViewModel
+        binding.lifecycleOwner = this
+    }
+
+    private fun setupView() {
+        setupRecyclerViews()
+    }
 
     private fun setupViewModelObservers() {
         //Observes error or loading status
         movieDetailViewModel.errorMessage.observe(viewLifecycleOwner) { handleError(it) }
         movieDetailViewModel.loading.observe(viewLifecycleOwner) { manageLoadingDialog(it) }
-        //Observes movie or tv detailed data from API response
-        movieDetailViewModel.movieDetailData.observe(viewLifecycleOwner) { setupDetailMovieInfo(it) }
     }
+
+    private fun getMovieDetailData() = movieDetailViewModel.getMovieDetail(args.movieId)
 
     //TODO: Need to navigate to a future ImagesDetailFragment
     /*private val imagesAdapter: DetailImagesAdapter by lazy {
@@ -51,17 +59,8 @@ class MovieDetailFragment :
         }
     }*/
 
-    private fun setupView() {
-        setupRecyclerViews()
-        //TODO: Add other methods to setup UI
-    }
-
     private fun setupRecyclerViews() {
-        //Setting up images and actors recyclerViews
-    }
-
-    private fun setupDetailMovieInfo(movieDetailResponse: MovieDetailResponse) {
-
+        //TODO: Setting up images and actors recyclerViews
     }
 
 }
