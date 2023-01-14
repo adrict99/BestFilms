@@ -26,4 +26,8 @@
     <string name="synopsis">Synopsis</string>
     <string name="images">Images</string>
     <string name="actors">Actors</string>
+    <string name="picture">Picture</string>
+    <string name="actor">Actor</string>
+    <string name="show_more">Show more</string>
+    <string name="show_less">Show less</string>
 </resources>

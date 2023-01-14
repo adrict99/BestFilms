@@ -10,239 +10,260 @@
             type="com.adrict99.bestfilms.ui.detail.movie.MovieDetailViewModel" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.detail.movie.MovieDetailFragment">
-
-        <ImageView
-            android:id="@+id/fragment_movie_detail_poster_image_view"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginBottom="16dp"
-            android:scaleType="centerCrop"
-            android:background="@drawable/fragment_detailed_media_top_header_background"
-            app:loadFromUrl="@{viewModel.movieDetailData.backdropPath}"
-            tools:ignore="ContentDescription" />
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/fragment_movie_detail_mid_linear_layout"
             android:layout_width="match_parent"
-            android:layout_height="175dp"
-            android:layout_marginHorizontal="16dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:context=".ui.detail.movie.MovieDetailFragment">
 
             <ImageView
-                android:id="@+id/fragment_movie_detail_main_image_view"
-                android:layout_width="100dp"
+                android:id="@+id/fragment_movie_detail_poster_image_view"
+                android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_gravity="center_vertical"
-                app:loadFromUrl="@{viewModel.movieDetailData.posterPath}"
-                app:roundedCorners="@{true}"
-                app:placeholder="@{@drawable/ic_movie}"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/ic_home" />
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/fragment_detailed_media_top_header_background"
+                android:scaleType="centerCrop"
+                app:loadFromUrl="@{viewModel.movieDetailData.backdropPath}"
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
+                android:id="@+id/fragment_movie_detail_mid_linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingHorizontal="@dimen/margin_16"
-                android:paddingVertical="@dimen/margin_8"
-                app:layout_constraintBottom_toBottomOf="parent">
+                android:layout_height="175dp"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/fragment_movie_detail_title_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="@{viewModel.movieDetailData.title}"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    tools:text="Title" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/fragment_movie_detail_rating_text_view"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{String.valueOf(viewModel.movieDetailData.voteAverage)}"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        tools:text="8.0" />
-
-                    <TextView
-                        android:id="@+id/fragment_movie_detail_duration_text_view"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        tools:text="120 mins" />
-
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/fragment_movie_detail_main_image_view"
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_vertical"
+                    app:loadFromUrl="@{viewModel.movieDetailData.posterPath}"
+                    app:placeholder="@{@drawable/ic_movie}"
+                    app:roundedCorners="@{true}"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_home" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/margin_16"
+                    android:paddingVertical="@dimen/margin_8"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
                     <TextView
-                        android:id="@+id/fragment_movie_detail_rating_subtitle_text_view"
-                        android:layout_width="0dp"
+                        android:id="@+id/fragment_movie_detail_title_text_view"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/rating"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:id="@+id/fragment_movie_detail_duration_subtitle_text_view"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/duration"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/fragment_movie_detail_genre_text_view"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginBottom="4dp"
+                        android:text="@{viewModel.movieDetailData.title}"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        tools:text="Comedy" />
+                        android:textSize="20sp"
+                        tools:text="Title" />
 
-                    <TextView
-                        android:id="@+id/fragment_movie_detail_original_language_text_view"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{viewModel.movieDetailData.originalLanguage}"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        tools:text="English" />
+                        android:orientation="horizontal">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/fragment_movie_detail_rating_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@{String.valueOf(viewModel.movieDetailData.voteAverage)}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="8.0" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/fragment_movie_detail_duration_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="120 mins" />
 
-                    <TextView
-                        android:id="@+id/fragment_movie_detail_genre_subtitle_text_view"
-                        android:layout_width="0dp"
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/genre"
-                        android:textSize="12sp" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/fragment_movie_detail_original_language_subtitle_text_view"
-                        android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/fragment_movie_detail_rating_subtitle_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/rating"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/fragment_movie_detail_duration_subtitle_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/duration"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/original_language"
-                        android:textSize="12sp" />
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fragment_movie_detail_genre_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="Comedy" />
+
+                        <TextView
+                            android:id="@+id/fragment_movie_detail_original_language_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@{viewModel.movieDetailData.originalLanguage}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="English" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fragment_movie_detail_genre_subtitle_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/genre"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/fragment_movie_detail_original_language_subtitle_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/original_language"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/fragment_movie_detail_story_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/fragment_movie_detail_story_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/synopsis"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/fragment_movie_detail_story_content_text_view"
+            <LinearLayout
+                android:id="@+id/fragment_movie_detail_story_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:maxLength="300"
-                android:text="@{viewModel.movieDetailData.overview}"
-                tools:text="aushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiah" />
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/fragment_movie_detail_story_title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/synopsis"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
+                <TextView
+                    android:id="@+id/fragment_movie_detail_story_content_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:maxLines="3"
+                    android:text="@{viewModel.movieDetailData.overview}"
+                    tools:text="aushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiah" />
 
-        <LinearLayout
-            android:id="@+id/fragment_movie_detail_images_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/fragment_movie_detail_story_show_more_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:padding="@dimen/margin_8"
+                    android:text="@string/show_more"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/fragment_movie_detail_images_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/images"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+            </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fragment_movie_detail_images_recycler_view"
+            <LinearLayout
+                android:id="@+id/fragment_movie_detail_images_linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:layout_height="100dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/fragment_movie_detail_images_title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/images"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-        <LinearLayout
-            android:id="@+id/fragment_movie_detail_actors_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fragment_movie_detail_images_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/picture_item" />
 
-            <TextView
-                android:id="@+id/fragment_movie_detail_actors_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/actors"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+            </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fragment_movie_detail_actors_recycler_view"
+            <LinearLayout
+                android:id="@+id/fragment_movie_detail_actors_linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:layout_height="100dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fragment_movie_detail_actors_title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/actors"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fragment_movie_detail_actors_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/actor_item" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
 </layout>

@@ -9,7 +9,9 @@ import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.AllContentElementBinding
 import com.adrict99.bestfilms.domain.model.media.TrendingContent
+import com.adrict99.bestfilms.utils.fromUrl
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 class ContentAdapter(
@@ -59,13 +61,13 @@ class ContentAdapter(
 
             binding.allContentRatingText.text = if (item.voteAverage.equals(0.0)) "?" else item.voteAverage.toString()
 
-            val uri = BuildConfig.IMAGE_BASE_URL + item.posterPath.toString()
-            Glide.with(itemView.context)
-                .load(uri)
-                .placeholder(R.drawable.ic_movie)
-                .fitCenter()
-                .transform(RoundedCorners(30))
-                .into(binding.allContentImageView)
+            binding.allContentImageView.fromUrl(
+                url = item.posterPath,
+                roundedCorners = true,
+                circleCrop = false,
+                placeholder = R.drawable.ic_movie,
+                scaleType = FitCenter()
+            )
 
             itemView.setOnClickListener(this)
         }

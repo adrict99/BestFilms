@@ -9,7 +9,9 @@ import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.TvShowElementBinding
 import com.adrict99.bestfilms.domain.model.media.TvShow
+import com.adrict99.bestfilms.utils.fromUrl
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 class TvShowsAdapter(
@@ -57,13 +59,13 @@ class TvShowsAdapter(
 
             binding.tvShowRatingText.text = if (item.voteAverage.equals(0.0)) "?" else item.voteAverage.toString()
 
-            val uri = BuildConfig.IMAGE_BASE_URL + item.posterPath.toString()
-            Glide.with(itemView.context)
-                .load(uri)
-                .placeholder(R.drawable.ic_movie)
-                .fitCenter()
-                .transform(RoundedCorners(30))
-                .into(binding.tvShowImageView)
+            binding.tvShowImageView.fromUrl(
+                url = item.posterPath,
+                roundedCorners = true,
+                circleCrop = false,
+                placeholder = R.drawable.ic_movie,
+                scaleType = FitCenter()
+            )
 
             itemView.setOnClickListener(this)
         }

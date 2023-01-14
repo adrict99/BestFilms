@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.adrict99.bestfilms.BuildConfig
+import com.adrict99.bestfilms.ui.home.mapper.addBaseImageUrl
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -22,9 +23,7 @@ fun loadImage(
     circleCrop: Boolean,
     placeholder: Drawable?,
 ) {
-    //TODO: Fix this with a mapper Domain -> Presentation
-    val url = BuildConfig.IMAGE_BASE_URL + imageUrl
-    Glide.with(view.context).load(url).let { requestBuilder ->
+    Glide.with(view.context).load(imageUrl?.addBaseImageUrl()).let { requestBuilder ->
         if (roundedCorners) requestBuilder.transform(RoundedCorners(20))
         if (circleCrop) requestBuilder.circleCrop()
         if (placeholder != null) requestBuilder.placeholder(placeholder)

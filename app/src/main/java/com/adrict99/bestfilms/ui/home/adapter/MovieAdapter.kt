@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 
 import com.adrict99.bestfilms.databinding.MovieElementBinding
 import com.adrict99.bestfilms.domain.model.media.Movie
 import com.adrict99.bestfilms.utils.fromUrl
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.load.resource.bitmap.FitCenter
 
 class MovieAdapter(
     private val context: Context,
@@ -61,13 +59,13 @@ class MovieAdapter(
 
             binding.mediaRatingText.text = if (item.voteAverage.equals(0.0)) "?" else item.voteAverage.toString()
 
-            val uri = BuildConfig.IMAGE_BASE_URL + item.poster_path.toString()
-            Glide.with(itemView.context)
-                .load(uri)
-                .placeholder(R.drawable.ic_movie)
-                .fitCenter()
-                .transform(RoundedCorners(30))
-                .into(binding.mediaImageView)
+            binding.mediaImageView.fromUrl(
+                url = item.posterPath,
+                roundedCorners = true,
+                circleCrop = false,
+                placeholder = R.drawable.ic_movie,
+                scaleType = FitCenter()
+            )
 
             itemView.setOnClickListener(this)
         }

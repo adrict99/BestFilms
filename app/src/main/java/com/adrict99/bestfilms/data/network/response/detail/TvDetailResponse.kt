@@ -48,13 +48,13 @@ data class TvDetailResponse(
     @SerializedName("poster_path")
     val posterPath: String,
     @SerializedName("production_companies")
-    val productionCompanies: List<ProductionCountry>,
+    val productionCompanies: List<Country>,
     @SerializedName("production_countries")
-    val productionCountries: List<ProductionCountry>,
+    val productionCountries: List<Country>,
     @SerializedName("seasons")
     val seasons: List<Season>,
     @SerializedName("spoken_languages")
-    val spokenLanguages: List<SpokenLanguage>,
+    val spokenLanguages: List<Language>,
     @SerializedName("status")
     val status: String,
     @SerializedName("tagline")

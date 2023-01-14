@@ -1,7 +1,7 @@
 package com.adrict99.bestfilms.data.network.response.detail
 import com.adrict99.bestfilms.domain.model.detail.Genre
-import com.adrict99.bestfilms.domain.model.detail.ProductionCountry
-import com.adrict99.bestfilms.domain.model.detail.SpokenLanguage
+import com.adrict99.bestfilms.domain.model.detail.Country
+import com.adrict99.bestfilms.domain.model.detail.Language
 import com.google.gson.annotations.SerializedName
 
 data class MovieDetailResponse(
@@ -32,9 +32,9 @@ data class MovieDetailResponse(
     @SerializedName("poster_path")
     val posterPath: String,
     @SerializedName("production_companies")
-    val productionCompanies: List<ProductionCountry>,
+    val productionCompanies: List<Country>,
     @SerializedName("production_countries")
-    val productionCountries: List<ProductionCountry>,
+    val productionCountries: List<Country>,
     @SerializedName("release_date")
     val releaseDate: String,
     @SerializedName("revenue")
@@ -42,7 +42,7 @@ data class MovieDetailResponse(
     @SerializedName("runtime")
     val runtime: Int,
     @SerializedName("spoken_languages")
-    val spokenLanguages: List<SpokenLanguage>,
+    val languages: List<Language>,
     @SerializedName("status")
     val status: String,
     @SerializedName("tagline")
