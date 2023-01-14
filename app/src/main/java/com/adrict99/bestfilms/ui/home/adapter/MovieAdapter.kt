@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.R
 
 import com.adrict99.bestfilms.databinding.MovieElementBinding
-import com.adrict99.bestfilms.domain.model.media.Movie
+import com.adrict99.bestfilms.domain.model.media.movie.Movie
 import com.adrict99.bestfilms.utils.fromUrl
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 

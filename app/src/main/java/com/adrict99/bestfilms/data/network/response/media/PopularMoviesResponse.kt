@@ -1,6 +1,6 @@
 package com.adrict99.bestfilms.data.network.response.media
 
-import com.adrict99.bestfilms.domain.model.media.Movie
+import com.adrict99.bestfilms.domain.model.media.movie.Movie
 import com.google.gson.annotations.SerializedName
 
 data class PopularMoviesResponse(

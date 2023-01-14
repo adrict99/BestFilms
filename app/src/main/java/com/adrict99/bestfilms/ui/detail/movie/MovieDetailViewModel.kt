@@ -6,6 +6,7 @@ import com.adrict99.bestfilms.data.network.response.detail.MovieDetailResponse
 import com.adrict99.bestfilms.domain.model.detail.Cast
 import com.adrict99.bestfilms.domain.model.Picture
 import com.adrict99.bestfilms.domain.model.detail.Actor
+import com.adrict99.bestfilms.domain.model.media.movie.PresentationMovie
 import com.adrict99.bestfilms.domain.useCase.GetMovieCreditsUseCase
 import com.adrict99.bestfilms.domain.useCase.GetMovieDetailUseCase
 import com.adrict99.bestfilms.domain.useCase.GetMoviePicturesUseCase
@@ -22,7 +23,7 @@ class MovieDetailViewModel @Inject constructor(
 ): BaseViewModel() {
 
     //Stores movie detail API data to be able to observe and use it
-    val movieDetailData: MutableLiveData<MovieDetailResponse> by lazy { MutableLiveData<MovieDetailResponse>() }
+    val movieDetailData: MutableLiveData<PresentationMovie> by lazy { MutableLiveData<PresentationMovie>() }
     val moviePictures: MutableLiveData<List<Picture>> by lazy { MutableLiveData<List<Picture>>() }
     val movieActors: MutableLiveData<List<Actor>> by lazy { MutableLiveData<List<Actor>>() }
 
@@ -31,7 +32,7 @@ class MovieDetailViewModel @Inject constructor(
         viewModelScope.launch {
             getMovieDetailUseCase.execute(id)
                 .catch { errorMessage.value = mapOf(0 to (it.message ?: "")) }
-                .collect { movieDetailData.value = it }
+                .collect { movieDetailData.value = it.toPresentationModel() }
             loading.value = DISMISS
         }
     }

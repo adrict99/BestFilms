@@ -14,6 +14,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.Transformation
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.android.material.snackbar.Snackbar
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 fun Activity?.showCustomMessage(text: String, timeExpose: Int) {
     val view: View = this!!.findViewById(android.R.id.content)
