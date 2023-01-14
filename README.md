@@ -15,12 +15,11 @@ Movie app where you can find the latest trends in TV Series and movies.
 **Architecture**: Semi-single activity pattern with MVVM + Clean Architecture.
 
 ## TODO
-- (Almost done) Implement movie detail screen.
-- Implement TV show detail screen.
+- (On-going) Implement TV show detail screen.
 - Implement search screen.
 - Implement favorites screen.
 - Implement splash screen.
-- Migrate DI to Dagger-Hilt.
-- Refactor detail layouts to ConstraintLayout for performance.
 - Implement trailer video on detail screen.
 - Implement offline mode (ROOM DB caching + DataSources).
+- Refactor detail layouts to ConstraintLayout for performance.
+- Migrate DI to Dagger-Hilt.
