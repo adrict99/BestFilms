@@ -19,7 +19,7 @@ Movie app where you can find the latest trends in TV Series and movies.
 - Implement search screen.
 - Implement favorites screen.
 - Implement splash screen.
-- Migrate DI to Dagger-Hilt.
-- Refactor detail layouts to ConstraintLayout for performance.
 - Implement trailer video on detail screen.
 - Implement offline mode (ROOM DB caching + DataSources).
+- Refactor detail layouts to ConstraintLayout for performance.
+- Migrate DI to Dagger-Hilt.
