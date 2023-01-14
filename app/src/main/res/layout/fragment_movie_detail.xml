@@ -209,7 +209,7 @@
             <LinearLayout
                 android:id="@+id/fragment_movie_detail_images_linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
@@ -237,7 +237,7 @@
             <LinearLayout
                 android:id="@+id/fragment_movie_detail_actors_linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"

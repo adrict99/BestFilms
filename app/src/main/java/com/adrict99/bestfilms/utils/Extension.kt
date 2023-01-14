@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.R
+import com.adrict99.bestfilms.ui.common.decorator.MarginItemDecoration
 import com.adrict99.bestfilms.ui.home.mapper.addBaseImageUrl
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.Transformation
@@ -16,7 +17,7 @@ import com.google.android.material.snackbar.Snackbar
 
 fun Activity?.showCustomMessage(text: String, timeExpose: Int) {
     val view: View = this!!.findViewById(android.R.id.content)
-    if (text.isNotEmpty()) Snackbar.make(view, text , timeExpose).show()
+    if (text.isNotEmpty()) Snackbar.make(view, text, timeExpose).show()
 }
 
 fun ImageView.fromUrl(
@@ -49,7 +50,14 @@ fun TextView.changeExpandableMode(expandableTextView: TextView) {
     }
 }
 
-fun RecyclerView.setupAdapter(AxisMode: Int) {
+fun RecyclerView.setupAdapter(
+    AxisMode: Int,
+    verticalMode: Boolean,
+    firstItemMargin: Int? = null,
+) {
     layoutManager = LinearLayoutManager(context, AxisMode, false)
     setHasFixedSize(true)
+    if (firstItemMargin != null) {
+        addItemDecoration(MarginItemDecoration(firstItemMargin, verticalMode))
+    }
 }

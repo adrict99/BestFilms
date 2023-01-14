@@ -1,4 +1,4 @@
-package com.adrict99.bestfilms.ui.detail.adapter.actors
+package com.adrict99.bestfilms.ui.detail.movie.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.ActorItemBinding
-import com.adrict99.bestfilms.domain.model.detail.Cast
+import com.adrict99.bestfilms.domain.model.detail.Actor
 import com.adrict99.bestfilms.utils.fromUrl
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 
@@ -16,7 +16,7 @@ class ActorsAdapter(
     private val listener: OnActorsClickListener
 ) : RecyclerView.Adapter<ActorsAdapter.ActorsViewHolder>() {
 
-    private var actorsList = mutableListOf<Cast>()
+    private var actorsList = mutableListOf<Actor>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorsViewHolder {
         val binding = ActorItemBinding.inflate(
@@ -32,7 +32,7 @@ class ActorsAdapter(
 
     override fun getItemCount(): Int = actorsList.size
 
-    fun addAllActors(list: List<Cast>) {
+    fun addAllActors(list: List<Actor>) {
         actorsList.clear()
         actorsList.addAll(list)
         notifyDataSetChanged()
@@ -41,21 +41,24 @@ class ActorsAdapter(
     inner class ActorsViewHolder(
         private val binding: ActorItemBinding
     ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
-        fun bindItem(item: Cast) {
-            binding.actorItemImageView.fromUrl(
-                url = item.profilePath,
-                roundedCorners = false,
-                circleCrop = true,
-                placeholder = R.drawable.ic_movie,
-                scaleType = CenterCrop()
-            )
+        fun bindItem(item: Actor) {
+            binding.apply {
+                actionItemTextView.text = item.name
+                actorItemImageView.fromUrl(
+                    url = item.imageUrl,
+                    roundedCorners = false,
+                    circleCrop = true,
+                    placeholder = R.drawable.ic_movie,
+                    scaleType = CenterCrop()
+                )
+            }
         }
 
         override fun onClick(v: View?) = listener.onActorClicked(actorsList)
     }
 
     interface OnActorsClickListener {
-        fun onActorClicked(selectedActor: MutableList<Cast>)
+        fun onActorClicked(selectedActor: MutableList<Actor>)
     }
 
 }

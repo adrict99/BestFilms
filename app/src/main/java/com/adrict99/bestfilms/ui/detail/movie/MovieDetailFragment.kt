@@ -6,13 +6,15 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.FragmentMovieDetailBinding
-import com.adrict99.bestfilms.domain.model.detail.Cast
-import com.adrict99.bestfilms.domain.model.picture.Picture
+import com.adrict99.bestfilms.domain.model.Picture
+import com.adrict99.bestfilms.domain.model.detail.Actor
 import com.adrict99.bestfilms.ui.common.BaseFragment
-import com.adrict99.bestfilms.ui.detail.adapter.actors.ActorsAdapter
-import com.adrict99.bestfilms.ui.detail.adapter.pictures.PicturesAdapter
+import com.adrict99.bestfilms.ui.common.decorator.MarginItemDecoration
+import com.adrict99.bestfilms.ui.detail.movie.adapter.ActorsAdapter
+import com.adrict99.bestfilms.ui.detail.movie.adapter.PicturesAdapter
 import com.adrict99.bestfilms.utils.ViewModelFactory
 import com.adrict99.bestfilms.utils.changeExpandableMode
+import com.adrict99.bestfilms.utils.setupAdapter
 import javax.inject.Inject
 
 class MovieDetailFragment :
@@ -100,20 +102,20 @@ class MovieDetailFragment :
     private fun setupRecyclerViews() {
         //Setting up actors and pictures recyclerViews
         binding.fragmentMovieDetailActorsRecyclerView.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            setHasFixedSize(true)
+            setupAdapter(LinearLayoutManager.HORIZONTAL, false, 24)
             adapter = actorsAdapter
         }
         binding.fragmentMovieDetailImagesRecyclerView.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            setHasFixedSize(true)
+            setupAdapter(LinearLayoutManager.HORIZONTAL, false, 24)
             adapter = picturesAdapter
         }
     }
 
     private fun setOnClickListeners() {
         binding.apply {
-            fragmentMovieDetailStoryShowMoreTextView.changeExpandableMode(fragmentMovieDetailStoryContentTextView)
+            fragmentMovieDetailStoryShowMoreTextView.changeExpandableMode(
+                fragmentMovieDetailStoryContentTextView
+            )
         }
     }
 
@@ -121,7 +123,7 @@ class MovieDetailFragment :
         TODO("Not yet implemented")
     }
 
-    override fun onActorClicked(selectedActor: MutableList<Cast>) {
+    override fun onActorClicked(selectedActor: MutableList<Actor>) {
         TODO("Not yet implemented")
     }
 

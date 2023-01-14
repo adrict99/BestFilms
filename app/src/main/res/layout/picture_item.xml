@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <ImageView
         android:id="@+id/picture_item_image_view"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:scaleType="centerCrop"
         tools:src="@drawable/ic_image"
         android:contentDescription="@string/picture" />

@@ -5,13 +5,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavDirections
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.adrict99.bestfilms.ui.MainActivity
 import com.adrict99.bestfilms.ui.common.BaseActivity
 import com.adrict99.bestfilms.ui.home.HomeFragmentDirections
-import com.adrict99.bestfilms.utils.types.MediaType
 
 class Navigator {
 

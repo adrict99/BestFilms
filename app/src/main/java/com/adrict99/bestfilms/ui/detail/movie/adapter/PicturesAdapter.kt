@@ -1,4 +1,4 @@
-package com.adrict99.bestfilms.ui.detail.adapter.pictures
+package com.adrict99.bestfilms.ui.detail.movie.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.PictureItemBinding
-import com.adrict99.bestfilms.domain.model.picture.Picture
+import com.adrict99.bestfilms.domain.model.Picture
 import com.adrict99.bestfilms.utils.fromUrl
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 

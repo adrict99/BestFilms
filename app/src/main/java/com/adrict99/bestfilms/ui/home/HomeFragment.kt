@@ -39,15 +39,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
     private fun setupRecyclerViews() {
         //Setting up all content, movies and series recyclerViews
         binding.allContentRecyclerView.apply {
-            setupAdapter(LinearLayoutManager.HORIZONTAL)
+            setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
             adapter = allContentAdapter
         }
         binding.moviesRecyclerView.apply {
-            setupAdapter(LinearLayoutManager.HORIZONTAL)
+            setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
             adapter = movieAdapter
         }
         binding.tvShowsRecyclerView.apply {
-            setupAdapter(LinearLayoutManager.HORIZONTAL)
+            setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
             adapter = tvShowsAdapter
         }
     }
