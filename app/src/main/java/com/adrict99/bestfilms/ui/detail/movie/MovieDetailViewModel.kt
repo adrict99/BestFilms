@@ -2,11 +2,9 @@ package com.adrict99.bestfilms.ui.detail.movie
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.adrict99.bestfilms.data.network.response.detail.MovieDetailResponse
-import com.adrict99.bestfilms.domain.model.detail.Cast
 import com.adrict99.bestfilms.domain.model.Picture
-import com.adrict99.bestfilms.domain.model.detail.Actor
-import com.adrict99.bestfilms.domain.model.media.movie.PresentationMovie
+import com.adrict99.bestfilms.domain.model.media.movie.presentation.PresentationActor
+import com.adrict99.bestfilms.domain.model.media.movie.presentation.PresentationMovie
 import com.adrict99.bestfilms.domain.useCase.GetMovieCreditsUseCase
 import com.adrict99.bestfilms.domain.useCase.GetMovieDetailUseCase
 import com.adrict99.bestfilms.domain.useCase.GetMoviePicturesUseCase
@@ -25,7 +23,7 @@ class MovieDetailViewModel @Inject constructor(
     //Stores movie detail API data to be able to observe and use it
     val movieDetailData: MutableLiveData<PresentationMovie> by lazy { MutableLiveData<PresentationMovie>() }
     val moviePictures: MutableLiveData<List<Picture>> by lazy { MutableLiveData<List<Picture>>() }
-    val movieActors: MutableLiveData<List<Actor>> by lazy { MutableLiveData<List<Actor>>() }
+    val movieActors: MutableLiveData<List<PresentationActor>> by lazy { MutableLiveData<List<PresentationActor>>() }
 
     fun getMovieDetail(id: Int) {
         loading.value = SHOW

@@ -4,12 +4,10 @@ import com.adrict99.bestfilms.data.network.ApiInterface
 import com.adrict99.bestfilms.data.network.response.detail.MovieCreditsResponse
 import com.adrict99.bestfilms.data.network.response.detail.MovieDetailResponse
 import com.adrict99.bestfilms.data.network.response.detail.MoviePicturesResponse
-import com.adrict99.bestfilms.data.network.response.media.PopularMoviesResponse
-import com.adrict99.bestfilms.data.repository.Repository
+import com.adrict99.bestfilms.data.network.response.media.MoviesResponse
 import com.adrict99.bestfilms.domain.repository.MoviesRepository
 import com.adrict99.bestfilms.utils.NetworkUtils
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
@@ -18,7 +16,7 @@ class MoviesRepositoryImpl @Inject constructor(
     override val networkUtils: NetworkUtils
 ): MoviesRepository, Repository(networkUtils) {
 
-    override fun getPopularMovies(): Flow<PopularMoviesResponse> = flow {
+    override fun getPopularMovies(): Flow<MoviesResponse> = flow {
         callApi { apiInterface.getPopularMovies() }
             .collect { emit(it) }
     }

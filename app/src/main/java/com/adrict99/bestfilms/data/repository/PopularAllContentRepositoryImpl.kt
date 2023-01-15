@@ -1,8 +1,7 @@
 package com.adrict99.bestfilms.data.repository
 
 import com.adrict99.bestfilms.data.network.ApiInterface
-import com.adrict99.bestfilms.data.network.response.media.PopularAllContentResponse
-import com.adrict99.bestfilms.data.repository.Repository
+import com.adrict99.bestfilms.data.network.response.media.AllContentResponse
 import com.adrict99.bestfilms.domain.repository.PopularAllContentRepository
 import com.adrict99.bestfilms.utils.NetworkUtils
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +13,7 @@ class PopularAllContentRepositoryImpl @Inject constructor(
     override val networkUtils: NetworkUtils
 ): PopularAllContentRepository, Repository(networkUtils) {
 
-    override fun getPopularAllContent(): Flow<PopularAllContentResponse> = flow {
+    override fun getPopularAllContent(): Flow<AllContentResponse> = flow {
         callApi { apiInterface.getPopularAll() }
             .collect { popularAll ->
                 emit(popularAll)

@@ -1,8 +1,12 @@
 package com.adrict99.bestfilms.data.network.response.detail
 import com.adrict99.bestfilms.domain.model.detail.*
+import com.adrict99.bestfilms.domain.model.media.tvShow.LastEpisodeToAir
+import com.adrict99.bestfilms.domain.model.media.tvShow.Network
+import com.adrict99.bestfilms.domain.model.media.tvShow.ProductionCompany
+import com.adrict99.bestfilms.domain.model.media.tvShow.Season
 import com.google.gson.annotations.SerializedName
 
-data class TvDetailResponse(
+data class TvShowDetailResponse(
     @SerializedName("backdrop_path")
     val backdropPath: String,
     @SerializedName("created_by")
@@ -48,7 +52,7 @@ data class TvDetailResponse(
     @SerializedName("poster_path")
     val posterPath: String,
     @SerializedName("production_companies")
-    val productionCompanies: List<Country>,
+    val productionCompanies: List<ProductionCompany>,
     @SerializedName("production_countries")
     val productionCountries: List<Country>,
     @SerializedName("seasons")

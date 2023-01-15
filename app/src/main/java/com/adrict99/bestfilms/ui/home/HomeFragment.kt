@@ -3,7 +3,6 @@ package com.adrict99.bestfilms.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.FragmentHomeBinding
 import com.adrict99.bestfilms.ui.common.BaseFragment
@@ -34,6 +33,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         setupRecyclerViews()
         setupViewModelObservers()
         getData()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        //TODO: Make binding = null
     }
 
     private fun setupRecyclerViews() {
@@ -67,9 +71,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
             loading.observe(viewLifecycleOwner) { manageLoadingDialog(it) }
 
             //Observes popular all content, movies and tv shows response
-            popularAllContentResponse.observe(viewLifecycleOwner) { allContentAdapter.addAllContent(it.results!!) }
-            popularMoviesResponse.observe(viewLifecycleOwner) { movieAdapter.addAllMovies(it.results!!) }
-            popularTvShowsResponse.observe(viewLifecycleOwner) { tvShowsAdapter.addAllTvShows(it.results!!) }
+            allContentResponse.observe(viewLifecycleOwner) { allContentAdapter.addAllContent(it.results!!) }
+            moviesResponse.observe(viewLifecycleOwner) { movieAdapter.addAllMovies(it.results!!) }
+            tvShowsResponse.observe(viewLifecycleOwner) { tvShowsAdapter.addAllTvShows(it.results!!) }
         }
     }
 

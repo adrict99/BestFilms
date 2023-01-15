@@ -5,14 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.TvShowElementBinding
-import com.adrict99.bestfilms.domain.model.media.TvShow
+import com.adrict99.bestfilms.domain.model.media.tvShow.TvShow
 import com.adrict99.bestfilms.utils.fromUrl
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.FitCenter
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 class TvShowsAdapter(
     private val context: Context,
@@ -21,7 +18,9 @@ class TvShowsAdapter(
 
     private var popularTvShows = mutableListOf<TvShow>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
     ): TvShowsViewHolder {
         val binding = TvShowElementBinding.inflate(
             LayoutInflater.from(context),

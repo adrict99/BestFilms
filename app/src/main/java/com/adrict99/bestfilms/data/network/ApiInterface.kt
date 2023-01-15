@@ -3,25 +3,18 @@ package com.adrict99.bestfilms.data.network
 import com.adrict99.bestfilms.data.network.response.detail.MovieCreditsResponse
 import com.adrict99.bestfilms.data.network.response.detail.MovieDetailResponse
 import com.adrict99.bestfilms.data.network.response.detail.MoviePicturesResponse
-import com.adrict99.bestfilms.data.network.response.detail.TvDetailResponse
-import com.adrict99.bestfilms.data.network.response.media.PopularAllContentResponse
-import com.adrict99.bestfilms.data.network.response.media.PopularMoviesResponse
-import com.adrict99.bestfilms.data.network.response.media.PopularTvShowsResponse
+import com.adrict99.bestfilms.data.network.response.detail.TvShowDetailResponse
+import com.adrict99.bestfilms.data.network.response.media.AllContentResponse
+import com.adrict99.bestfilms.data.network.response.media.MoviesResponse
+import com.adrict99.bestfilms.data.network.response.media.TvShowsResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
-import com.google.gson.annotations.SerializedName
 
 
 interface ApiInterface {
     @GET("/3/movie/popular")
-    suspend fun getPopularMovies(): Response<PopularMoviesResponse>
-
-    @GET("/3/trending/all/day")
-    suspend fun getPopularAll(): Response<PopularAllContentResponse>
-
-    @GET("/3/tv/popular")
-    suspend fun getPopularTvShows(): Response<PopularTvShowsResponse>
+    suspend fun getPopularMovies(): Response<MoviesResponse>
 
     @GET("/3/movie/{id}")
     suspend fun getMovieDetail(@Path("id") id: Int): Response<MovieDetailResponse>
@@ -32,6 +25,12 @@ interface ApiInterface {
     @GET("/3/movie/{movie_id}/credits")
     suspend fun getMovieCredits(@Path("movie_id") id: Int): Response<MovieCreditsResponse>
 
+    @GET("/3/tv/popular")
+    suspend fun getPopularTvShows(): Response<TvShowsResponse>
+
     @GET("/3/tv/{tv_id}")
-    suspend fun getTvDetail(@Path("tv_id") id: Int): Response<TvDetailResponse>
+    suspend fun getTvDetail(@Path("tv_id") id: Int): Response<TvShowDetailResponse>
+
+    @GET("/3/trending/all/day")
+    suspend fun getPopularAll(): Response<AllContentResponse>
 }

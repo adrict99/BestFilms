@@ -1,7 +1,7 @@
 package com.adrict99.bestfilms.ui.detail.movie.mapper
 
 import com.adrict99.bestfilms.data.network.response.detail.MovieDetailResponse
-import com.adrict99.bestfilms.domain.model.media.movie.PresentationMovie
+import com.adrict99.bestfilms.domain.model.media.movie.presentation.PresentationMovie
 import com.adrict99.bestfilms.utils.extensions.*
 
 fun MovieDetailResponse.toPresentationModel(): PresentationMovie =
@@ -13,7 +13,7 @@ fun MovieDetailResponse.toPresentationModel(): PresentationMovie =
         overview = this.overview,
         posterPath = this.posterPath,
         title = this.title,
-        voteAverage = this.voteAverage.round(1),
+        voteAverage = this.voteAverage.round(1).toString(),
         runtime = this.runtime.asMinutes(),
         genres = this.genres.genreJoinToString(),
     )

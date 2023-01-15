@@ -30,4 +30,9 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        //TODO: Make binding = null
+    }
+
 }

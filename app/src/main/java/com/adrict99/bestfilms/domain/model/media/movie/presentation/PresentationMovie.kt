@@ -1,4 +1,4 @@
-package com.adrict99.bestfilms.domain.model.media.movie
+package com.adrict99.bestfilms.domain.model.media.movie.presentation
 
 data class PresentationMovie(
     val backdropPath: String?,
@@ -8,7 +8,7 @@ data class PresentationMovie(
     val overview: String?,
     val posterPath: String?,
     val title: String?,
-    val voteAverage: Double?,
+    val voteAverage: String?,
     val runtime: String,
     val genres: String,
 )

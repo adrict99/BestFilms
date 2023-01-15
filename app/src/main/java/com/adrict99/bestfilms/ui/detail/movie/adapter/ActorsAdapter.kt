@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.ActorItemBinding
-import com.adrict99.bestfilms.domain.model.detail.Actor
+import com.adrict99.bestfilms.domain.model.media.movie.presentation.PresentationActor
 import com.adrict99.bestfilms.utils.fromUrl
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 
@@ -16,7 +16,7 @@ class ActorsAdapter(
     private val listener: OnActorsClickListener
 ) : RecyclerView.Adapter<ActorsAdapter.ActorsViewHolder>() {
 
-    private var actorsList = mutableListOf<Actor>()
+    private var actorsList = mutableListOf<PresentationActor>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorsViewHolder {
         val binding = ActorItemBinding.inflate(
@@ -32,7 +32,7 @@ class ActorsAdapter(
 
     override fun getItemCount(): Int = actorsList.size
 
-    fun addAllActors(list: List<Actor>) {
+    fun addAllActors(list: List<PresentationActor>) {
         actorsList.clear()
         actorsList.addAll(list)
         notifyDataSetChanged()
@@ -41,7 +41,7 @@ class ActorsAdapter(
     inner class ActorsViewHolder(
         private val binding: ActorItemBinding
     ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
-        fun bindItem(item: Actor) {
+        fun bindItem(item: PresentationActor) {
             binding.apply {
                 actionItemTextView.text = item.name
                 actorItemImageView.fromUrl(
@@ -58,7 +58,7 @@ class ActorsAdapter(
     }
 
     interface OnActorsClickListener {
-        fun onActorClicked(selectedActor: MutableList<Actor>)
+        fun onActorClicked(selectedPresentationActor: MutableList<PresentationActor>)
     }
 
 }

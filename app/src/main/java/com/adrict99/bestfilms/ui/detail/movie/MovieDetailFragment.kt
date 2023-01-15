@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.FragmentMovieDetailBinding
 import com.adrict99.bestfilms.domain.model.Picture
-import com.adrict99.bestfilms.domain.model.detail.Actor
+import com.adrict99.bestfilms.domain.model.media.movie.presentation.PresentationActor
 import com.adrict99.bestfilms.ui.common.BaseFragment
-import com.adrict99.bestfilms.ui.common.decorator.MarginItemDecoration
 import com.adrict99.bestfilms.ui.detail.movie.adapter.ActorsAdapter
 import com.adrict99.bestfilms.ui.detail.movie.adapter.PicturesAdapter
 import com.adrict99.bestfilms.utils.ViewModelFactory
@@ -38,10 +37,15 @@ class MovieDetailFragment :
         getData()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        //TODO: Make binding = null
+    }
+
     private fun configureBinding(view: View) {
         binding = FragmentMovieDetailBinding.bind(view)
         binding.viewModel = movieDetailViewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = this@MovieDetailFragment.viewLifecycleOwner
     }
 
     private fun setupView() {
@@ -123,7 +127,7 @@ class MovieDetailFragment :
         TODO("Not yet implemented")
     }
 
-    override fun onActorClicked(selectedActor: MutableList<Actor>) {
+    override fun onActorClicked(selectedPresentationActor: MutableList<PresentationActor>) {
         TODO("Not yet implemented")
     }
 

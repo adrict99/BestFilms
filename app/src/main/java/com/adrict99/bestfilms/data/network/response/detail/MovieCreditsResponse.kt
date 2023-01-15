@@ -1,7 +1,7 @@
 package com.adrict99.bestfilms.data.network.response.detail
 
-import com.adrict99.bestfilms.domain.model.detail.Cast
-import com.adrict99.bestfilms.domain.model.detail.Crew
+import com.adrict99.bestfilms.domain.model.media.movie.Cast
+import com.adrict99.bestfilms.domain.model.media.movie.Crew
 import com.google.gson.annotations.SerializedName
 
 data class MovieCreditsResponse(

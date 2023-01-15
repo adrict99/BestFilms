@@ -1,10 +1,8 @@
 package com.adrict99.bestfilms.ui.detail.movie.mapper
 
 import com.adrict99.bestfilms.data.network.response.detail.MovieCreditsResponse
-import com.adrict99.bestfilms.domain.model.detail.Actor
-import com.adrict99.bestfilms.domain.model.detail.Cast
-import com.adrict99.bestfilms.domain.model.detail.Crew
+import com.adrict99.bestfilms.domain.model.media.movie.presentation.PresentationActor
 
-fun MovieCreditsResponse.toPresentationModel(): List<Actor> = this.cast.map {
-    Actor(name = it.name, imageUrl = it.profilePath)
+fun MovieCreditsResponse.toPresentationModel(): List<PresentationActor> = this.cast.map {
+    PresentationActor(name = it.name, imageUrl = it.profilePath)
 }

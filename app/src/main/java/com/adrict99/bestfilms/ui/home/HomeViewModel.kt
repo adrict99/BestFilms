@@ -2,9 +2,9 @@ package com.adrict99.bestfilms.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.adrict99.bestfilms.data.network.response.media.PopularAllContentResponse
-import com.adrict99.bestfilms.data.network.response.media.PopularMoviesResponse
-import com.adrict99.bestfilms.data.network.response.media.PopularTvShowsResponse
+import com.adrict99.bestfilms.data.network.response.media.AllContentResponse
+import com.adrict99.bestfilms.data.network.response.media.MoviesResponse
+import com.adrict99.bestfilms.data.network.response.media.TvShowsResponse
 import com.adrict99.bestfilms.domain.useCase.GetPopularAllContentUseCase
 import com.adrict99.bestfilms.domain.useCase.GetPopularMoviesUseCase
 import com.adrict99.bestfilms.domain.useCase.GetPopularTvShowsUseCase
@@ -20,9 +20,9 @@ class HomeViewModel @Inject constructor(
 ): BaseViewModel() {
 
     //Observing data that came from the API requests
-    val popularMoviesResponse: MutableLiveData<PopularMoviesResponse> by lazy { MutableLiveData<PopularMoviesResponse>() }
-    val popularTvShowsResponse: MutableLiveData<PopularTvShowsResponse> by lazy { MutableLiveData<PopularTvShowsResponse>() }
-    val popularAllContentResponse: MutableLiveData<PopularAllContentResponse> by lazy { MutableLiveData<PopularAllContentResponse>() }
+    val moviesResponse: MutableLiveData<MoviesResponse> by lazy { MutableLiveData<MoviesResponse>() }
+    val tvShowsResponse: MutableLiveData<TvShowsResponse> by lazy { MutableLiveData<TvShowsResponse>() }
+    val allContentResponse: MutableLiveData<AllContentResponse> by lazy { MutableLiveData<AllContentResponse>() }
 
     fun getPopularMovies() {
         loading.value = SHOW
@@ -32,7 +32,7 @@ class HomeViewModel @Inject constructor(
                     errorMessage.value = mapOf(0 to (it.message ?: ""))
                 }
                 .collect { list ->
-                    popularMoviesResponse.value = list
+                    moviesResponse.value = list
                 }
             loading.value = DISMISS
         }
@@ -45,7 +45,7 @@ class HomeViewModel @Inject constructor(
                     errorMessage.value = mapOf(0 to (it.message ?: ""))
                 }
                 .collect { list ->
-                    popularTvShowsResponse.value = list
+                    tvShowsResponse.value = list
                 }
         }
     }
@@ -57,7 +57,7 @@ class HomeViewModel @Inject constructor(
                     errorMessage.value = mapOf(0 to (it.message ?: ""))
                 }
                 .collect { list ->
-                    popularAllContentResponse.value = list
+                    allContentResponse.value = list
                 }
         }
     }

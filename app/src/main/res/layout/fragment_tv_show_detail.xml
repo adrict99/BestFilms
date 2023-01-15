@@ -1,238 +1,340 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.adrict99.bestfilms.ui.detail.tvShow.TvShowDetailViewModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.detail.tvShow.TvShowDetailFragment"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/fragment_detail_tv_show_header_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:context=".ui.detail.tvShow.TvShowDetailFragment">
 
             <ImageView
                 android:id="@+id/fragment_detail_tv_show_media_poster_image"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/fragment_detailed_media_top_header_background"
-                tools:ignore="ContentDescription"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/fragment_tv_show_detail_mid_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="175dp"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="16dp">
-
-            <ImageView
-                android:id="@+id/fragment_tv_show_detail_main_image_view"
-                android:layout_width="100dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center_vertical"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/ic_home"/>
+                android:scaleType="centerCrop"
+                app:loadFromUrl="@{viewModel.tvShowDetailData.backdropPath}"
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
+                android:id="@+id/fragment_tv_show_detail_mid_linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingVertical="16dp"
-                android:paddingHorizontal="16dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/fragment_tv_show_detail_title_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    tools:text="Title"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/fragment_tv_show_detail_rating_text_view"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        tools:text="8.0"/>
-
-                    <TextView
-                        android:id="@+id/fragment_tv_show_detail_duration_text_view"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        tools:text="120 mins"/>
-
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/fragment_tv_show_detail_main_image_view"
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_vertical"
+                    app:loadFromUrl="@{viewModel.tvShowDetailData.posterPath}"
+                    app:placeholder="@{@drawable/ic_movie}"
+                    app:roundedCorners="@{true}"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_home" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/margin_16"
+                    android:paddingVertical="@dimen/margin_8">
 
                     <TextView
-                        android:id="@+id/fragment_tv_show_detail_rating_subtitle_text_view"
-                        android:layout_width="0dp"
+                        android:id="@+id/fragment_tv_show_detail_title_text_view"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="12sp"
-                        tools:text="Rating"/>
-
-                    <TextView
-                        android:id="@+id/fragment_tv_show_detail_duration_subtitle_text_view"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="12sp"
-                        tools:text="Duration"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/fragment_tv_show_detail_genre_text_view"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginBottom="@dimen/margin_4"
+                        android:text="@{viewModel.tvShowDetailData.name}"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        tools:text="Comedy"/>
+                        android:textSize="@dimen/font_size_20"
+                        tools:text="Title" />
 
-                    <TextView
-                        android:id="@+id/fragment_tv_show_detail_original_language_text_view"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        tools:text="English"/>
+                        android:orientation="horizontal">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/fragment_tv_show_detail_first_air_rate_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@{viewModel.tvShowDetailData.firstAirDate}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="23-09-2023" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/fragment_tv_show_detail_episode_run_time_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@{viewModel.tvShowDetailData.averageEpisodeRunTime}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="23 min." />
 
-                    <TextView
-                        android:id="@+id/fragment_tv_show_detail_genre_subtitle_text_view"
-                        android:layout_width="0dp"
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="12sp"
-                        tools:text="Genre"/>
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/fragment_tv_show_detail_original_language_subtitle_text_view"
-                        android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/fragment_tv_show_detail_first_air_rate_content_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            android:text="@string/first_air_date" />
+
+                        <TextView
+                            android:id="@+id/fragment_tv_show_detail_episode_run_time_content_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            android:text="@string/average_run_time" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="12sp"
-                        tools:text="Original language"/>
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fragment_tv_show_detail_genre_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@{viewModel.tvShowDetailData.originCountry}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="US" />
+
+                        <TextView
+                            android:id="@+id/fragment_tv_show_detail_original_language_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@{viewModel.tvShowDetailData.originalLanguage}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="English" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fragment_tv_show_detail_genre_subtitle_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            android:text="@string/origin_country" />
+
+                        <TextView
+                            android:id="@+id/fragment_tv_show_detail_original_language_subtitle_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            android:text="@string/original_language" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fragment_tv_show_detail_episodes_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@{viewModel.tvShowDetailData.episodesNumber}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="168" />
+
+                        <TextView
+                            android:id="@+id/fragment_tv_show_detail_seasons_language_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@{viewModel.tvShowDetailData.seasonsNumber}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="9" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fragment_tv_show_detail_episodes_subtitle_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            android:text="@string/episodes" />
+
+                        <TextView
+                            android:id="@+id/fragment_tv_show_detail_seasons_language_subtitle_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            android:text="@string/seasons" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/fragment_tv_show_detail_story_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/fragment_tv_show_detail_story_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                tools:text="Synopsis"/>
-
-            <TextView
-                android:id="@+id/fragment_tv_show_detail_story_content_text_view"
+            <LinearLayout
+                android:id="@+id/fragment_tv_show_detail_story_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:maxLength="300"
-                tools:text="aushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiah"/>
+                android:layout_marginHorizontal="@dimen/margin_16"
+                android:layout_marginVertical="@dimen/margin_16"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/fragment_tv_show_detail_story_title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:text="@string/synopsis" />
 
+                <TextView
+                    android:id="@+id/fragment_tv_show_detail_story_content_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:maxLength="300"
+                    android:text="@{viewModel.tvShowDetailData.overview}"
+                    tools:text="aushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiah" />
 
-        <LinearLayout
-            android:id="@+id/fragment_tv_show_detail_images_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/fragment_tv_show_detail_show_more_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:padding="@dimen/margin_8"
+                    android:text="@string/show_more"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/fragment_tv_show_detail_images_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Images"
-                android:textColor="@color/black"
-                android:textSize="16sp"/>
+            </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fragment_tv_show_detail_images_recycler_view"
+            <LinearLayout
+                android:id="@+id/fragment_tv_show_detail_seasons_linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"/>
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/fragment_tv_show_detail_seasons_title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:text="@string/seasons" />
 
-        <LinearLayout
-            android:id="@+id/fragment_tv_show_detail_actors_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp"
-            android:orientation="vertical">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fragment_tv_show_detail_seasons_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
 
-            <TextView
-                android:id="@+id/fragment_tv_show_detail_actors_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Actors"
-                android:textColor="@color/black"
-                android:textSize="16sp"/>
+            </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fragment_tv_show_detail_actors_recycler_view"
+            <LinearLayout
+                android:id="@+id/fragment_tv_show_detail_images_linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"/>
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fragment_tv_show_detail_images_title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/networks"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fragment_tv_show_detail_images_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_tv_show_detail_actors_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fragment_tv_show_detail_actors_title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:text="@string/production_companies" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fragment_tv_show_detail_actors_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
 </layout>
