@@ -86,9 +86,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:text="@{viewModel.movieDetailData.runtime}"
                             android:textColor="@color/black"
                             android:textSize="16sp"
-                            android:text="@{viewModel.movieDetailData.runtime}"
                             tools:text="120 mins" />
 
                     </LinearLayout>
@@ -127,17 +127,17 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:text="@{viewModel.movieDetailData.productionCountry}"
                             android:textColor="@color/black"
                             android:textSize="16sp"
-                            android:text="@{viewModel.movieDetailData.genres}"
-                            tools:text="Comedy" />
+                            tools:text="Spain" />
 
                         <TextView
                             android:id="@+id/fragment_movie_detail_original_language_text_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@{viewModel.movieDetailData.originalLanguage}"
+                            android:text="@{viewModel.movieDetailData.customOriginalLanguage}"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             tools:text="English" />
@@ -150,11 +150,11 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/fragment_movie_detail_genre_subtitle_text_view"
+                            android:id="@+id/fragment_movie_detail_production_country_subtitle_text_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/genre"
+                            android:text="@string/production_country"
                             android:textSize="12sp" />
 
                         <TextView
@@ -205,6 +205,32 @@
                     android:text="@string/show_more"
                     android:textColor="@color/gray"
                     android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_movie_detail_story_genres_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fragment_movie_detail_genres_title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/genre"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/fragment_movie_detail_genres_content_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.movieDetailData.genres}"
+                    tools:text="@string/genres" />
 
             </LinearLayout>
 
