@@ -44,7 +44,6 @@ class PicturesAdapter(
         fun bindItem(item: Picture) {
             binding.pictureItemImageView.fromUrl(
                 url = item.url,
-                roundedCorners = true,
                 placeholder = R.drawable.ic_movie,
                 scaleType = CenterCrop()
             )

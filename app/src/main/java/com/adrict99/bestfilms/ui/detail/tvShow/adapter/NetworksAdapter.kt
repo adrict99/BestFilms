@@ -9,7 +9,6 @@ import com.adrict99.bestfilms.databinding.NetworkItemBinding
 import com.adrict99.bestfilms.domain.model.media.tvShow.presentation.PresentationNetwork
 import com.adrict99.bestfilms.utils.extensions.fromUrl
 import com.bumptech.glide.load.resource.bitmap.CenterInside
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 
 class NetworksAdapter(
@@ -46,7 +45,6 @@ class NetworksAdapter(
                 networkItemTextView.text = item.name
                 networkItemImageView.fromUrl(
                     url = item.imageUrl,
-                    roundedCorners = false,
                     placeholder = R.drawable.ic_tv,
                     scaleType = CenterInside()
                 )

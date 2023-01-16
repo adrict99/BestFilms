@@ -44,7 +44,6 @@ class CompaniesAdapter(
                 companyItemTextView.text = item.name
                 companyItemImageView.fromUrl(
                     url = item.imageUrl,
-                    roundedCorners = false,
                     placeholder = R.drawable.ic_business,
                     scaleType = CenterInside()
                 )

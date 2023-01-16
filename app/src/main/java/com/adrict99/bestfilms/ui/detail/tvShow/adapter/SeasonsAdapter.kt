@@ -9,7 +9,6 @@ import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.SeasonItemBinding
 import com.adrict99.bestfilms.domain.model.media.tvShow.presentation.PresentationSeason
 import com.adrict99.bestfilms.utils.extensions.fromUrl
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 
 class SeasonsAdapter(
@@ -47,7 +46,6 @@ class SeasonsAdapter(
                 seasonItemTextView.text = item.name
                 seasonItemImageView.fromUrl(
                     url = item.imageUrl,
-                    roundedCorners = false,
                     placeholder = R.drawable.ic_movie_2,
                     scaleType = CenterInside()
                 )

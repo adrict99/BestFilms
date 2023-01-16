@@ -13,6 +13,7 @@ import com.adrict99.bestfilms.ui.home.mapper.addBaseImageUrl
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.Transformation
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
 
 fun Activity?.showCustomMessage(text: String, timeExpose: Int) {
@@ -22,19 +23,20 @@ fun Activity?.showCustomMessage(text: String, timeExpose: Int) {
 
 fun ImageView.fromUrl(
     url: String?,
-    roundedCorners: Boolean,
-    placeholder: Int?,
+    placeholder: Int,
     scaleType: Transformation<Bitmap>?,
 ) {
     if (url?.isNotEmpty() == true && url != "null") {
-        Glide.with(this).load(url.addBaseImageUrl()).let { requestBuilder ->
-            if (roundedCorners) requestBuilder.transform(RoundedCorners(30))
-            if (placeholder != null) requestBuilder.placeholder(placeholder)
-            if (scaleType != null) requestBuilder.transform(scaleType)
-            requestBuilder.into(this)
-        }
+        Glide.with(this)
+            .load(url.addBaseImageUrl())
+            .transform(RoundedCorners(30), scaleType)
+            .apply(RequestOptions().placeholder(placeholder))
+            .into(this)
     } else if (url?.isEmpty() == true || url == "null") {
-        Glide.with(this).load(placeholder).into(this)
+        Glide.with(this)
+            .load(placeholder)
+            .apply(RequestOptions().placeholder(placeholder))
+            .into(this)
     }
 }
 

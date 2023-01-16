@@ -9,6 +9,7 @@ import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.TvShowElementBinding
 import com.adrict99.bestfilms.domain.model.media.tvShow.TvShow
 import com.adrict99.bestfilms.utils.extensions.fromUrl
+import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 
 class TvShowsAdapter(
@@ -60,9 +61,8 @@ class TvShowsAdapter(
 
             binding.tvShowImageView.fromUrl(
                 url = item.posterPath,
-                roundedCorners = true,
                 placeholder = R.drawable.ic_movie,
-                scaleType = FitCenter()
+                scaleType = CenterInside()
             )
 
             itemView.setOnClickListener(this)

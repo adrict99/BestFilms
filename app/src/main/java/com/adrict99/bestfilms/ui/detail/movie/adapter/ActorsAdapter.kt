@@ -47,7 +47,6 @@ class ActorsAdapter(
                 actionItemTextView.text = item.name
                 actorItemImageView.fromUrl(
                     url = item.imageUrl,
-                    roundedCorners = false,
                     placeholder = R.drawable.ic_person,
                     scaleType = CircleCrop()
                 )
