@@ -10,7 +10,7 @@ import com.adrict99.bestfilms.data.preferences.SharedPrefs
 import com.adrict99.bestfilms.utils.DialogUtils
 import com.adrict99.bestfilms.utils.navigation.Navigator
 import com.adrict99.bestfilms.utils.ViewModelFactory
-import com.adrict99.bestfilms.utils.showCustomMessage
+import com.adrict99.bestfilms.utils.extensions.showCustomMessage
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject

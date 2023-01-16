@@ -7,6 +7,6 @@ fun List<String>.toUnicodeFlag(): String =
 
 fun List<Int>.calculateAverage(): Double = this.average()
 
-fun Double.asMinutes(): String = "${this.toInt()} min."
+fun Double.asMinutes(): String = if (this > 0) "${this.toInt()} min." else "-"
 
 fun List<Language>.toOriginalLanguage(): String = this.first().name

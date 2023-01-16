@@ -37,8 +37,9 @@
     <string name="seasons">Seasons</string>
     <string name="episodes">Episodes</string>
     <string name="origin_country">Origin country</string>
-    <string name="average_run_time">Average episode time</string>
+    <string name="average_run_time">Average run time</string>
     <string name="first_air_date">First air date</string>
     <string name="season_picture">Season picture</string>
     <string name="network">Network</string>
+    <string name="company">Company</string>
 </resources>

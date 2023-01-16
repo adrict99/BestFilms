@@ -242,7 +242,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:maxLength="300"
+                    android:maxLines="3"
                     android:text="@{viewModel.tvShowDetailData.overview}"
                     tools:text="aushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiahaushduahsduhausdhiahsdihaushdiahsdiaisudhiashdihasidhaishdahsiudhaushduiahsdhaishdiasdhaisdhiahsdiahsdiah" />
 
@@ -261,7 +261,7 @@
             <LinearLayout
                 android:id="@+id/fragment_tv_show_detail_seasons_linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
@@ -279,21 +279,24 @@
                     android:id="@+id/fragment_tv_show_detail_seasons_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/season_item" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/fragment_tv_show_detail_images_linear_layout"
+                android:id="@+id/fragment_tv_show_detail_networks_linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/fragment_tv_show_detail_images_title_text_view"
+                    android:id="@+id/fragment_tv_show_detail_networks_title_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/networks"
@@ -301,24 +304,27 @@
                     android:textSize="16sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/fragment_tv_show_detail_images_recycler_view"
+                    android:id="@+id/fragment_tv_show_detail_networks_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/network_item"/>
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/fragment_tv_show_detail_actors_linear_layout"
+                android:id="@+id/fragment_tv_show_detail_companies_linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/fragment_tv_show_detail_actors_title_text_view"
+                    android:id="@+id/fragment_tv_show_detail_companies_title_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -326,10 +332,13 @@
                     android:text="@string/production_companies" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/fragment_tv_show_detail_actors_recycler_view"
+                    android:id="@+id/fragment_tv_show_detail_companies_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/company_item"/>
 
             </LinearLayout>
 

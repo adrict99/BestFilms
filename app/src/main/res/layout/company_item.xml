@@ -8,20 +8,20 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/network_item_image_view"
+            android:id="@+id/company_item_image_view"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:contentDescription="@string/network"
+            android:contentDescription="@string/company"
             android:scaleType="centerInside"
-            tools:src="@drawable/ic_tv" />
+            tools:src="@drawable/ic_business" />
 
         <TextView
-            android:id="@+id/network_item_text_view"
+            android:id="@+id/company_item_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:minLines="2"
-            tools:text="Title" />
+            tools:text="Title"/>
 
     </LinearLayout>
 

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.adrict99.bestfilms.data.preferences.SharedPrefs
 import com.adrict99.bestfilms.utils.*
+import com.adrict99.bestfilms.utils.extensions.showCustomMessage
 import com.adrict99.bestfilms.utils.navigation.Navigator
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.AndroidInjection

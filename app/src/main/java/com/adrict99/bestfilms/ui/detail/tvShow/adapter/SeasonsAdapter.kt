@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.R
-import com.adrict99.bestfilms.databinding.ActorItemBinding
 import com.adrict99.bestfilms.databinding.SeasonItemBinding
-import com.adrict99.bestfilms.domain.model.media.movie.presentation.PresentationActor
 import com.adrict99.bestfilms.domain.model.media.tvShow.presentation.PresentationSeason
-import com.adrict99.bestfilms.ui.detail.movie.adapter.ActorsAdapter
-import com.adrict99.bestfilms.utils.fromUrl
+import com.adrict99.bestfilms.utils.extensions.fromUrl
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CenterInside
 
 class SeasonsAdapter(
     private val context: Context,
@@ -50,9 +48,8 @@ class SeasonsAdapter(
                 seasonItemImageView.fromUrl(
                     url = item.imageUrl,
                     roundedCorners = false,
-                    circleCrop = true,
-                    placeholder = R.drawable.ic_movie,
-                    scaleType = CenterCrop()
+                    placeholder = R.drawable.ic_movie_2,
+                    scaleType = CenterInside()
                 )
             }
         }

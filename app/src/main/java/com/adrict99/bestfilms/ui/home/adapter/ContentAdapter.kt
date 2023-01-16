@@ -5,14 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.adrict99.bestfilms.BuildConfig
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.AllContentElementBinding
 import com.adrict99.bestfilms.domain.model.media.TrendingContent
-import com.adrict99.bestfilms.utils.fromUrl
-import com.bumptech.glide.Glide
+import com.adrict99.bestfilms.utils.extensions.fromUrl
 import com.bumptech.glide.load.resource.bitmap.FitCenter
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 class ContentAdapter(
     private val context: Context,
@@ -64,7 +61,6 @@ class ContentAdapter(
             binding.allContentImageView.fromUrl(
                 url = item.posterPath,
                 roundedCorners = true,
-                circleCrop = false,
                 placeholder = R.drawable.ic_movie,
                 scaleType = FitCenter()
             )

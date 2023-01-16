@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.ActorItemBinding
 import com.adrict99.bestfilms.domain.model.media.movie.presentation.PresentationActor
-import com.adrict99.bestfilms.utils.fromUrl
+import com.adrict99.bestfilms.utils.extensions.fromUrl
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 
 class ActorsAdapter(
     private val context: Context,
@@ -47,9 +48,8 @@ class ActorsAdapter(
                 actorItemImageView.fromUrl(
                     url = item.imageUrl,
                     roundedCorners = false,
-                    circleCrop = true,
-                    placeholder = R.drawable.ic_movie,
-                    scaleType = CenterCrop()
+                    placeholder = R.drawable.ic_person,
+                    scaleType = CircleCrop()
                 )
             }
         }

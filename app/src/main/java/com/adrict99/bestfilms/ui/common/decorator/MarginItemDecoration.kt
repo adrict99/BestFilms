@@ -17,10 +17,10 @@ class MarginItemDecoration(
     ) {
         with(outRect) {
             if (verticalMode) {
-                if (parent.getChildAdapterPosition(view) == 0) top = space / 2
+                if (parent.getChildAdapterPosition(view) == 0) top = space
                 left = space
             } else {
-                if (parent.getChildAdapterPosition(view) == 0) left = space / 2
+                if (parent.getChildAdapterPosition(view) == 0) left = space
                 top = space
             }
             right = space

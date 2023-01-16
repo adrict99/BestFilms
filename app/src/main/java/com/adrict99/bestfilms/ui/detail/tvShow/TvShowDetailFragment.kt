@@ -3,17 +3,17 @@ package com.adrict99.bestfilms.ui.detail.tvShow
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.FragmentTvShowDetailBinding
 import com.adrict99.bestfilms.domain.model.media.tvShow.presentation.PresentationSeason
 import com.adrict99.bestfilms.ui.common.BaseFragment
-import com.adrict99.bestfilms.ui.detail.movie.adapter.ActorsAdapter
-import com.adrict99.bestfilms.ui.detail.movie.adapter.PicturesAdapter
 import com.adrict99.bestfilms.ui.detail.tvShow.adapter.CompaniesAdapter
 import com.adrict99.bestfilms.ui.detail.tvShow.adapter.NetworksAdapter
 import com.adrict99.bestfilms.ui.detail.tvShow.adapter.SeasonsAdapter
 import com.adrict99.bestfilms.utils.ViewModelFactory
-import com.adrict99.bestfilms.utils.changeExpandableMode
+import com.adrict99.bestfilms.utils.extensions.changeExpandableMode
+import com.adrict99.bestfilms.utils.extensions.setupAdapter
 import javax.inject.Inject
 
 class TvShowDetailFragment :
@@ -27,8 +27,8 @@ class TvShowDetailFragment :
     private val tvShowDetailViewModel: TvShowDetailViewModel by lazy { viewModelFactory.get() }
 
     private val seasonsAdapter: SeasonsAdapter by lazy { SeasonsAdapter(requireContext(), this) }
-    //private val networksAdapter: NetworksAdapter by lazy { NetworksAdapter(requireContext(), this) }
-    //private val companiesAdapter: CompaniesAdapter by lazy { CompaniesAdapter(requireContext(), this) }
+    private val networksAdapter: NetworksAdapter by lazy { NetworksAdapter(requireContext()) }
+    private val companiesAdapter: CompaniesAdapter by lazy { CompaniesAdapter(requireContext()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,19 +55,49 @@ class TvShowDetailFragment :
     }
 
     private fun setupViewModelObservers() {
-        //Observes error or loading status
-        tvShowDetailViewModel.errorMessage.observe(viewLifecycleOwner) { handleError(it) }
-        tvShowDetailViewModel.loading.observe(viewLifecycleOwner) { manageLoadingDialog(it) }
+        tvShowDetailViewModel.apply {
+            //Observes error or loading status
+            errorMessage.observe(viewLifecycleOwner) { handleError(it) }
+            loading.observe(viewLifecycleOwner) { manageLoadingDialog(it) }
+
+            //Observes seasons, networks and production companies
+            tvShowDetailData.observe(viewLifecycleOwner) {
+                if (it.overview?.isEmpty() == true)
+                    binding.fragmentTvShowDetailStoryLinearLayout.visibility = View.GONE
+            }
+            tvShowSeasons.observe(viewLifecycleOwner) {
+                seasonsAdapter.addAllSeasons(it)
+                if (it.isEmpty()) binding.fragmentTvShowDetailSeasonsLinearLayout.visibility = View.GONE
+            }
+            tvShowNetworks.observe(viewLifecycleOwner) {
+                networksAdapter.addAllNetworks(it)
+                if (it.isEmpty()) binding.fragmentTvShowDetailNetworksLinearLayout.visibility = View.GONE
+            }
+            tvShowProductionCompanies.observe(viewLifecycleOwner) {
+                companiesAdapter.addAllCompanies(it)
+                if (it.isEmpty()) binding.fragmentTvShowDetailCompaniesLinearLayout.visibility = View.GONE
+            }
+        }
     }
 
-    private fun getData() {
-        getTvShowDetailData()
-    }
+    private fun getData() = getTvShowDetailData()
 
     private fun getTvShowDetailData() = tvShowDetailViewModel.getTvShowDetail(args.tvShowId)
 
     private fun setupRecyclerViews() {
-        //Setting up images and actors recyclerViews
+        //Setting up seasons, networks and companies
+        binding.fragmentTvShowDetailSeasonsRecyclerView.apply {
+            setupAdapter(LinearLayoutManager.HORIZONTAL, false, 24)
+            adapter = seasonsAdapter
+        }
+        binding.fragmentTvShowDetailNetworksRecyclerView.apply {
+            setupAdapter(LinearLayoutManager.HORIZONTAL, false, 24)
+            adapter = networksAdapter
+        }
+        binding.fragmentTvShowDetailCompaniesRecyclerView.apply {
+            setupAdapter(LinearLayoutManager.HORIZONTAL, false, 24)
+            adapter = companiesAdapter
+        }
     }
 
     private fun setupOnClickListeners() {

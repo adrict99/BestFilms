@@ -13,7 +13,7 @@ import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter.OnMovieClickListener
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter.OnTvShowClickListener
 import com.adrict99.bestfilms.utils.ViewModelFactory
-import com.adrict99.bestfilms.utils.setupAdapter
+import com.adrict99.bestfilms.utils.extensions.setupAdapter
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),

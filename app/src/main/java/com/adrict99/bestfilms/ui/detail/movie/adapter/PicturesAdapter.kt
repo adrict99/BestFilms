@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.PictureItemBinding
 import com.adrict99.bestfilms.domain.model.Picture
-import com.adrict99.bestfilms.utils.fromUrl
+import com.adrict99.bestfilms.utils.extensions.fromUrl
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 
 class PicturesAdapter(
@@ -45,7 +45,6 @@ class PicturesAdapter(
             binding.pictureItemImageView.fromUrl(
                 url = item.url,
                 roundedCorners = true,
-                circleCrop = false,
                 placeholder = R.drawable.ic_movie,
                 scaleType = CenterCrop()
             )

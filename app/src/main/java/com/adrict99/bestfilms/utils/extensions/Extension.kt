@@ -1,4 +1,4 @@
-package com.adrict99.bestfilms.utils
+package com.adrict99.bestfilms.utils.extensions
 
 import android.app.Activity
 import android.graphics.Bitmap
@@ -14,8 +14,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.Transformation
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.android.material.snackbar.Snackbar
-import java.math.BigDecimal
-import java.math.RoundingMode
 
 fun Activity?.showCustomMessage(text: String, timeExpose: Int) {
     val view: View = this!!.findViewById(android.R.id.content)
@@ -25,18 +23,18 @@ fun Activity?.showCustomMessage(text: String, timeExpose: Int) {
 fun ImageView.fromUrl(
     url: String?,
     roundedCorners: Boolean,
-    circleCrop: Boolean,
-    placeholder: Int? = null,
-    scaleType: Transformation<Bitmap>? = null,
+    placeholder: Int?,
+    scaleType: Transformation<Bitmap>?,
 ) {
-    if (url?.isNotEmpty() == true) {
+    if (url?.isNotEmpty() == true && url != "null") {
         Glide.with(this).load(url.addBaseImageUrl()).let { requestBuilder ->
             if (roundedCorners) requestBuilder.transform(RoundedCorners(30))
-            if (circleCrop) requestBuilder.circleCrop()
             if (placeholder != null) requestBuilder.placeholder(placeholder)
             if (scaleType != null) requestBuilder.transform(scaleType)
             requestBuilder.into(this)
         }
+    } else if (url?.isEmpty() == true || url == "null") {
+        Glide.with(this).load(placeholder).into(this)
     }
 }
 

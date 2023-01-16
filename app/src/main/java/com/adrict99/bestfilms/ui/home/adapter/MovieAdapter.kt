@@ -9,7 +9,7 @@ import com.adrict99.bestfilms.R
 
 import com.adrict99.bestfilms.databinding.MovieElementBinding
 import com.adrict99.bestfilms.domain.model.media.movie.Movie
-import com.adrict99.bestfilms.utils.fromUrl
+import com.adrict99.bestfilms.utils.extensions.fromUrl
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 
 class MovieAdapter(
@@ -62,7 +62,6 @@ class MovieAdapter(
             binding.mediaImageView.fromUrl(
                 url = item.posterPath,
                 roundedCorners = true,
-                circleCrop = false,
                 placeholder = R.drawable.ic_movie,
                 scaleType = FitCenter()
             )

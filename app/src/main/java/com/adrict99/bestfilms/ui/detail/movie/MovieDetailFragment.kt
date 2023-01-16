@@ -12,8 +12,8 @@ import com.adrict99.bestfilms.ui.common.BaseFragment
 import com.adrict99.bestfilms.ui.detail.movie.adapter.ActorsAdapter
 import com.adrict99.bestfilms.ui.detail.movie.adapter.PicturesAdapter
 import com.adrict99.bestfilms.utils.ViewModelFactory
-import com.adrict99.bestfilms.utils.changeExpandableMode
-import com.adrict99.bestfilms.utils.setupAdapter
+import com.adrict99.bestfilms.utils.extensions.changeExpandableMode
+import com.adrict99.bestfilms.utils.extensions.setupAdapter
 import javax.inject.Inject
 
 class MovieDetailFragment :
@@ -60,19 +60,19 @@ class MovieDetailFragment :
             loading.observe(viewLifecycleOwner) { manageLoadingDialog(it) }
 
             //Observes movie pictures and actors
+            movieDetailData.observe(viewLifecycleOwner) {
+                if (it.overview?.isEmpty() == true)
+                    binding.fragmentMovieDetailStoryLinearLayout.visibility = View.GONE
+            }
             movieActors.observe(viewLifecycleOwner) {
-                if (it.isNotEmpty()) {
-                    actorsAdapter.addAllActors(it)
-                } else {
+                actorsAdapter.addAllActors(it)
+                if (it.isEmpty())
                     binding.fragmentMovieDetailActorsLinearLayout.visibility = View.GONE
-                }
             }
             moviePictures.observe(viewLifecycleOwner) {
-                if (it.isNotEmpty()) {
-                    picturesAdapter.addAllPictures(it)
-                } else {
+                picturesAdapter.addAllPictures(it)
+                if (it.isEmpty())
                     binding.fragmentMovieDetailImagesLinearLayout.visibility = View.GONE
-                }
             }
         }
     }
