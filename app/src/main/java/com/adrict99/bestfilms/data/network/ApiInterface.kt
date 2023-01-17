@@ -7,9 +7,11 @@ import com.adrict99.bestfilms.data.network.response.detail.TvShowDetailResponse
 import com.adrict99.bestfilms.data.network.response.media.AllContentResponse
 import com.adrict99.bestfilms.data.network.response.media.MoviesResponse
 import com.adrict99.bestfilms.data.network.response.media.TvShowsResponse
+import com.adrict99.bestfilms.data.network.response.search.MultiSearchResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface ApiInterface {
@@ -31,6 +33,12 @@ interface ApiInterface {
     @GET("/3/tv/{tv_id}")
     suspend fun getTvDetail(@Path("tv_id") id: Int): Response<TvShowDetailResponse>
 
-    @GET("/3/trending/all/day")
+    @GET("/3/trending/movie/day")
     suspend fun getPopularAll(): Response<AllContentResponse>
+
+    @GET("/3/search/multi")
+    suspend fun getSearchResults(
+        @Query("query") query: String,
+        @Query("page") page: Int
+    ): Response<MultiSearchResponse>
 }

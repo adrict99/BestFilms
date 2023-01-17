@@ -3,9 +3,11 @@ package com.adrict99.bestfilms.di.module
 import com.adrict99.bestfilms.data.network.ApiInterface
 import com.adrict99.bestfilms.data.repository.MoviesRepositoryImpl
 import com.adrict99.bestfilms.data.repository.PopularAllContentRepositoryImpl
+import com.adrict99.bestfilms.data.repository.SearchRepositoryImpl
 import com.adrict99.bestfilms.data.repository.TvShowsRepositoryImpl
 import com.adrict99.bestfilms.domain.repository.MoviesRepository
 import com.adrict99.bestfilms.domain.repository.PopularAllContentRepository
+import com.adrict99.bestfilms.domain.repository.SearchRepository
 import com.adrict99.bestfilms.domain.repository.TvShowsRepository
 import com.adrict99.bestfilms.utils.NetworkUtils
 import dagger.Module
@@ -27,6 +29,11 @@ class RepositoryModule {
     @Provides
     fun providesAllContentRepository(apiInterface: ApiInterface, networkUtils: NetworkUtils): PopularAllContentRepository {
         return PopularAllContentRepositoryImpl(apiInterface, networkUtils)
+    }
+
+    @Provides
+    fun providesSearchRepository(apiInterface: ApiInterface, networkUtils: NetworkUtils): SearchRepository {
+        return SearchRepositoryImpl(apiInterface, networkUtils)
     }
 
 }

@@ -71,9 +71,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
             loading.observe(viewLifecycleOwner) { manageLoadingDialog(it) }
 
             //Observes popular all content, movies and tv shows response
-            allContentResponse.observe(viewLifecycleOwner) { allContentAdapter.addAllContent(it.results!!) }
-            moviesResponse.observe(viewLifecycleOwner) { movieAdapter.addAllMovies(it.results!!) }
-            tvShowsResponse.observe(viewLifecycleOwner) { tvShowsAdapter.addAllTvShows(it.results!!) }
+            allContentResponse.observe(viewLifecycleOwner) {
+                allContentAdapter.addAllContent(it.results!!)
+            }
+            moviesResponse.observe(viewLifecycleOwner) {
+                movieAdapter.addAllMovies(it.results!!)
+            }
+            tvShowsResponse.observe(viewLifecycleOwner) {
+                tvShowsAdapter.addAllTvShows(it.results!!)
+            }
         }
     }
 
