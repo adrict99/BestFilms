@@ -19,9 +19,9 @@ class SearchViewModel @Inject constructor(
     //Stores search results to observe them
     val searchResults: MutableLiveData<List<PresentationSearchResult>> by lazy { MutableLiveData<List<PresentationSearchResult>>() }
 
-    fun getSearchResults(query: String, page: Int? = 1) {
+    fun getSearchResults(query: String, page: Int?) {
         viewModelScope.launch {
-            getSearchResultsUseCase.execute(query, 1)
+            getSearchResultsUseCase.execute(query, page ?: 1)
                 .catch {
                     Log.d("resultsTest 3", "error")
                     errorMessage.value = mapOf(0 to (it.message ?: ""))

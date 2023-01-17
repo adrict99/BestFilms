@@ -50,7 +50,8 @@ ResultAdapter.OnResultClickListener{
 
     private fun setupLocalObservers() {
         binding.fragmentSearchAutoCompleteTextView.doOnTextChanged { text, _, _, _ ->
-            searchViewModel.getSearchResults(text.toString())
+            //TODO: Include infinite scroll with pagination
+            searchViewModel.getSearchResults(text.toString(), 1)
         }
     }
 
