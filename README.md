@@ -15,7 +15,7 @@ Movie app where you can find the latest trends in TV Series and movies.
 **Architecture**: Semi-single activity pattern with MVVM + Clean Architecture.
 
 ## TODO
-- (Image placeholder left, and it's done) Implement TV show detail screen.
+- (Image placeholder left) Implement TV show detail screen.
 - Implement search screen.
 - Implement favorites screen.
 - Implement splash screen.
