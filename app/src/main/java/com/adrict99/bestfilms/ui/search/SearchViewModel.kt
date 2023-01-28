@@ -26,9 +26,11 @@ class SearchViewModel @Inject constructor(
                     Log.d("resultsTest 3", "error")
                     errorMessage.value = mapOf(0 to (it.message ?: ""))
                 }
-                .collect {
-                    Log.d("resultsTest 2", "${it.results}")
-                    searchResults.value = it.toPresentationModel()
+                .collect { response ->
+                    response.results?.map {
+                        Log.d("resultsTest 2", "${it?.title}")
+                    }
+                    searchResults.value = response.toPresentationModel()
                 }
         }
     }

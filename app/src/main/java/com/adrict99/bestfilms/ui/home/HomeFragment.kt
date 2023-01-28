@@ -32,7 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         binding = FragmentHomeBinding.bind(view)
         setupRecyclerViews()
         setupViewModelObservers()
-        getData()
+        getHomeData()
     }
 
     override fun onDestroyView() {
@@ -56,12 +56,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         }
     }
 
-    private fun getData() {
+    private fun getHomeData() {
         //API request for movies, series and tv shows
-        //TODO: Refactor with Retrofit async API requests instead
-        homeViewModel.getPopularAllContent()
-        homeViewModel.getPopularMovies()
-        homeViewModel.getPopularSeries()
+        homeViewModel.getHomeData()
     }
 
     private fun setupViewModelObservers() {

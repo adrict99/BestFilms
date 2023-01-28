@@ -57,16 +57,16 @@ ResultAdapter.OnResultClickListener{
 
     private fun setupViewModelObservers() {
         searchViewModel.searchResults.observe(viewLifecycleOwner) { results ->
-            resultsAdapter.addAllResults(results)
             results.map {
                 Log.d("resultsTest 1", "${it.title}")
             }
+            resultsAdapter.addAllResults(results)
         }
     }
 
     private fun setupRecyclerView() {
         binding.fragmentSearchResultsRecyclerView.apply {
-            setupAdapter(LinearLayoutManager.VERTICAL, false, 16)
+            setupAdapter(LinearLayoutManager.VERTICAL, true, 16)
             adapter = resultsAdapter
         }
     }

@@ -9,57 +9,40 @@ import com.adrict99.bestfilms.domain.useCase.GetPopularAllContentUseCase
 import com.adrict99.bestfilms.domain.useCase.GetPopularMoviesUseCase
 import com.adrict99.bestfilms.domain.useCase.GetPopularTvShowsUseCase
 import com.adrict99.bestfilms.ui.common.BaseViewModel
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
     private val getPopularTvShowsUseCase: GetPopularTvShowsUseCase,
     private val getPopularAllContentUseCase: GetPopularAllContentUseCase
-): BaseViewModel() {
+) : BaseViewModel() {
 
-    //Observing data that came from the API requests
+    //Storing responses from the API requests
     val moviesResponse: MutableLiveData<MoviesResponse> by lazy { MutableLiveData<MoviesResponse>() }
     val tvShowsResponse: MutableLiveData<TvShowsResponse> by lazy { MutableLiveData<TvShowsResponse>() }
     val allContentResponse: MutableLiveData<AllContentResponse> by lazy { MutableLiveData<AllContentResponse>() }
 
-    fun getPopularMovies() {
+    /*async creates a new coroutine, await suspends current coroutine and waits for the result,
+        first return the network request responses emitted by the flow*/
+    fun getHomeData() {
         loading.value = SHOW
         viewModelScope.launch {
-            getPopularMoviesUseCase.execute()
-                .catch {
-                    errorMessage.value = mapOf(0 to (it.message ?: ""))
-                }
-                .collect { list ->
-                    moviesResponse.value = list
-                }
+            val job1 = async { getPopularMoviesUseCase.execute().first() }
+            val job2 = async { getPopularTvShowsUseCase.execute().first() }
+            val job3 = async { getPopularAllContentUseCase.execute().first() }
+            try {
+                moviesResponse.value = job1.await()
+                tvShowsResponse.value = job2.await()
+                allContentResponse.value = job3.await()
+            } catch (e: Exception) {
+                errorMessage.value = mapOf(0 to (e.message ?: ""))
+            }
             loading.value = DISMISS
         }
     }
 
-    fun getPopularSeries() {
-        viewModelScope.launch {
-            getPopularTvShowsUseCase.execute()
-                .catch {
-                    errorMessage.value = mapOf(0 to (it.message ?: ""))
-                }
-                .collect { list ->
-                    tvShowsResponse.value = list
-                }
-        }
-    }
-
-    fun getPopularAllContent() {
-        viewModelScope.launch {
-            getPopularAllContentUseCase.execute()
-                .catch {
-                    errorMessage.value = mapOf(0 to (it.message ?: ""))
-                }
-                .collect { list ->
-                    allContentResponse.value = list
-                }
-        }
-    }
 
 }

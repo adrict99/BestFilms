@@ -7,10 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.ItemResultBinding
-import com.adrict99.bestfilms.databinding.MovieElementBinding
-import com.adrict99.bestfilms.domain.model.media.movie.Movie
 import com.adrict99.bestfilms.domain.model.search.PresentationSearchResult
-import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter
 import com.adrict99.bestfilms.utils.extensions.fromUrl
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 
