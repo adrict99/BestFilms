@@ -13,10 +13,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-
 interface ApiInterface {
     @GET("/3/movie/popular")
-    suspend fun getPopularMovies(): Response<MoviesResponse>
+    suspend fun getPopularMovies(/*@Query("page") page: Int*/): Response<MoviesResponse>
 
     @GET("/3/movie/{id}")
     suspend fun getMovieDetail(@Path("id") id: Int): Response<MovieDetailResponse>
@@ -28,13 +27,13 @@ interface ApiInterface {
     suspend fun getMovieCredits(@Path("movie_id") id: Int): Response<MovieCreditsResponse>
 
     @GET("/3/tv/popular")
-    suspend fun getPopularTvShows(): Response<TvShowsResponse>
+    suspend fun getPopularTvShows(/*@Query("page") page: Int*/): Response<TvShowsResponse>
 
     @GET("/3/tv/{tv_id}")
     suspend fun getTvDetail(@Path("tv_id") id: Int): Response<TvShowDetailResponse>
 
     @GET("/3/trending/movie/day")
-    suspend fun getPopularAll(): Response<AllContentResponse>
+    suspend fun getPopularAll(/*@Query("page") page: Int*/): Response<AllContentResponse>
 
     @GET("/3/search/multi")
     suspend fun getSearchResults(

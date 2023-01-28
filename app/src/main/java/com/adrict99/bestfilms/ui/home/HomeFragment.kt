@@ -30,7 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
-        setupRecyclerViews()
+        setupView()
         setupViewModelObservers()
         getHomeData()
     }
@@ -40,19 +40,34 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         //TODO: Make binding = null
     }
 
+    private fun setupView() {
+        setupRecyclerViews()
+        setupSwipeRefreshLayout()
+    }
+
     private fun setupRecyclerViews() {
         //Setting up all content, movies and series recyclerViews
-        binding.allContentRecyclerView.apply {
-            setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
-            adapter = allContentAdapter
+        binding.apply {
+            allContentRecyclerView.apply {
+                setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
+                adapter = allContentAdapter
+            }
+            moviesRecyclerView.apply {
+                setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
+                adapter = movieAdapter
+            }
+            tvShowsRecyclerView.apply {
+                setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
+                adapter = tvShowsAdapter
+            }
         }
-        binding.moviesRecyclerView.apply {
-            setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
-            adapter = movieAdapter
-        }
-        binding.tvShowsRecyclerView.apply {
-            setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
-            adapter = tvShowsAdapter
+    }
+
+    private fun setupSwipeRefreshLayout() {
+        binding.fragmentHomeSwipeRefreshLayout.apply {
+            setOnRefreshListener {
+                getHomeData()
+            }
         }
     }
 
@@ -68,24 +83,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
             loading.observe(viewLifecycleOwner) { manageLoadingDialog(it) }
 
             //Observes popular all content, movies and tv shows response
-            allContentResponse.observe(viewLifecycleOwner) {
-                allContentAdapter.addAllContent(it.results!!)
-            }
-            moviesResponse.observe(viewLifecycleOwner) {
-                movieAdapter.addAllMovies(it.results!!)
-            }
-            tvShowsResponse.observe(viewLifecycleOwner) {
-                tvShowsAdapter.addAllTvShows(it.results!!)
+            contentResponse.observe(viewLifecycleOwner) {
+                allContentAdapter.addAllContent(it.allContentResponse.results!!)
+                movieAdapter.addAllMovies(it.moviesResponse.results!!)
+                tvShowsAdapter.addAllTvShows(it.tvShowsResponse.results!!)
+                if (isSwipeRefreshLoading()) binding.fragmentHomeSwipeRefreshLayout.isRefreshing =
+                    false
             }
         }
     }
 
+    private fun isSwipeRefreshLoading(): Boolean =
+        binding.fragmentHomeSwipeRefreshLayout.isRefreshing
+
     override fun onMovieClicked(selectedMovie: Int?) {
-        selectedMovie?.let { navigator.goToMovieDetail(it,this) }
+        selectedMovie?.let { navigator.goToMovieDetail(it, this) }
     }
+
     override fun onContentClicked(selectedContent: Int?) {
-        selectedContent?.let { navigator.goToMovieDetail(it,this) }
+        selectedContent?.let { navigator.goToMovieDetail(it, this) }
     }
+
     override fun onTvShowClicked(selectedTvShow: Int?) {
         selectedTvShow?.let { navigator.goToTvShowDetail(it, this) }
     }

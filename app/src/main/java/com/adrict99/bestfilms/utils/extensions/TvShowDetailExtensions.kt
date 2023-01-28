@@ -9,4 +9,4 @@ fun List<Int>.calculateAverage(): Double = this.average()
 
 fun Double.asMinutes(): String = if (this > 0) "${this.toInt()} min." else "-"
 
-fun List<Language>.toOriginalLanguage(): String = this.first().name
+fun List<Language>.toOriginalLanguage(): String = if (this.isEmpty()) "Unknown" else this.first().name

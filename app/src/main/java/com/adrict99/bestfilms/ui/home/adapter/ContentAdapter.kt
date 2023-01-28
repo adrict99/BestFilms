@@ -10,7 +10,6 @@ import com.adrict99.bestfilms.databinding.AllContentElementBinding
 import com.adrict99.bestfilms.domain.model.media.TrendingContent
 import com.adrict99.bestfilms.utils.extensions.fromUrl
 import com.bumptech.glide.load.resource.bitmap.CenterInside
-import com.bumptech.glide.load.resource.bitmap.FitCenter
 
 class ContentAdapter(
     private val context: Context,
