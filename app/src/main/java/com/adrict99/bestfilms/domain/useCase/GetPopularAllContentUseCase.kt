@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetPopularAllContentUseCase @Inject constructor(
     private val repository: PopularAllContentRepository
 ) {
-    fun execute(): Flow<AllContentResponse> = repository.getPopularAllContent()
+    fun execute(page: Int? = 1): Flow<AllContentResponse> = repository.getPopularAllContent(page!!)
 }

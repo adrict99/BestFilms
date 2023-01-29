@@ -5,6 +5,6 @@ import com.adrict99.bestfilms.data.network.response.media.TvShowsResponse
 import kotlinx.coroutines.flow.Flow
 
 interface TvShowsRepository {
-    fun getPopularTvShows(): Flow<TvShowsResponse>
+    fun getPopularTvShows(page: Int): Flow<TvShowsResponse>
     fun getTvShowsDetail(id: Int): Flow<TvShowDetailResponse>
 }

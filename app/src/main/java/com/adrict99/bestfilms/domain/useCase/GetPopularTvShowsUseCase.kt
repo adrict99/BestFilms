@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetPopularTvShowsUseCase @Inject constructor(
     private val repository: TvShowsRepository
 ) {
-    fun execute(): Flow<TvShowsResponse> = repository.getPopularTvShows()
+    fun execute(page: Int? = 1): Flow<TvShowsResponse> = repository.getPopularTvShows(page!!)
 }

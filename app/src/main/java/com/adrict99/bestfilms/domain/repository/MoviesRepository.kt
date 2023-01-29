@@ -7,7 +7,7 @@ import com.adrict99.bestfilms.data.network.response.media.MoviesResponse
 import kotlinx.coroutines.flow.Flow
 
 interface MoviesRepository {
-    fun getPopularMovies(): Flow<MoviesResponse>
+    fun getPopularMovies(page: Int): Flow<MoviesResponse>
     fun getMovieDetail(id: Int): Flow<MovieDetailResponse>
     fun getMoviePictures(id: Int): Flow<MoviePicturesResponse>
     fun getMovieCredits(id: Int): Flow<MovieCreditsResponse>

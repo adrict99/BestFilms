@@ -63,3 +63,23 @@ fun RecyclerView.setupAdapter(
         addItemDecoration(MarginItemDecoration(firstItemMargin, verticalMode))
     }
 }
+
+fun RecyclerView.setScrollListener(
+    verticalMode: Boolean,
+    onEndReached: () -> Unit
+) {
+    addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            if (verticalMode) {
+                if (this@setScrollListener.canScrollVertically(1)) {
+                    onEndReached()
+                }
+            } else {
+                if (this@setScrollListener.canScrollHorizontally(1)) {
+                    onEndReached()
+                }
+            }
+        }
+    })
+}

@@ -16,8 +16,8 @@ class MoviesRepositoryImpl @Inject constructor(
     override val networkUtils: NetworkUtils
 ): MoviesRepository, Repository(networkUtils) {
 
-    override fun getPopularMovies(): Flow<MoviesResponse> = flow {
-        callApi { apiInterface.getPopularMovies() }
+    override fun getPopularMovies(page: Int): Flow<MoviesResponse> = flow {
+        callApi { apiInterface.getPopularMovies(page) }
             .collect { emit(it) }
     }
 

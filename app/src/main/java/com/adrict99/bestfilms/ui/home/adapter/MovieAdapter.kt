@@ -42,6 +42,13 @@ class MovieAdapter(
         notifyDataSetChanged()
     }
 
+    fun loadMoreMovies(movieList: List<Movie>, oldCount: Int, moviesListSize: Int) {
+        popularMovies.clear()
+        popularMovies.addAll(movieList)
+        notifyDataSetChanged()
+        notifyItemRangeInserted(oldCount, moviesListSize)
+    }
+
     inner class MovieViewHolder(
         private val binding: MovieElementBinding
     ) : RecyclerView.ViewHolder(binding.root),

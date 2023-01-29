@@ -3,6 +3,7 @@ package com.adrict99.bestfilms.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.adrict99.bestfilms.R
 import com.adrict99.bestfilms.databinding.FragmentHomeBinding
 import com.adrict99.bestfilms.ui.common.BaseFragment
@@ -13,6 +14,7 @@ import com.adrict99.bestfilms.ui.home.adapter.MovieAdapter.OnMovieClickListener
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter
 import com.adrict99.bestfilms.ui.home.adapter.TvShowsAdapter.OnTvShowClickListener
 import com.adrict99.bestfilms.utils.ViewModelFactory
+import com.adrict99.bestfilms.utils.extensions.setScrollListener
 import com.adrict99.bestfilms.utils.extensions.setupAdapter
 import javax.inject.Inject
 
@@ -23,9 +25,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
     lateinit var viewModelFactory: ViewModelFactory<HomeViewModel>
     private val homeViewModel: HomeViewModel by lazy { viewModelFactory.get() }
 
-    private val allContentAdapter: ContentAdapter by lazy { ContentAdapter(requireContext(), this) }
     private val movieAdapter: MovieAdapter by lazy { MovieAdapter(requireContext(), this) }
     private val tvShowsAdapter: TvShowsAdapter by lazy { TvShowsAdapter(requireContext(), this) }
+    private val allContentAdapter: ContentAdapter by lazy { ContentAdapter(requireContext(), this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,17 +50,41 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
     private fun setupRecyclerViews() {
         //Setting up all content, movies and series recyclerViews
         binding.apply {
-            allContentRecyclerView.apply {
-                setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
-                adapter = allContentAdapter
-            }
             moviesRecyclerView.apply {
                 setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
                 adapter = movieAdapter
+                /*setScrollListener(false) {
+                    homeViewModel.apply {
+                        if (this.currentMoviesPage < this.lastMoviesPage) {
+                            this.currentMoviesPage ++
+                            getMoviesData()
+                        }
+                    }
+                }*/
             }
             tvShowsRecyclerView.apply {
                 setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
                 adapter = tvShowsAdapter
+                /*setScrollListener(false) {
+                    homeViewModel.apply {
+                        if (this.currentTvShowsPage < this.lastTvShowsPage) {
+                            this.currentTvShowsPage ++
+                            getTvShowsData()
+                        }
+                    }
+                }*/
+            }
+            allContentRecyclerView.apply {
+                setupAdapter(LinearLayoutManager.HORIZONTAL, false, 16)
+                adapter = allContentAdapter
+                /*setScrollListener(false) {
+                    homeViewModel.apply {
+                        if (this.currentPopularContentPage < this.lastPopularContentPage) {
+                            this.currentPopularContentPage ++
+                            getPopularContentData()
+                        }
+                    }
+                }*/
             }
         }
     }

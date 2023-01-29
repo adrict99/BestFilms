@@ -13,11 +13,9 @@ class PopularAllContentRepositoryImpl @Inject constructor(
     override val networkUtils: NetworkUtils
 ): PopularAllContentRepository, Repository(networkUtils) {
 
-    override fun getPopularAllContent(): Flow<AllContentResponse> = flow {
-        callApi { apiInterface.getPopularAll() }
-            .collect { popularAll ->
-                emit(popularAll)
-            }
+    override fun getPopularAllContent(page: Int): Flow<AllContentResponse> = flow {
+        callApi { apiInterface.getPopularAll(page) }
+            .collect { emit(it) }
     }
 
 }

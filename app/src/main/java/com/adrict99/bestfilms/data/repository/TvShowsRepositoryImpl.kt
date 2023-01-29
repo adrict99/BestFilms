@@ -14,8 +14,8 @@ class TvShowsRepositoryImpl @Inject constructor(
     override val networkUtils: NetworkUtils
 ): TvShowsRepository, Repository(networkUtils) {
 
-    override fun getPopularTvShows(): Flow<TvShowsResponse> = flow {
-        callApi { apiInterface.getPopularTvShows() }
+    override fun getPopularTvShows(page: Int): Flow<TvShowsResponse> = flow {
+        callApi { apiInterface.getPopularTvShows(page) }
             .collect { popularTvShows ->
                 emit(popularTvShows)
             }
