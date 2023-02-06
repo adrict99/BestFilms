@@ -8,14 +8,14 @@ Movie app where you can find the latest trends in TV Series and movies.
 
 **DI**: Dagger2 (Soon -> Dagger-Hilt).
 
-**Networking**: Retrofit2 + OkHttp network interceptor.
+**Networking**: Retrofit2 + OkHttp3 network interceptor.
 
-**Image loading**: Glide + XML BindingAdapter into databinding.
+**Image loading**: Glide + XML BindingAdapter.
 
 **Architecture**: Semi-single activity pattern with MVVM + Clean Architecture.
 
 ## TODO
-- Implement splash screen.
+- Implement splash screen (On going).
 - Implement search screen.
 - Implement favorites screen.
 - Implement bubble genres on movie & tv show detail screen. (Flexible Layout)
