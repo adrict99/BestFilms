@@ -22,11 +22,6 @@ class HomeViewModel @Inject constructor(
     //Storing responses from the API requests
     val contentResponse: MutableLiveData<ContentResponse> by lazy { MutableLiveData<ContentResponse>() }
 
-    //TODO: Infinite scrolling implementation
-    var currentMoviesPage: Int = 1
-    var currentTvShowsPage: Int = 1
-    var currentPopularContentPage: Int = 1
-
     /*async creates a new coroutine, await suspends current coroutine and waits for the result,
         first return the network request responses emitted by the flow*/
     fun getHomeData() {
@@ -43,7 +38,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getMoviesData() {
+    /*fun getMoviesData() {
         viewModelScope.launch {
             loading.value = SHOW
             getPopularMoviesUseCase.execute(currentMoviesPage)
@@ -83,6 +78,6 @@ class HomeViewModel @Inject constructor(
                 }
             loading.value = DISMISS
         }
-    }
+    }*/
 
 }

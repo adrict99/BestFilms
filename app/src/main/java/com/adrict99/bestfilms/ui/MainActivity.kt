@@ -1,6 +1,8 @@
 package com.adrict99.bestfilms.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -16,9 +18,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     lateinit var viewModelFactory: ViewModelFactory<MainViewModel>
     val mainViewModel: MainViewModel by lazy { viewModelFactory.get() }*/
 
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+        installSplashScreen().apply {
+            this.setKeepOnScreenCondition{
+                viewModel.isLoading.value
+            }
+        }
+
         setContentView(binding.root)
         supportActionBar?.hide()
 

@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/adria/AndroidStudioProjects/test/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1935" />
         <entry key="..\:/Users/adria/AndroidStudioProjects/test/app/src/main/res/drawable/fragment_detailed_media_top_header_background.xml" value="0.1" />
         <entry key="..\:/Users/adria/AndroidStudioProjects/test/app/src/main/res/drawable/fragment_home_media_rating.xml" value="0.1045" />
         <entry key="..\:/Users/adria/AndroidStudioProjects/test/app/src/main/res/drawable/fragment_home_media_rating_background.xml" value="0.2065" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/test/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1935" />
         <entry key="..\:/Users/adria/AndroidStudioProjects/test/app/src/main/res/drawable/ic_movie.xml" value="0.1045" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/test/app/src/main/res/drawable/ic_movie_2.xml" value="0.1935" />
         <entry key="..\:/Users/adria/AndroidStudioProjects/test/app/src/main/res/drawable/rounded_corner_background.xml" value="0.193" />
         <entry key="..\:/Users/adria/AndroidStudioProjects/test/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/adria/AndroidStudioProjects/test/app/src/main/res/layout/actor_item.xml" value="0.6" />
